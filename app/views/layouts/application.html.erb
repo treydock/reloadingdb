@@ -38,23 +38,26 @@
   </head>
   <body>
 
-    <div class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Shotsdb</a>
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
-            <li><%= link_to "Link1", "/path1"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <%= nav_bar static: :top, brand: 'Shots DB', responsive: true do %>
+      <%= menu_group do %>
+        <%= menu_item "Home", root_path %>
+        <%= menu_divider %>
+        <% if user_signed_in? %>
+          <%= drop_down "Components" do %>
+            <%#= menu_item "Bullets", bullets_path %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <%= menu_group pull: :right do %>
+        <% if user_signed_in? %>
+          <%= menu_item "Log Out", destroy_user_session_path %>
+        <% else %>
+          <%= menu_item "Sign In", new_user_session_path %>
+          <%= menu_divider %>
+          <%= menu_item "Sign Up", new_user_registration_path %>
+        <% end %>
+      <% end %>
+    <% end %>
 
     <div class="container">
       <div class="row">
