@@ -17,6 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'mini_racer', platforms: :ruby
 
 gem 'simple_form'
+gem 'jquery-rails'
 gem "twitter-bootstrap-rails"
 
 gem 'devise'
