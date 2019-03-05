@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_05_225808) do
+ActiveRecord::Schema.define(version: 2019_03_05_232220) do
+
+  create_table "brasses", force: :cascade do |t|
+    t.string "name"
+    t.integer "caliber_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["caliber_id"], name: "index_brasses_on_caliber_id"
+    t.index ["user_id"], name: "index_brasses_on_user_id"
+  end
 
   create_table "bullets", force: :cascade do |t|
     t.string "name"

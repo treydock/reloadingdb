@@ -1,0 +1,12 @@
+<p>
+  <strong>Name:</strong>
+  <%= @brass.name %>
+</p>
+
+<p>
+  <strong>Caliber:</strong>
+  <%= @brass.caliber %>
+</p>
+
+<%= link_to 'Edit', edit_brass_path(@brass), class: 'btn btn-info' %> |
+<%= link_to 'Back', brasses_path, class: 'btn btn-default' %>
