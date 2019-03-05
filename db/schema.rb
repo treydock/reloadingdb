@@ -14,13 +14,12 @@ ActiveRecord::Schema.define(version: 2019_03_05_003115) do
 
   create_table "bullets", force: :cascade do |t|
     t.string "name"
-    t.decimal "grain"
-    t.decimal "caliber"
+    t.string "grain"
+    t.string "caliber"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_bullets_on_user_id"
-    t.index [nil], name: "index_bullets_on_user"
   end
 
   create_table "users", force: :cascade do |t|

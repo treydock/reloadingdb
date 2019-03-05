@@ -1,10 +1,11 @@
 class BulletsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_bullet, only: [:show, :edit, :update, :destroy]
 
   # GET /bullets
   # GET /bullets.json
   def index
-    @bullets = Bullet.all
+    @bullets = Bullet.by_user(current_user).all
   end
 
   # GET /bullets/1
@@ -25,6 +26,7 @@ class BulletsController < ApplicationController
   # POST /bullets.json
   def create
     @bullet = Bullet.new(bullet_params)
+    @bullet.user = current_user
 
     respond_to do |format|
       if @bullet.save
@@ -64,7 +66,7 @@ class BulletsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bullet
-      @bullet = Bullet.find(params[:id])
+      @bullet = Bullet.by_user(current_user).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

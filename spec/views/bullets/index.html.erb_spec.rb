@@ -7,13 +7,13 @@ RSpec.describe "bullets/index", type: :view do
         :name => "Name",
         :grain => "9.99",
         :caliber => "9.99",
-        :user => ""
+        :user => nil
       ),
       Bullet.create!(
         :name => "Name",
         :grain => "9.99",
         :caliber => "9.99",
-        :user => ""
+        :user => nil
       )
     ])
   end
@@ -23,6 +23,6 @@ RSpec.describe "bullets/index", type: :view do
     assert_select "tr>td", :text => "Name".to_s, :count => 2
     assert_select "tr>td", :text => "9.99".to_s, :count => 2
     assert_select "tr>td", :text => "9.99".to_s, :count => 2
-    assert_select "tr>td", :text => "".to_s, :count => 2
+    assert_select "tr>td", :text => nil.to_s, :count => 2
   end
 end

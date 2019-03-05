@@ -1,5 +1,3 @@
-<p id="notice"><%%= notice %></p>
-
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
 <% next if attribute.column_name == 'user_id' -%>
 <p>

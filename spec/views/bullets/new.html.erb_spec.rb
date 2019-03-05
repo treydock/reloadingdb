@@ -6,7 +6,7 @@ RSpec.describe "bullets/new", type: :view do
       :name => "MyString",
       :grain => "9.99",
       :caliber => "9.99",
-      :user => ""
+      :user => nil
     ))
   end
 
@@ -21,7 +21,7 @@ RSpec.describe "bullets/new", type: :view do
 
       assert_select "input[name=?]", "bullet[caliber]"
 
-      assert_select "input[name=?]", "bullet[user]"
+      assert_select "input[name=?]", "bullet[user_id]"
     end
   end
 end

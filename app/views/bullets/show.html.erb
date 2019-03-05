@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @bullet.name %>
@@ -15,10 +13,5 @@
   <%= @bullet.caliber %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @bullet.user %>
-</p>
-
-<%= link_to 'Edit', edit_bullet_path(@bullet) %> |
-<%= link_to 'Back', bullets_path %>
+<%= link_to 'Edit', edit_bullet_path(@bullet), class: 'btn btn-info' %> |
+<%= link_to 'Back', bullets_path, class: 'btn btn-default' %>
