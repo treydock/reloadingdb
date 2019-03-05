@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  grain: 9.99
+  caliber: 9.99
+  user: 
+
+two:
+  name: MyString
+  grain: 9.99
+  caliber: 9.99
+  user: 

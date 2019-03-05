@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bullet.name %>
+</p>
+
+<p>
+  <strong>Grain:</strong>
+  <%= @bullet.grain %>
+</p>
+
+<p>
+  <strong>Caliber:</strong>
+  <%= @bullet.caliber %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @bullet.user %>
+</p>
+
+<%= link_to 'Edit', edit_bullet_path(@bullet) %> |
+<%= link_to 'Back', bullets_path %>
