@@ -44,6 +44,7 @@
         <%= menu_divider %>
         <% if user_signed_in? %>
           <%= drop_down "Components" do %>
+            <%= menu_item "Calibers", calibers_path %>
             <%= menu_item "Bullets", bullets_path %>
             <%= menu_item "Powders", powders_path %>
             <%= menu_item "Primers", primers_path %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :calibers
   resources :primers
   resources :powders
   resources :bullets

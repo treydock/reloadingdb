@@ -1,0 +1,26 @@
+<h1>Calibers</h1>
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @calibers.each do |caliber| %>
+      <tr>
+        <td><%= caliber.name %></td>
+        <td><%= link_to 'Show', caliber, class: 'btn btn-info' %></td>
+        <td><%= link_to 'Edit', edit_caliber_path(caliber), class: 'btn btn-info' %></td>
+        <td><%= link_to 'Destroy', caliber, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Caliber', new_caliber_path, class: 'btn btn-primary' %>

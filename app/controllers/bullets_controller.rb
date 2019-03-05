@@ -16,10 +16,12 @@ class BulletsController < ApplicationController
   # GET /bullets/new
   def new
     @bullet = Bullet.new
+    @calibers = Caliber.by_user(current_user).all
   end
 
   # GET /bullets/1/edit
   def edit
+    @calibers = Caliber.by_user(current_user).all
   end
 
   # POST /bullets
@@ -71,6 +73,6 @@ class BulletsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bullet_params
-      params.require(:bullet).permit(:name, :grain, :caliber)
+      params.require(:bullet).permit(:name, :grain, :caliber_id)
     end
 end
