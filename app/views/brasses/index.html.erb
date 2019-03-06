@@ -14,7 +14,7 @@
     <% @brasses.each do |brass| %>
       <tr>
         <td><%= brass.name %></td>
-        <td><%= brass.caliber_id %></td>
+        <td><%= brass.caliber.name %></td>
         <td><%= link_to 'Show', brass, class: 'btn btn-info' %></td>
         <td><%= link_to 'Edit', edit_brass_path(brass), class: 'btn btn-info' %></td>
         <td><%= link_to 'Destroy', brass, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>

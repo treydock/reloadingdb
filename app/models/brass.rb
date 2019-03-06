@@ -5,6 +5,6 @@ class Brass < ApplicationRecord
   validates :caliber, presence: true
 
   def name_caliber
-    "#{name} (#{caliber})"
+    "#{name} (#{caliber.name})"
   end
 end

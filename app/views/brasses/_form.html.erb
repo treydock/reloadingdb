@@ -5,7 +5,7 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.association :caliber %>
+    <%= f.association :caliber, collection: @calibers, label_method: :name %>
   </div>
 
   <div class="form-actions">

@@ -16,10 +16,12 @@ class BrassesController < ApplicationController
   # GET /brasses/new
   def new
     @brass = Brass.new
+    @calibers = Caliber.by_user(current_user).all
   end
 
   # GET /brasses/1/edit
   def edit
+    @calibers = Caliber.by_user(current_user).all
   end
 
   # POST /brasses
