@@ -1,0 +1,22 @@
+
+<%= simple_form_for(@load) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :date, as: :date, html5: true %>
+    <%= f.association :caliber, collection: @calibers %>
+    <%= f.input :brass_id, collection: @calibers, label_method: :name_caliber, as: :grouped_select, group_method: :brasses %>
+    <%= f.input :brass_length %>
+    <%= f.input :bullet_id, collection: @calibers, label_method: :name_grain_caliber, as: :grouped_select, group_method: :bullets %>
+    <%= f.association :powder, collection: @powders  %>
+    <%= f.input :powder_weight %>
+    <%= f.association :primer, collection: @primers %>
+    <%= f.input :col %>
+    <%= f.input :speed %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn-primary' %>
+  </div>
+<% end %>

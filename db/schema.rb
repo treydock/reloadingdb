@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_05_232220) do
+ActiveRecord::Schema.define(version: 2019_03_06_001459) do
 
   create_table "brasses", force: :cascade do |t|
     t.string "name"
@@ -39,6 +39,28 @@ ActiveRecord::Schema.define(version: 2019_03_05_232220) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_calibers_on_user_id"
+  end
+
+  create_table "loads", force: :cascade do |t|
+    t.integer "caliber_id"
+    t.integer "brass_id"
+    t.string "brass_length"
+    t.date "date"
+    t.integer "user_id"
+    t.integer "bullet_id"
+    t.integer "powder_id"
+    t.string "powder_weight"
+    t.integer "primer_id"
+    t.string "col"
+    t.string "speed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["brass_id"], name: "index_loads_on_brass_id"
+    t.index ["bullet_id"], name: "index_loads_on_bullet_id"
+    t.index ["caliber_id"], name: "index_loads_on_caliber_id"
+    t.index ["powder_id"], name: "index_loads_on_powder_id"
+    t.index ["primer_id"], name: "index_loads_on_primer_id"
+    t.index ["user_id"], name: "index_loads_on_user_id"
   end
 
   create_table "powders", force: :cascade do |t|

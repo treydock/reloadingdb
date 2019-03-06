@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  caliber: 
+  brass: 
+  brass_length: MyString
+  date: 2019-03-05
+  user: 
+  bullet: 
+  powder: 
+  powder_weight: MyString
+  primer: 
+  col: MyString
+  speed: MyString
+
+two:
+  caliber: 
+  brass: 
+  brass_length: MyString
+  date: 2019-03-05
+  user: 
+  bullet: 
+  powder: 
+  powder_weight: MyString
+  primer: 
+  col: MyString
+  speed: MyString
