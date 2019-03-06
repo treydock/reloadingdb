@@ -1,11 +1,11 @@
 <p>
-  <strong>Caliber:</strong>
-  <%= @load.caliber %>
+  <strong>Date:</strong>
+  <%= @load.date %>
 </p>
 
 <p>
   <strong>Brass:</strong>
-  <%= @load.brass %>
+  <%= @load.brass.name_caliber %>
 </p>
 
 <p>
@@ -14,18 +14,13 @@
 </p>
 
 <p>
-  <strong>Date:</strong>
-  <%= @load.date %>
-</p>
-
-<p>
   <strong>Bullet:</strong>
-  <%= @load.bullet %>
+  <%= @load.bullet.name_grain_caliber %>
 </p>
 
 <p>
   <strong>Powder:</strong>
-  <%= @load.powder %>
+  <%= @load.powder.name %>
 </p>
 
 <p>
@@ -35,11 +30,11 @@
 
 <p>
   <strong>Primer:</strong>
-  <%= @load.primer %>
+  <%= @load.primer.name %>
 </p>
 
 <p>
-  <strong>Col:</strong>
+  <strong>COL:</strong>
   <%= @load.col %>
 </p>
 

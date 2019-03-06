@@ -5,4 +5,6 @@ class Load < ApplicationRecord
   belongs_to :bullet
   belongs_to :powder
   belongs_to :primer
+
+  validates :date, presence: true
 end

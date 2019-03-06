@@ -1,19 +1,13 @@
 <h1>Loads</h1>
 
-<table class='table table-striped'>
+<table class='table table-striped table-condensed table-bordered'>
   <thead>
     <tr>
-      <th>Caliber</th>
-      <th>Brass</th>
-      <th>Brass length</th>
       <th>Date</th>
-      <th>User</th>
       <th>Bullet</th>
       <th>Powder</th>
       <th>Powder weight</th>
       <th>Primer</th>
-      <th>Col</th>
-      <th>Speed</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,16 +15,11 @@
   <tbody>
     <% @loads.each do |load| %>
       <tr>
-        <td><%= load.caliber_id %></td>
-        <td><%= load.brass_id %></td>
-        <td><%= load.brass_length %></td>
         <td><%= load.date %></td>
-        <td><%= load.bullet_id %></td>
-        <td><%= load.powder_id %></td>
+        <td><%= load.bullet.name_grain_caliber %></td>
+        <td><%= load.powder.name %></td>
         <td><%= load.powder_weight %></td>
-        <td><%= load.primer_id %></td>
-        <td><%= load.col %></td>
-        <td><%= load.speed %></td>
+        <td><%= load.primer.name %></td>
         <td><%= link_to 'Show', load, class: 'btn btn-info' %></td>
         <td><%= link_to 'Edit', edit_load_path(load), class: 'btn btn-info' %></td>
         <td><%= link_to 'Destroy', load, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
