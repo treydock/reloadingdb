@@ -24,50 +24,43 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe BulletsController, type: :controller do
+  login_user
 
-  # This should return the minimal set of attributes required to create a valid
-  # Bullet. As you add validations to Bullet, be sure to
-  # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    attributes_for(:bullet, caliber_id: create(:caliber).id)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { foo: 'bar' }
   }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # BulletsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      Bullet.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      create(:bullet, user: @current_user)
+      get :index, params: {}
       expect(response).to be_successful
     end
   end
 
   describe "GET #show" do
     it "returns a success response" do
-      bullet = Bullet.create! valid_attributes
-      get :show, params: {id: bullet.to_param}, session: valid_session
+      bullet = create(:bullet, user: @current_user)
+      get :show, params: {id: bullet.to_param}
       expect(response).to be_successful
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      get :new, params: {}
       expect(response).to be_successful
     end
   end
 
   describe "GET #edit" do
     it "returns a success response" do
-      bullet = Bullet.create! valid_attributes
-      get :edit, params: {id: bullet.to_param}, session: valid_session
+      bullet = create(:bullet, user: @current_user)
+      get :edit, params: {id: bullet.to_param}
       expect(response).to be_successful
     end
   end
@@ -76,19 +69,19 @@ RSpec.describe BulletsController, type: :controller do
     context "with valid params" do
       it "creates a new Bullet" do
         expect {
-          post :create, params: {bullet: valid_attributes}, session: valid_session
+          post :create, params: {bullet: valid_attributes}
         }.to change(Bullet, :count).by(1)
       end
 
       it "redirects to the created bullet" do
-        post :create, params: {bullet: valid_attributes}, session: valid_session
+        post :create, params: {bullet: valid_attributes}
         expect(response).to redirect_to(Bullet.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {bullet: invalid_attributes}, session: valid_session
+        post :create, params: {bullet: invalid_attributes}
         expect(response).to be_successful
       end
     end
@@ -97,43 +90,43 @@ RSpec.describe BulletsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { name: 'TEST' }
       }
 
       it "updates the requested bullet" do
-        bullet = Bullet.create! valid_attributes
-        put :update, params: {id: bullet.to_param, bullet: new_attributes}, session: valid_session
+        bullet = create(:bullet, user: @current_user)
+        put :update, params: {id: bullet.to_param, bullet: new_attributes}
         bullet.reload
-        skip("Add assertions for updated state")
+        expect(bullet.name).to eq('TEST')
       end
 
       it "redirects to the bullet" do
-        bullet = Bullet.create! valid_attributes
-        put :update, params: {id: bullet.to_param, bullet: valid_attributes}, session: valid_session
+        bullet = create(:bullet, user: @current_user)
+        put :update, params: {id: bullet.to_param, bullet: new_attributes}
         expect(response).to redirect_to(bullet)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        bullet = Bullet.create! valid_attributes
-        put :update, params: {id: bullet.to_param, bullet: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+        bullet = create(:bullet, user: @current_user)
+        put :update, params: {id: bullet.to_param, bullet: invalid_attributes}
+        expect(response).to redirect_to(bullet)
       end
     end
   end
 
   describe "DELETE #destroy" do
     it "destroys the requested bullet" do
-      bullet = Bullet.create! valid_attributes
+      bullet = create(:bullet, user: @current_user)
       expect {
-        delete :destroy, params: {id: bullet.to_param}, session: valid_session
+        delete :destroy, params: {id: bullet.to_param}
       }.to change(Bullet, :count).by(-1)
     end
 
     it "redirects to the bullets list" do
-      bullet = Bullet.create! valid_attributes
-      delete :destroy, params: {id: bullet.to_param}, session: valid_session
+      bullet = create(:bullet, user: @current_user)
+      delete :destroy, params: {id: bullet.to_param}
       expect(response).to redirect_to(bullets_url)
     end
   end

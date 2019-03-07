@@ -24,50 +24,49 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe BrassesController, type: :controller do
+  login_user
 
-  # This should return the minimal set of attributes required to create a valid
-  # Brass. As you add validations to Brass, be sure to
-  # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    attributes_for(:brass, caliber_id: create(:caliber).id)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { foo: 'bar' }
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # BrassesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
-
   describe "GET #index" do
+    it "requires login" do
+      sign_out @current_user
+      create(:brass, user: @current_user)
+      get :index, params: {}
+      expect(response).to redirect_to(new_user_session_url)
+    end
     it "returns a success response" do
-      Brass.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      create(:brass, user: @current_user)
+      get :index, params: {}
       expect(response).to be_successful
     end
   end
 
   describe "GET #show" do
     it "returns a success response" do
-      brass = Brass.create! valid_attributes
-      get :show, params: {id: brass.to_param}, session: valid_session
+      brass = create(:brass, user: @current_user)
+      get :show, params: {id: brass.to_param}
       expect(response).to be_successful
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      get :new, params: {}
       expect(response).to be_successful
     end
   end
 
   describe "GET #edit" do
     it "returns a success response" do
-      brass = Brass.create! valid_attributes
-      get :edit, params: {id: brass.to_param}, session: valid_session
+      brass = create(:brass, user: @current_user)
+      get :edit, params: {id: brass.to_param}
       expect(response).to be_successful
     end
   end
@@ -76,19 +75,20 @@ RSpec.describe BrassesController, type: :controller do
     context "with valid params" do
       it "creates a new Brass" do
         expect {
-          post :create, params: {brass: valid_attributes}, session: valid_session
+          post :create, params: {brass: valid_attributes}
         }.to change(Brass, :count).by(1)
       end
 
       it "redirects to the created brass" do
-        post :create, params: {brass: valid_attributes}, session: valid_session
+        brass = build(:brass)
+        post :create, params: {brass: valid_attributes}
         expect(response).to redirect_to(Brass.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {brass: invalid_attributes}, session: valid_session
+        post :create, params: {brass: invalid_attributes}
         expect(response).to be_successful
       end
     end
@@ -97,43 +97,43 @@ RSpec.describe BrassesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { name: 'TEST' }
       }
 
       it "updates the requested brass" do
-        brass = Brass.create! valid_attributes
-        put :update, params: {id: brass.to_param, brass: new_attributes}, session: valid_session
+        brass = create(:brass, user: @current_user)
+        put :update, params: {id: brass.to_param, brass: new_attributes}
         brass.reload
-        skip("Add assertions for updated state")
+        expect(brass.name).to eq('TEST')
       end
 
       it "redirects to the brass" do
-        brass = Brass.create! valid_attributes
-        put :update, params: {id: brass.to_param, brass: valid_attributes}, session: valid_session
+        brass = create(:brass, user: @current_user)
+        put :update, params: {id: brass.to_param, brass: new_attributes}
         expect(response).to redirect_to(brass)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        brass = Brass.create! valid_attributes
-        put :update, params: {id: brass.to_param, brass: invalid_attributes}, session: valid_session
-        expect(response).to be_successful
+        brass = create(:brass, user: @current_user)
+        put :update, params: {id: brass.to_param, brass: invalid_attributes}
+        expect(response).to redirect_to(brass)
       end
     end
   end
 
   describe "DELETE #destroy" do
     it "destroys the requested brass" do
-      brass = Brass.create! valid_attributes
+      brass = create(:brass, user: @current_user)
       expect {
-        delete :destroy, params: {id: brass.to_param}, session: valid_session
+        delete :destroy, params: {id: brass.to_param}
       }.to change(Brass, :count).by(-1)
     end
 
     it "redirects to the brasses list" do
-      brass = Brass.create! valid_attributes
-      delete :destroy, params: {id: brass.to_param}, session: valid_session
+      brass = create(:brass, user: @current_user)
+      delete :destroy, params: {id: brass.to_param}
       expect(response).to redirect_to(brasses_url)
     end
   end
