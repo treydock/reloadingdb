@@ -2,31 +2,19 @@ require 'rails_helper'
 
 RSpec.describe "loads/show", type: :view do
   before(:each) do
-    @load = assign(:load, Load.create!(
-      :caliber => nil,
-      :brass => nil,
-      :brass_length => "Brass Length",
-      :user => nil,
-      :bullet => nil,
-      :powder => nil,
-      :powder_weight => "Powder Weight",
-      :primer => nil,
-      :col => "Col",
-      :speed => "Speed"
-    ))
+    @load = assign(:load, create(:load))
   end
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(//)
-    expect(rendered).to match(//)
-    expect(rendered).to match(/Brass Length/)
-    expect(rendered).to match(//)
-    expect(rendered).to match(//)
-    expect(rendered).to match(//)
-    expect(rendered).to match(/Powder Weight/)
-    expect(rendered).to match(//)
-    expect(rendered).to match(/Col/)
-    expect(rendered).to match(/Speed/)
+    expect(rendered).to match(/#{@load.date}/)
+    expect(rendered).to include(@load.brass.name_caliber)
+    expect(rendered).to match(@load.brass_length)
+    expect(rendered).to include(@load.bullet.name_grain_caliber)
+    expect(rendered).to match(@load.powder.name)
+    expect(rendered).to match(@load.powder_weight)
+    expect(rendered).to match(@load.primer.name)
+    expect(rendered).to match(@load.col)
+    expect(rendered).to match(@load.speed)
   end
 end

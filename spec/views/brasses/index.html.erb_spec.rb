@@ -2,24 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "brasses/index", type: :view do
   before(:each) do
-    assign(:brasses, [
-      Brass.create!(
-        :name => "Name",
-        :caliber => nil,
-        :user => nil
-      ),
-      Brass.create!(
-        :name => "Name",
-        :caliber => nil,
-        :user => nil
-      )
-    ])
+    @brasses = assign(:brasses, create_list(:brass, 2))
   end
 
   it "renders a list of brasses" do
     render
-    assert_select "tr>td", :text => "Name".to_s, :count => 2
-    assert_select "tr>td", :text => nil.to_s, :count => 2
-    assert_select "tr>td", :text => nil.to_s, :count => 2
+    assert_select "tr>td", :text => @brasses[0].name
+    assert_select "tr>td", :text => @brasses[1].name
   end
 end

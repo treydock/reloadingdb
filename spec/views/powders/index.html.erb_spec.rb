@@ -2,21 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "powders/index", type: :view do
   before(:each) do
-    assign(:powders, [
-      Powder.create!(
-        :name => "Name",
-        :user => nil
-      ),
-      Powder.create!(
-        :name => "Name",
-        :user => nil
-      )
-    ])
+    @powders = assign(:powders, create_list(:powder, 2))
   end
 
   it "renders a list of powders" do
     render
-    assert_select "tr>td", :text => "Name".to_s, :count => 2
-    assert_select "tr>td", :text => nil.to_s, :count => 2
+    assert_select "tr>td", :text => @powders[0].name
+    assert_select "tr>td", :text => @powders[1].name
   end
 end
