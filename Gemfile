@@ -18,8 +18,7 @@ gem 'mini_racer', platforms: :ruby
 
 gem 'simple_form'
 gem 'jquery-rails'
-gem "twitter-bootstrap-rails"
-
+gem 'bootstrap'
 gem 'devise'
 
 # Use CoffeeScript for .coffee assets and views

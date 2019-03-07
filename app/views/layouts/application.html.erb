@@ -38,39 +38,77 @@
   </head>
   <body>
 
-    <%= nav_bar static: :top, brand: 'Shots DB', responsive: true do %>
-      <%= menu_group do %>
-        <%= menu_item "Home", root_path %>
-        <% if user_signed_in? %>
-          <%= menu_divider %>
-          <%= menu_item "Loads", loads_path %>
-          <%= menu_divider %>
-          <%= drop_down "Components" do %>
-            <%= menu_item "Calibers", calibers_path %>
-            <%= menu_item "Bullets", bullets_path %>
-            <%= menu_item "Powders", powders_path %>
-            <%= menu_item "Primers", primers_path %>
-            <%= menu_item "Brass", brasses_path %>
-          <% end %>
-        <% end %>
-      <% end %>
-      <%= menu_group pull: :right do %>
-        <% if user_signed_in? %>
-          <%= menu_item "My Account", edit_user_registration_path %>
-          <%= menu_divider %>
-          <%= menu_item "Log Out", destroy_user_session_path %>
-        <% else %>
-          <%= menu_item "Sign In", new_user_session_path %>
-          <%= menu_divider %>
-          <%= menu_item "Sign Up", new_user_registration_path %>
-        <% end %>
-      <% end %>
-    <% end %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <%= link_to 'Shots DB', root_path, class: 'navbar-brand' %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="navbar-collapse collapse" id="navbar">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><%= link_to 'Home', root_path, class: 'nav-link' %></li>
+          <% if user_signed_in? %>
+          <li class="nav-item"><%= link_to 'Loads', loads_path, class: 'nav-link' %></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="components" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Components</a>
+            <div class="dropdown-menu" aria-labelledby="components">
+              <%= link_to 'Calibers', calibers_path, class: 'dropdown-item' %>
+              <%= link_to 'Bullets', bullets_path, class: 'dropdown-item' %>
+              <%= link_to 'Powders', powders_path, class: 'dropdown-item' %>
+              <%= link_to 'Primers', primers_path, class: 'dropdown-item' %>
+              <%= link_to 'Brass', brasses_path, class: 'dropdown-item' %>
+            </div>
+          </li>
+          <% end -%>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li class="nav-item"><%= link_to 'My Account', edit_user_registration_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
+          <% else -%>
+            <li class="nav-item"><%= link_to 'Sign In', new_user_session_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %></li>
+          <% end -%>
+        </ul>
+      </div>
+    </div>
+    </nav>
+
+    <%#= navbar fixed: :top, color_scheme: 'light', bg: 'light', class: 'navbar-expand-lg' do %>
+      <%#= brand_link 'Shots DB', root_path %>
+      <%#= navbar_collapse do %>
+        <%#= navbar_group class: 'mr-auto' do %>
+          <%#= navbar_item 'Home', root_path %>
+          <%# if user_signed_in? %>
+            <%#= navbar_item 'Loads', loads_path %>
+            <%#= navbar_dropdown 'Components', 'components' do %>
+              <%#= navbar_dropdown_item "Calibers", calibers_path %>
+              <%#= navbar_dropdown_item "Bullets", bullets_path %>
+              <%#= navbar_dropdown_item "Powders", powders_path %>
+              <%#= navbar_dropdown_item "Primers", primers_path %>
+              <%#= navbar_dropdown_item "Brass", brasses_path %>
+            <%# end -%>
+          <%# end -%>
+        <%# end -%>
+        <%#= navbar_group class: 'navbar-right' do %>
+          <%# if user_signed_in? %>
+            <%#= navbar_item "My Account", edit_user_registration_path %>
+            <%#= navbar_item "Log Out", destroy_user_session_path %>
+          <%# else %>
+            <%#= navbar_item "Sign In", new_user_session_path %>
+            <%#= navbar_item "Sign Up", new_user_registration_path %>
+          <%# end %>
+        <%# end -%>
+      <%# end -%>
+    <%# end -%>
 
     <div class="container">
       <div class="row">
         <div class="col-lg-9">
-          <%= bootstrap_flash %>
+          <% flash.each do |key, value| %>
+            <div class="<%= flash_class(key) %>">
+              <%= value %>
+            </div>
+          <% end %>
           <%= yield %>
         </div>
         <div class="col-lg-3">
