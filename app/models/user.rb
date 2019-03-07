@@ -4,4 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable
+
+  has_many :brasses
+  has_many :bullets
+  has_many :calibers
+  has_many :loads
+  has_many :powders
+  has_many :primers
 end
