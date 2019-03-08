@@ -65,6 +65,22 @@ class LoadsController < ApplicationController
     end
   end
 
+  def autocomplete
+    begin
+      model = controller_name.classify.constantize
+      @items = model.complete_for(params[:search])
+      @items = @items.map do |item|
+        category = (['and','or','not','has'].include?(item.to_s.sub(/^.*\s+/,''))) ? _('Operators') : ''
+        part = item.to_s.sub(/^.*\b(and|or)\b/i) {|match| match.sub(/^.*\s+/,'')}
+        completed = item.to_s.chomp(part)
+        {:completed => CGI.escapeHTML(completed), :part => CGI.escapeHTML(part), :label => item, :category => category}
+      end
+    rescue ScopedSearch::QueryNotSupported => e
+      @items = [{:error => e.to_s}]
+    end
+    render :json => @items
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_load
