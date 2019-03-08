@@ -13,4 +13,12 @@
  */
 @import "bootstrap";
 @import "font-awesome";
-@import "jquery-ui";
+@import 'jquery.ui.theme';
+@import 'jquery.ui.core';
+@import 'jquery.ui.menu';
+@import 'jquery.ui.autocomplete';
+@import 'scoped_search';
+
+.input-group-append {
+  margin-left: 10px;
+}

@@ -5,6 +5,6 @@ module LoadsHelper
     icon = sort_direction == "asc" ? "fa fa-chevron-up" : "fa fa-chevron-down"
     icon = column == sort_column ? icon : ""
     link_to "#{title} <span class='#{icon}'></span>".html_safe,
-      {page: params[:page], per_page: params[:per_page], column: column, direction: direction}
+      {search: params[:search], page: params[:page], per_page: params[:per_page], column: column, direction: direction}
   end
 end

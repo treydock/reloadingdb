@@ -7,7 +7,7 @@ class LoadsController < ApplicationController
   # GET /loads
   # GET /loads.json
   def index
-    @loads = Load.by_user(current_user).order("#{sort_column} #{sort_direction}").page(params[:page]).per(params[:per_page])
+    @loads = Load.by_user(current_user).search_for(params[:search]).order("#{sort_column} #{sort_direction}").page(params[:page]).per(params[:per_page])
   end
 
   # GET /loads/1
