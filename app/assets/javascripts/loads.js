@@ -26,3 +26,19 @@ jQuery(function() {
   });
 });
 
+jQuery(document).ready(function() {
+  $('#loads-datatable').dataTable({
+    "processing": true,
+    "serverside": true,
+    "ajax": $('#loads-datatable').data('source'),
+    "pagingType": "full_numbers",
+    "columns": [
+      {"data": "date"},
+      {"data": "bullet"},
+      {"data": "powder"},
+      {"data": "powder_weight"},
+    ]
+  });
+});
+
+

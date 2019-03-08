@@ -6,7 +6,12 @@ class LoadsController < ApplicationController
   # GET /loads
   # GET /loads.json
   def index
-    @loads = Load.by_user(current_user).all
+    params["columns"] ||= { "0" => {"data" => "" } }
+    params["length"]  ||= -1
+    respond_to do |format|
+      format.html
+      format.json { render json: LoadDatatable.new(params, user: current_user) }
+    end
   end
 
   # GET /loads/1

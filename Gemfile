@@ -20,6 +20,9 @@ gem 'simple_form'
 gem 'jquery-rails'
 gem 'bootstrap'
 gem 'devise'
+gem 'draper'
+gem 'jquery-datatables'
+gem 'ajax-datatables-rails'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

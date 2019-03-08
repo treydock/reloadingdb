@@ -16,5 +16,6 @@
 //= require jquery_ujs
 //= require activestorage
 //= require turbolinks
+//= require datatables
 //= require bootstrap
 //= require_tree .
