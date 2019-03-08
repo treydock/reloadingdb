@@ -12,7 +12,7 @@
 //
 //= require rails-ujs
 //= require jquery
-//= require jquery-ui
+//= require jquery.ui.autocomplete
 //= require popper
 //= require jquery_ujs
 //= require activestorage

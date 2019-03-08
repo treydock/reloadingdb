@@ -1,11 +1,11 @@
 <h1>Loads</h1>
 
 <%= form_tag(loads_path, method: :get, role: 'form') do %>
-  <div class='row'>
-    <div class='form-group col-xs-6 col-md-4'>
-      <%= text_field_tag 'search', '', class: 'autocomplete-input form-control', autocomplete: 'off', placeholder: 'Search...', 'data-url' => autocomplete_loads_path %>
-      <%= submit_tag "Search", class: 'btn btn-default' %>
-      <%= submit_tag "Reset", class: 'btn btn-default', type: 'reset', value: 'Reset' %>
+  <div class='input-group md-3'>
+    <%= text_field_tag 'search', params[:search], class: 'autocomplete-input form-control', autocomplete: 'off', placeholder: 'Search...', 'data-url' => autocomplete_loads_path %>
+    <div class='input-group-append'>
+    <%= submit_tag "Search", class: 'btn btn-outline-secondary' %>
+    <%= submit_tag "Reset", class: 'btn btn-outline-secondary', type: 'reset', value: 'Reset' %>
     </div>
   </div>
 <% end %>

@@ -9,5 +9,5 @@ class Load < ApplicationRecord
   validates :date, presence: true
 
   scoped_search on: [:date], complete_value: true
-  scoped_search relation: :caliber, on: :name, complete_value: true
+  scoped_search relation: :caliber, on: :name, complete_value: true, rename: :caliber
 end

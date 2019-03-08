@@ -18,7 +18,7 @@ gem 'mini_racer', platforms: :ruby
 
 gem 'simple_form'
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '< 5.0.0'
 gem 'bootstrap'
 gem "font-awesome-rails"
 gem 'devise'
