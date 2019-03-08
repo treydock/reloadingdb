@@ -1,12 +1,13 @@
 class LoadsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_load, only: [:show, :edit, :update, :destroy]
-  before_action :set_components, only: [:new, :edit]
+  before_action :set_components, only: [:new, :create, :edit]
+  helper_method :sort_column, :sort_direction
 
   # GET /loads
   # GET /loads.json
   def index
-    @loads = Load.by_user(current_user).all
+    @loads = Load.by_user(current_user).order("#{sort_column} #{sort_direction}").all
   end
 
   # GET /loads/1
@@ -81,5 +82,17 @@ class LoadsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def load_params
       params.require(:load).permit(:caliber_id, :brass_id, :brass_length, :date, :bullet_id, :powder_id, :powder_weight, :primer_id, :col, :speed)
+    end
+
+    def sortable_columns
+      ['date']
+    end
+
+    def sort_column
+      sortable_columns.include?(params[:column]) ? params[:column] : 'date'
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end
