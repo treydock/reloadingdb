@@ -7,7 +7,7 @@ class LoadsController < ApplicationController
   # GET /loads
   # GET /loads.json
   def index
-    @loads = Load.by_user(current_user).order("#{sort_column} #{sort_direction}").all
+    @loads = Load.by_user(current_user).order("#{sort_column} #{sort_direction}").page(params[:page]).per(params[:per_page])
   end
 
   # GET /loads/1
@@ -88,8 +88,12 @@ class LoadsController < ApplicationController
       ['date']
     end
 
+    def default_sort_column
+      'date'
+    end
+
     def sort_column
-      sortable_columns.include?(params[:column]) ? params[:column] : 'date'
+      sortable_columns.include?(params[:column]) ? params[:column] : default_sort_column
     end
 
     def sort_direction
