@@ -27,8 +27,12 @@ jQuery(function() {
 });
 
 jQuery(function() {
-   $(document).on('change', '#per_page', function() {
-       console.log('per_page CHANGE');
-       $('#per_page_form').submit();
-   })
+    $(document).on('change', '#per_page', function() {
+        console.log('per_page CHANGE');
+        $('#per_page_form').submit();
+    })
+
+    $(document).on('focus', '#search', function(e) {
+        $('.autocomplete-input').scopedSearch();
+    })
 });

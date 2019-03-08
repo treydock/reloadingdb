@@ -18,11 +18,13 @@ gem 'mini_racer', platforms: :ruby
 
 gem 'simple_form'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'bootstrap'
 gem "font-awesome-rails"
 gem 'devise'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
+gem 'scoped_search'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

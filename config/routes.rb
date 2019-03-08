@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :loads
+  resources :loads do
+    get 'autocomplete', on: :collection
+  end
   resources :brasses
   resources :calibers
   resources :primers
