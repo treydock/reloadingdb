@@ -7,4 +7,15 @@ module ApplicationHelper
       when 'alert' then "alert alert-warning"
     end
   end
+
+  def index_actions(object)
+    content_tag :div, class: 'dropdown' do
+      concat button_tag('Actions', class: 'btn btn-secondary dropdown-toggle', id: 'button', type: 'button', 'aria-haspopup' => 'true', 'aria-expanded' => 'false', data: { toggle: 'dropdown' })
+      concat(content_tag(:div, class: 'dropdown-menu', 'aria-labelledby' => 'actions-dropdown') do
+        concat link_to('Show', object, class: 'dropdown-item')
+        concat link_to('Edit', send("edit_#{object.model_name.singular_route_key}_path", object), class: 'dropdown-item')
+        concat link_to('Destroy', object, method: :delete, data: { confirm: 'Are you sure?'}, class: 'dropdown-item')
+      end)
+    end
+  end
 end

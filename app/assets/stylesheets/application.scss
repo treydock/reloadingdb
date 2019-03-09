@@ -18,7 +18,18 @@
 @import 'jquery.ui.menu';
 @import 'jquery.ui.autocomplete';
 @import 'scoped_search';
+@import 'bootstrap3';
 
 .input-group-append {
   margin-left: 10px;
+}
+
+.show-header {
+  a.btn {
+    float: right;
+  }
+
+  a.btn + a.btn {
+    margin-right: 8px;
+  }
 }
