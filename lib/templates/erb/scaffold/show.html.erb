@@ -1,10 +1,10 @@
+<%%= show_header(@<%= singular_table_name %>) %>
+
+<dl class='dl-horizontal'>
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
 <% next if attribute.column_name == 'user_id' -%>
-<p>
-  <strong><%= attribute.human_name %>:</strong>
-  <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
-</p>
+  <dt><%= attribute.human_name %>:</dt>
+  <dd><%%= @<%= singular_table_name %>.<%= attribute.name %> %></dd>
 
 <% end -%>
-<%%= link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-info' %> |
-<%%= link_to 'Back', <%= index_helper %>_path, class: 'btn btn-default' %>
+</dl>
