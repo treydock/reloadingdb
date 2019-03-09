@@ -18,21 +18,19 @@
       <th>Powder</th>
       <th>Powder weight</th>
       <th>Primer</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @loads.each do |load| %>
       <tr>
-        <td><%= load.date %></td>
+        <td><%= link_to load.date, load %></td>
         <td><%= load.bullet.name_grain_caliber %></td>
         <td><%= load.powder.name %></td>
         <td><%= load.powder_weight %></td>
         <td><%= load.primer.name %></td>
-        <td><%= link_to 'Show', load, class: 'btn btn-info' %></td>
-        <td><%= link_to 'Edit', edit_load_path(load), class: 'btn btn-info' %></td>
-        <td><%= link_to 'Destroy', load, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+        <td><%= index_actions(load) %></td>
       </tr>
     <% end %>
   </tbody>

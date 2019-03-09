@@ -1,47 +1,38 @@
-<p>
-  <strong>Date:</strong>
-  <%= @load.date %>
-</p>
+<div class='show-header pb-2 mt-2 mb-2 border-bottom'>
+  <%= link_to edit_load_path(@load), class: 'btn btn-info' do %> |
+    <span class='fa fa-edit'>Edit</span>
+  <% end %>
+  <%= link_to loads_path, class: 'btn btn-default' do %>
+    <span class='fa fa-list'>Back</span>
+  <% end %>
+  <h2>Show Load</h2>
+</div>
 
-<p>
-  <strong>Brass:</strong>
-  <%= @load.brass.name_caliber %>
-</p>
+<dl class='dl-horizontal'>
+  <dt>Date:</dt>
+  <dd><%= @load.date %></dd>
 
-<p>
-  <strong>Brass length:</strong>
-  <%= @load.brass_length %>
-</p>
+  <dt>Brass:</dt>
+  <dd><%= @load.brass.name_caliber %></dd>
 
-<p>
-  <strong>Bullet:</strong>
-  <%= @load.bullet.name_grain_caliber %>
-</p>
+  <dt>Brass length:</dt>
+  <dd><%= @load.brass_length %></dd>
 
-<p>
-  <strong>Powder:</strong>
-  <%= @load.powder.name %>
-</p>
+  <dt>Bullet:</dt>
+  <dd><%= @load.bullet.name_grain_caliber %></dd>
 
-<p>
-  <strong>Powder weight:</strong>
-  <%= @load.powder_weight %>
-</p>
+  <dt>Powder:</dt>
+  <dd><%= @load.powder.name %></dd>
 
-<p>
-  <strong>Primer:</strong>
-  <%= @load.primer.name %>
-</p>
+  <dt>Powder weight:</dt>
+  <dd><%= @load.powder_weight %></dd>
 
-<p>
-  <strong>COL:</strong>
-  <%= @load.col %>
-</p>
+  <dt>Primer:</dt>
+  <dd><%= @load.primer.name %></dd>
 
-<p>
-  <strong>Speed:</strong>
-  <%= @load.speed %>
-</p>
+  <dt>COL:</dt>
+  <dd><%= @load.col %></dd>
 
-<%= link_to 'Edit', edit_load_path(@load), class: 'btn btn-info' %> |
-<%= link_to 'Back', loads_path, class: 'btn btn-default' %>
+  <dt>Speed:</dt>
+  <dd><%= @load.speed %></dd>
+</dl>
