@@ -1,12 +1,4 @@
-<div class='show-header pb-2 mt-2 mb-2 border-bottom'>
-  <%= link_to edit_load_path(@load), class: 'btn btn-info' do %> |
-    <span class='fa fa-edit'>Edit</span>
-  <% end %>
-  <%= link_to loads_path, class: 'btn btn-default' do %>
-    <span class='fa fa-list'>Back</span>
-  <% end %>
-  <h2>Show Load</h2>
-</div>
+<%= show_header(@load) %>
 
 <dl class='dl-horizontal'>
   <dt>Date:</dt>

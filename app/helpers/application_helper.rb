@@ -18,4 +18,16 @@ module ApplicationHelper
       end)
     end
   end
+
+  def show_header(object)
+    content_tag :div, class: 'show-header pb-2 mt-2 mb-2 border-bottom' do
+      concat(link_to(send("edit_#{object.model_name.singular_route_key}_path", object), class: 'btn btn-info') do
+        content_tag(:span, 'Edit', class: 'fa fa-edit')
+      end)
+      concat(link_to(send("#{object.model_name.route_key}_path"), class: 'btn btn-default') do
+        content_tag(:span, 'Back', class: 'fa fa-list')
+      end)
+      concat(content_tag(:h2, "Show #{object.model_name.name}"))
+    end
+  end
 end
