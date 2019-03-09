@@ -19,6 +19,15 @@ module ApplicationHelper
     end
   end
 
+  def index_header(object)
+    content_tag :div, class: 'show-header pb-2 mt-2 mb-2 border-bottom' do
+      concat(link_to(send("new_#{object.model_name.singular_route_key}_path"), class: 'btn btn-primary') do
+        content_tag(:span, "New #{object.model_name.name}", class: 'fa fa-plus')
+      end)
+      concat(content_tag(:h2, "List #{object.model_name.name.pluralize}"))
+    end
+  end
+
   def show_header(object)
     content_tag :div, class: 'show-header pb-2 mt-2 mb-2 border-bottom' do
       concat(link_to(send("edit_#{object.model_name.singular_route_key}_path", object), class: 'btn btn-info') do
