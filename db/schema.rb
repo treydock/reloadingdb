@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_10_133247) do
+ActiveRecord::Schema.define(version: 2019_03_10_134322) do
 
   create_table "brasses", force: :cascade do |t|
     t.string "name"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_03_10_133247) do
 
   create_table "bullets", force: :cascade do |t|
     t.string "name"
-    t.string "grain"
+    t.integer "grain"
     t.integer "caliber_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -44,15 +44,15 @@ ActiveRecord::Schema.define(version: 2019_03_10_133247) do
   create_table "loads", force: :cascade do |t|
     t.integer "caliber_id"
     t.integer "brass_id"
-    t.string "brass_length"
+    t.float "brass_length"
     t.date "date"
     t.integer "user_id"
     t.integer "bullet_id"
     t.integer "powder_id"
-    t.string "powder_weight"
+    t.float "powder_weight"
     t.integer "primer_id"
-    t.string "col"
-    t.string "speed"
+    t.float "col"
+    t.integer "speed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "notes"
