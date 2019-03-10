@@ -1,17 +1,12 @@
-<p>
-  <strong>Name:</strong>
-  <%= @bullet.name %>
-</p>
+<%= show_header(@bullet) %>
 
-<p>
-  <strong>Grain:</strong>
-  <%= @bullet.grain %>
-</p>
+<dl class='dl-horizontal'>
+  <dt>Name:</dt>
+  <dd><%= @bullet.name %></dd>
 
-<p>
-  <strong>Caliber:</strong>
-  <%= @bullet.caliber.name %>
-</p>
+  <dt>Grain:</dt>
+  <dd><%= @bullet.grain %></dd>
 
-<%= link_to 'Edit', edit_bullet_path(@bullet), class: 'btn btn-info' %> |
-<%= link_to 'Back', bullets_path, class: 'btn btn-default' %>
+  <dt>Caliber:</dt>
+  <dd><%= @bullet.caliber.name %></dd>
+</dl>

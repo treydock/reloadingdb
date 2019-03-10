@@ -20,7 +20,7 @@ module ApplicationHelper
   end
 
   def index_header(object)
-    content_tag :div, class: 'show-header pb-2 mt-2 mb-2 border-bottom' do
+    content_tag :div, class: 'show-header pb-2 mt-2 mb-2' do
       concat(link_to(send("new_#{object.model_name.singular_route_key}_path"), class: 'btn btn-primary') do
         content_tag(:span, "New #{object.model_name.name}", class: 'fa fa-plus')
       end)

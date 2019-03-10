@@ -1,4 +1,4 @@
-<h1>Bullets</h1>
+<%= index_header(Bullet) %>
 
 <table class='table table-striped'>
   <thead>
@@ -6,7 +6,7 @@
       <th>Name</th>
       <th>Grain</th>
       <th>Caliber</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -16,14 +16,8 @@
         <td><%= bullet.name %></td>
         <td><%= bullet.grain %></td>
         <td><%= bullet.caliber.name %></td>
-        <td><%= link_to 'Show', bullet, class: 'btn btn-info' %></td>
-        <td><%= link_to 'Edit', edit_bullet_path(bullet), class: 'btn btn-info' %></td>
-        <td><%= link_to 'Destroy', bullet, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+        <td><%= index_actions(bullet) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Bullet', new_bullet_path, class: 'btn btn-primary' %>
