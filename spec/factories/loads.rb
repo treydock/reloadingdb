@@ -5,6 +5,7 @@ FactoryBot.define do
     speed { "1500" }
     powder_weight { "50" }
     brass_length { "2.8" }
+    notes { "FOO\nBAR" }
     caliber
     brass
     bullet

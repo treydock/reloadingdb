@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "loads/show", type: :view do
+  include ActionView::Helpers
+
   before(:each) do
     @load = assign(:load, create(:load))
   end
@@ -16,5 +18,6 @@ RSpec.describe "loads/show", type: :view do
     expect(rendered).to match(@load.primer.name)
     expect(rendered).to match(@load.col)
     expect(rendered).to match(@load.speed)
+    expect(rendered).to match(simple_format(@load.notes))
   end
 end
