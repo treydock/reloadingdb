@@ -7,7 +7,17 @@ class Load < ApplicationRecord
   belongs_to :primer
 
   validates :date, presence: true
+  validates :powder_weight, numericality: true
+  validates :col, numericality: true
+  validates :brass_length, numericality: true
+  validates :speed, numericality: { only_integer: true }
 
   scoped_search on: [:date], complete_value: true
+  scoped_search on: [:brass_length, :col, :speed, :powder_weight], complete_value: true
   scoped_search relation: :caliber, on: :name, complete_value: true, rename: :caliber
+  scoped_search relation: :powder, on: :name, complete_value: true, rename: :powder
+  scoped_search relation: :primer, on: :name, complete_value: true, rename: :primer
+  scoped_search relation: :brass, on: :name, complete_value: true, rename: :brass
+  scoped_search relation: :bullet, on: :name, complete_value: true, rename: :bullet
+  scoped_search relation: :bullet, on: :grain, complete_value: true, rename: :bullet_grain
 end
