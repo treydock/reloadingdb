@@ -1,6 +1,2 @@
-<h1>Editing <%= singular_table_name.titleize %></h1>
-
+<%%= edit_header(@<%= singular_table_name %>) %>
 <%%= render 'form', <%= singular_table_name %>: @<%= singular_table_name %> %>
-
-<%%= link_to 'Show', @<%= singular_table_name %>, class: 'btn btn-info' %> |
-<%%= link_to 'Back', <%= index_helper %>_path, class: 'btn btn-default' %>

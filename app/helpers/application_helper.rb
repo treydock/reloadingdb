@@ -48,4 +48,16 @@ module ApplicationHelper
       concat(content_tag(:h2, "New #{object.model_name.name}"))
     end
   end
+
+  def edit_header(object)
+    content_tag :div, class: 'page-header pb-2 mt-2 mb-2 border-bottom' do
+      concat(link_to(object, class: 'btn btn-info') do
+        content_tag(:span, 'Show', class: 'fa fa-search')
+      end)
+      concat(link_to(send("#{object.model_name.route_key}_path"), class: 'btn btn-outline-secondary') do
+        content_tag(:span, 'Back', class: 'fa fa-list')
+      end)
+      concat(content_tag(:h2, "Show #{object.model_name.name}"))
+    end
+  end
 end
