@@ -1,11 +1,10 @@
-<h1>Primers</h1>
+<%= index_header(Primer) %>
 
 <table class='table table-striped'>
   <thead>
     <tr>
       <th>Name</th>
-      <th>User</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -13,14 +12,8 @@
     <% @primers.each do |primer| %>
       <tr>
         <td><%= primer.name %></td>
-        <td><%= link_to 'Show', primer, class: 'btn btn-info' %></td>
-        <td><%= link_to 'Edit', edit_primer_path(primer), class: 'btn btn-info' %></td>
-        <td><%= link_to 'Destroy', primer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+        <td><%= index_actions(primer) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Primer', new_primer_path, class: 'btn btn-primary' %>

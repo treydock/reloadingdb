@@ -1,7 +1,5 @@
-<p>
-  <strong>Name:</strong>
-  <%= @caliber.name %>
-</p>
-
-<%= link_to 'Edit', edit_caliber_path(@caliber), class: 'btn btn-info' %> |
-<%= link_to 'Back', calibers_path, class: 'btn btn-default' %>
+<%= show_header(@caliber) %>
+<dl class='dl-horizontal'>
+  <dt>Name:</dt>
+  <dd><%= @caliber.name %></dd>
+</dl>
