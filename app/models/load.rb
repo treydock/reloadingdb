@@ -10,6 +10,7 @@ class Load < ApplicationRecord
   validates :powder_weight, numericality: true
   validates :col, numericality: true
   validates :brass_length, numericality: true
+  validates :brass_uses, numericality: { only_integer: true }
   validates :speed, numericality: { only_integer: true }
 
   scoped_search on: [:date], complete_value: true
