@@ -35,4 +35,10 @@ jQuery(function() {
     $(document).on('focus', '#search', function(e) {
         $('.autocomplete-input').scopedSearch();
     })
+
+    $(document).on('click', '#search-reset', function(e) {
+      e.preventDefault();
+      $('input[name=search]').val('');
+      $('#search').submit();
+    })
 });
