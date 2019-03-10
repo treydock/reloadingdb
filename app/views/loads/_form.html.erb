@@ -14,7 +14,9 @@
     <%= f.input :powder_weight %>
     <%= f.association :primer, collection: @primers %>
     <%= f.input :col, label: 'COL' %>
+    <%= f.input :run_out %>
     <%= f.input :speed %>
+    <%= f.input :rounds, label: 'Number of Rounds' %>
     <%= f.input :notes %>
   </div>
 
