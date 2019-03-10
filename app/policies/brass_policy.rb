@@ -1,0 +1,2 @@
+class BrassPolicy < UserObjectPolicy
+end

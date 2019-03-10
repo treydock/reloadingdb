@@ -2,32 +2,37 @@ class LoadsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_load, only: [:show, :edit, :update, :destroy]
   before_action :set_components, only: [:new, :create, :edit]
+  after_action :verify_authorized, except: [:index, :autocomplete]
   helper_method :sort_column, :sort_direction
 
   # GET /loads
   # GET /loads.json
   def index
-    @loads = Load.by_user(current_user).search_for(params[:search]).order("#{sort_column} #{sort_direction}").page(params[:page]).per(params[:per_page])
+    @loads = policy_scope(Load).search_for(params[:search]).order("#{sort_column} #{sort_direction}").page(params[:page]).per(params[:per_page])
   end
 
   # GET /loads/1
   # GET /loads/1.json
   def show
+    authorize @load
   end
 
   # GET /loads/new
   def new
     @load = Load.new
+    authorize @load
   end
 
   # GET /loads/1/edit
   def edit
+    authorize @load
   end
 
   # POST /loads
   # POST /loads.json
   def create
     @load = Load.new(load_params)
+    authorize @load
     @load.user = current_user
 
     respond_to do |format|
@@ -44,6 +49,7 @@ class LoadsController < ApplicationController
   # PATCH/PUT /loads/1
   # PATCH/PUT /loads/1.json
   def update
+    authorize @load
     respond_to do |format|
       if @load.update(load_params)
         format.html { redirect_to @load, notice: 'Load was successfully updated.' }
@@ -58,6 +64,7 @@ class LoadsController < ApplicationController
   # DELETE /loads/1
   # DELETE /loads/1.json
   def destroy
+    authorize @load
     @load.destroy
     respond_to do |format|
       format.html { redirect_to loads_url, notice: 'Load was successfully destroyed.' }
@@ -84,15 +91,15 @@ class LoadsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_load
-      @load = Load.by_user(current_user).find(params[:id])
+      @load = policy_scope(Load).find(params[:id])
     end
 
     def set_components
-      @calibers = Caliber.by_user(current_user).all
-      @brass = Brass.by_user(current_user).all
-      @bullets = Bullet.by_user(current_user).all
-      @powders = Powder.by_user(current_user).all
-      @primers = Primer.by_user(current_user).all
+      @calibers = policy_scope(Caliber).all
+      @brass = policy_scope(Brass).all
+      @bullets = policy_scope(Bullet).all
+      @powders = policy_scope(Powder).all
+      @primers = policy_scope(Primer).all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,0 +1,2 @@
+class PrimerPolicy < UserObjectPolicy
+end
