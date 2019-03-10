@@ -1,5 +1,2 @@
-<h1>New <%= singular_table_name.titleize %></h1>
-
+<%%= new_header(@<%= singular_table_name %>) %>
 <%%= render 'form', <%= singular_table_name %>: @<%= singular_table_name %> %>
-
-<%%= link_to 'Back', <%= index_helper %>_path, class: 'btn btn-default' %>
