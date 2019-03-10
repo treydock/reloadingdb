@@ -1,0 +1,2 @@
+class LoadPolicy < UserObjectPolicy
+end

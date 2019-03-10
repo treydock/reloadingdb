@@ -1,0 +1,2 @@
+class BulletPolicy < UserObjectPolicy
+end

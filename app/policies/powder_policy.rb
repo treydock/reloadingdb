@@ -1,0 +1,2 @@
+class PowderPolicy < UserObjectPolicy
+end
