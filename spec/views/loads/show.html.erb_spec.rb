@@ -4,7 +4,7 @@ RSpec.describe "loads/show", type: :view do
   include ActionView::Helpers
 
   before(:each) do
-    @load = assign(:load, create(:load))
+    @load = assign(:load, create(:load).decorate)
   end
 
   it "renders attributes in <p>" do

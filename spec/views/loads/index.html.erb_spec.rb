@@ -5,7 +5,7 @@ RSpec.describe "loads/index", type: :view do
   before(:each) do
     initialize_view_helpers(view)
     create_list(:load, 2)
-    @loads = assign(:loads, Load.page(1).all)
+    @loads = assign(:loads, Load.page(1).all.decorate)
   end
 
   it "renders a list of loads" do

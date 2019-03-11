@@ -8,7 +8,7 @@ class LoadsController < ApplicationController
   # GET /loads
   # GET /loads.json
   def index
-    @loads = policy_scope(Load).search_for(params[:search]).order("#{sort_column} #{sort_direction}").page(params[:page]).per(params[:per_page])
+    @loads = policy_scope(Load).search_for(params[:search]).order("#{sort_column} #{sort_direction}").page(params[:page]).per(params[:per_page]).decorate
   end
 
   # GET /loads/1
@@ -91,13 +91,13 @@ class LoadsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_load
-      @load = policy_scope(Load).find(params[:id])
+      @load = policy_scope(Load).find(params[:id]).decorate
     end
 
     def set_components
-      @calibers = policy_scope(Caliber).all
-      @brass = policy_scope(Brass).all
-      @bullets = policy_scope(Bullet).all
+      @calibers = policy_scope(Caliber).all.decorate
+      @brass = policy_scope(Brass).all.decorate
+      @bullets = policy_scope(Bullet).all.decorate
       @powders = policy_scope(Powder).all
       @primers = policy_scope(Primer).all
     end
