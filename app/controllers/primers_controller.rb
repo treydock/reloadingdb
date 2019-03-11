@@ -5,21 +5,24 @@ class PrimersController < ApplicationController
   # GET /primers
   # GET /primers.json
   def index
-    @primers = Primer.by_user(current_user).all
+    @primers = policy_scope(Primer).all
   end
 
   # GET /primers/1
   # GET /primers/1.json
   def show
+    authorize @primer
   end
 
   # GET /primers/new
   def new
     @primer = Primer.new
+    authorize @primer
   end
 
   # GET /primers/1/edit
   def edit
+    authorize @primer
   end
 
   # POST /primers
@@ -27,6 +30,7 @@ class PrimersController < ApplicationController
   def create
     @primer = Primer.new(primer_params)
     @primer.user = current_user
+    authorize @primer
 
     respond_to do |format|
       if @primer.save
@@ -42,6 +46,7 @@ class PrimersController < ApplicationController
   # PATCH/PUT /primers/1
   # PATCH/PUT /primers/1.json
   def update
+    authorize @primer
     respond_to do |format|
       if @primer.update(primer_params)
         format.html { redirect_to @primer, notice: 'Primer was successfully updated.' }
@@ -56,6 +61,7 @@ class PrimersController < ApplicationController
   # DELETE /primers/1
   # DELETE /primers/1.json
   def destroy
+    authorize @primer
     @primer.destroy
     respond_to do |format|
       format.html { redirect_to primers_url, notice: 'Primer was successfully destroyed.' }
@@ -66,7 +72,7 @@ class PrimersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_primer
-      @primer = Primer.by_user(current_user).find(params[:id])
+      @primer = policy_scope(Primer).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
