@@ -5,21 +5,24 @@ class PowdersController < ApplicationController
   # GET /powders
   # GET /powders.json
   def index
-    @powders = Powder.by_user(current_user).all
+    @powders = policy_scope(Powder).all
   end
 
   # GET /powders/1
   # GET /powders/1.json
   def show
+    authorize @powder
   end
 
   # GET /powders/new
   def new
     @powder = Powder.new
+    authorize @powder
   end
 
   # GET /powders/1/edit
   def edit
+    authorize @powder
   end
 
   # POST /powders
@@ -27,6 +30,7 @@ class PowdersController < ApplicationController
   def create
     @powder = Powder.new(powder_params)
     @powder.user = current_user
+    authorize @powder
 
     respond_to do |format|
       if @powder.save
@@ -42,6 +46,7 @@ class PowdersController < ApplicationController
   # PATCH/PUT /powders/1
   # PATCH/PUT /powders/1.json
   def update
+    authorize @powder
     respond_to do |format|
       if @powder.update(powder_params)
         format.html { redirect_to @powder, notice: 'Powder was successfully updated.' }
@@ -56,6 +61,7 @@ class PowdersController < ApplicationController
   # DELETE /powders/1
   # DELETE /powders/1.json
   def destroy
+    authorize @powder
     @powder.destroy
     respond_to do |format|
       format.html { redirect_to powders_url, notice: 'Powder was successfully destroyed.' }
@@ -66,7 +72,7 @@ class PowdersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_powder
-      @powder = Powder.by_user(current_user).find(params[:id])
+      @powder = policy_scope(Powder).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

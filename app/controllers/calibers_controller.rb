@@ -29,8 +29,8 @@ class CalibersController < ApplicationController
   # POST /calibers.json
   def create
     @caliber = Caliber.new(caliber_params)
-    authorize @caliber
     @caliber.user = current_user
+    authorize @caliber
 
     respond_to do |format|
       if @caliber.save

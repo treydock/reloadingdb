@@ -30,8 +30,8 @@ class BulletsController < ApplicationController
   # POST /bullets.json
   def create
     @bullet = Bullet.new(bullet_params)
-    authorize @bullet
     @bullet.user = current_user
+    authorize @bullet
 
     respond_to do |format|
       if @bullet.save

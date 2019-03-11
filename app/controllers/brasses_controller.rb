@@ -30,8 +30,8 @@ class BrassesController < ApplicationController
   # POST /brasses.json
   def create
     @brass = Brass.new(brass_params)
-    authorize @brass
     @brass.user = current_user
+    authorize @brass
 
     respond_to do |format|
       if @brass.save

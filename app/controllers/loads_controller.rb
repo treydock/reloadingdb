@@ -32,8 +32,8 @@ class LoadsController < ApplicationController
   # POST /loads.json
   def create
     @load = Load.new(load_params)
-    authorize @load
     @load.user = current_user
+    authorize @load
 
     respond_to do |format|
       if @load.save
