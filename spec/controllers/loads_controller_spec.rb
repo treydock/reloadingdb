@@ -73,14 +73,14 @@ RSpec.describe LoadsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        { col: '5.0' }
+        { col: 5.0 }
       }
 
       it "updates the requested load" do
         load = create(:load, user: @current_user)
         put :update, params: {id: load.to_param, load: new_attributes}
         load.reload
-        expect(load.col).to eq('5.0')
+        expect(load.col).to eq(5.0)
       end
 
       it "redirects to the load" do
