@@ -1,5 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { build(:user) }
+
+  describe 'associations' do
+    it { is_expected.to have_many(:bullets) }
+    it { is_expected.to have_many(:brasses) }
+    it { is_expected.to have_many(:calibers) }
+    it { is_expected.to have_many(:loads) }
+    it { is_expected.to have_many(:powders) }
+    it { is_expected.to have_many(:primers) }
+  end
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of :email }
+    it { is_expected.to validate_uniqueness_of(:email).ignoring_case_sensitivity }
+  end
 end

@@ -12,6 +12,8 @@ class Load < ApplicationRecord
   validates :brass_length, numericality: true, allow_blank: true
   validates :brass_uses, numericality: { only_integer: true }, allow_blank: true
   validates :speed, numericality: { only_integer: true }, allow_blank: true
+  validates :run_out, numericality: true, allow_blank: true
+  validates :rounds, numericality: { only_integer: true }, allow_blank: true
 
   scoped_search on: [:date], complete_value: true
   scoped_search on: [:brass_length, :col, :speed, :powder_weight], complete_value: true
