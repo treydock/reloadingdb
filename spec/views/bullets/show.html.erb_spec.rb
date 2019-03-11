@@ -8,7 +8,7 @@ RSpec.describe "bullets/show", type: :view do
   it "renders attributes in <p>" do
     render
     expect(rendered).to match(@bullet.name)
-    expect(rendered).to match(@bullet.grain)
+    expect(rendered).to match(/#{@bullet.grain}/)
     expect(rendered).to match(@bullet.caliber.name)
   end
 end

@@ -7,11 +7,11 @@ class Load < ApplicationRecord
   belongs_to :primer
 
   validates :date, presence: true
-  validates :powder_weight, numericality: true
-  validates :col, numericality: true
-  validates :brass_length, numericality: true
-  validates :brass_uses, numericality: { only_integer: true }
-  validates :speed, numericality: { only_integer: true }
+  validates :powder_weight, numericality: true, allow_blank: true
+  validates :col, numericality: true, allow_blank: true
+  validates :brass_length, numericality: true, allow_blank: true
+  validates :brass_uses, numericality: { only_integer: true }, allow_blank: true
+  validates :speed, numericality: { only_integer: true }, allow_blank: true
 
   scoped_search on: [:date], complete_value: true
   scoped_search on: [:brass_length, :col, :speed, :powder_weight], complete_value: true
