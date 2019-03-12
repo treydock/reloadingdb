@@ -13,7 +13,9 @@ RSpec.describe Load, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of :date }
     it { is_expected.to validate_numericality_of(:powder_weight) }
+    it { is_expected.to validate_presence_of(:powder_weight) }
     it { is_expected.to validate_numericality_of(:col) }
+    it { is_expected.to validate_presence_of(:col) }
     it { is_expected.to validate_numericality_of(:brass_length) }
     it { is_expected.to validate_numericality_of(:brass_uses).only_integer }
     it { is_expected.to validate_numericality_of(:speed).only_integer }

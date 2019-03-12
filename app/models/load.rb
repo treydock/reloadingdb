@@ -7,8 +7,8 @@ class Load < ApplicationRecord
   belongs_to :primer
 
   validates :date, presence: true
-  validates :powder_weight, numericality: true, allow_blank: true
-  validates :col, numericality: true, allow_blank: true
+  validates :powder_weight, numericality: true, presence: true
+  validates :col, numericality: true, presence: true
   validates :brass_length, numericality: true, allow_blank: true
   validates :brass_uses, numericality: { only_integer: true }, allow_blank: true
   validates :speed, numericality: { only_integer: true }, allow_blank: true
