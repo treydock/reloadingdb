@@ -75,7 +75,7 @@ class LoadsController < ApplicationController
   def autocomplete
     begin
       model = controller_name.classify.constantize
-      @items = model.complete_for(params[:search])
+      @items = model.complete_for(params[:search], value_filter: {user_id: current_user.id})
       @items = @items.map do |item|
         category = (['and','or','not','has'].include?(item.to_s.sub(/^.*\s+/,''))) ? 'Operators' : ''
         part = item.to_s.sub(/^.*\b(and|or)\b/i) {|match| match.sub(/^.*\s+/,'')}

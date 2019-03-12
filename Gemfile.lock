@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/treydock/scoped_search.git
+  revision: 005b5a3574e9d7f0bd73e913bef247412c8dcc42
+  specs:
+    scoped_search (4.1.6)
+      activerecord (>= 4.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -234,8 +241,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    scoped_search (4.1.6)
-      activerecord (>= 4.2.0)
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
@@ -307,7 +312,7 @@ DEPENDENCIES
   rails (~> 5.2.2)
   rspec-rails
   sass-rails (~> 5.0)
-  scoped_search
+  scoped_search!
   selenium-webdriver
   shoulda-matchers
   simple_form

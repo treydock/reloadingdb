@@ -24,7 +24,9 @@ gem "font-awesome-rails"
 gem 'devise'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
-gem 'scoped_search'
+# Use fork until merged and released:
+# https://github.com/wvanbergen/scoped_search/pull/186
+gem 'scoped_search', github: 'treydock/scoped_search'
 gem 'pundit'
 
 # Use CoffeeScript for .coffee assets and views
