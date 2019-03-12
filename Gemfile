@@ -28,6 +28,7 @@ gem 'bootstrap4-kaminari-views'
 # https://github.com/wvanbergen/scoped_search/pull/186
 gem 'scoped_search', github: 'treydock/scoped_search'
 gem 'pundit'
+gem 'config'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

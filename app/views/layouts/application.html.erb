@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Shotsdb" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : t('site_title') %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "application", :media => "all" %>
@@ -39,7 +39,7 @@
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <%= link_to 'Shots DB', root_path, class: 'navbar-brand' %>
+      <%= link_to t('site_title'), root_path, class: 'navbar-brand' %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -72,34 +72,6 @@
       </div>
     </div>
     </nav>
-
-    <%#= navbar fixed: :top, color_scheme: 'light', bg: 'light', class: 'navbar-expand-lg' do %>
-      <%#= brand_link 'Shots DB', root_path %>
-      <%#= navbar_collapse do %>
-        <%#= navbar_group class: 'mr-auto' do %>
-          <%#= navbar_item 'Home', root_path %>
-          <%# if user_signed_in? %>
-            <%#= navbar_item 'Loads', loads_path %>
-            <%#= navbar_dropdown 'Components', 'components' do %>
-              <%#= navbar_dropdown_item "Calibers", calibers_path %>
-              <%#= navbar_dropdown_item "Bullets", bullets_path %>
-              <%#= navbar_dropdown_item "Powders", powders_path %>
-              <%#= navbar_dropdown_item "Primers", primers_path %>
-              <%#= navbar_dropdown_item "Brass", brasses_path %>
-            <%# end -%>
-          <%# end -%>
-        <%# end -%>
-        <%#= navbar_group class: 'navbar-right' do %>
-          <%# if user_signed_in? %>
-            <%#= navbar_item "My Account", edit_user_registration_path %>
-            <%#= navbar_item "Log Out", destroy_user_session_path %>
-          <%# else %>
-            <%#= navbar_item "Sign In", new_user_session_path %>
-            <%#= navbar_item "Sign Up", new_user_registration_path %>
-          <%# end %>
-        <%# end -%>
-      <%# end -%>
-    <%# end -%>
 
     <div class="container">
       <div class="row">
