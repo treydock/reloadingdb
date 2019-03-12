@@ -17,7 +17,6 @@
       <th><%= sort_link 'date' %></th>
       <th>Bullet</th>
       <th>Powder</th>
-      <th>Powder weight</th>
       <th>Primer</th>
       <th></th>
     </tr>
@@ -29,8 +28,7 @@
         <td><%= link_to load.id, load %></td>
         <td><%= link_to load.date, load %></td>
         <td><%= load.bullet.name_grain_caliber %></td>
-        <td><%= load.powder.name %></td>
-        <td><%= load.powder_weight %></td>
+        <td><%= load.powder.name %> - <%= load.powder_weight %> gr</td>
         <td><%= load.primer.name %></td>
         <td><%= index_actions(load) %></td>
       </tr>
