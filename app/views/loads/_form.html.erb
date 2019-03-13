@@ -8,16 +8,28 @@
     <%= f.association :caliber, collection: @calibers %>
     <%= f.input :brass_id, collection: @calibers,
                 label_method: :name_caliber, as: :grouped_select, group_method: :brasses, required: true %>
-    <%= f.input :brass_length %>
+    <%= f.input :brass_length do %>
+      <%= f.input_field :brass_length, class: 'form-control-with-unit' %>
+      <%= f.input_field :brass_length_unit, as: :select, collection: Unit.length %>
+    <% end %>
     <%= f.input :brass_uses %>
     <%= f.input :bullet_id, collection: @calibers,
                 label_method: :name_grain_caliber, as: :grouped_select, group_method: :bullets, required: true %>
     <%= f.association :powder, collection: @powders  %>
     <%= f.input :powder_weight %>
     <%= f.association :primer, collection: @primers %>
-    <%= f.input :col, label: 'COL' %>
-    <%= f.input :run_out %>
-    <%= f.input :speed %>
+    <%= f.input :col, label: 'COL' do %>
+      <%= f.input_field :col, class: 'form-control-with-unit' %>
+      <%= f.input_field :col_unit, as: :select, collection: Unit.length %>
+    <% end %>
+    <%= f.input :run_out do %>
+      <%= f.input_field :run_out, class: 'form-control-with-unit' %>
+      <%= f.input_field :run_out_unit, as: :select, collection: Unit.length %>
+    <% end %>
+    <%= f.input :speed do %>
+      <%= f.input_field :speed, class: 'form-control-with-unit' %>
+      <%= f.input_field :speed_unit, as: :select, collection: Unit.speed %>
+    <% end %>
     <%= f.input :rounds, label: 'Number of Rounds' %>
     <%= f.input :notes %>
   </div>

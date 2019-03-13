@@ -33,3 +33,9 @@
     margin-right: 8px;
   }
 }
+
+.form-control-with-unit {
+    @extend .form-control;
+    width: 80%;
+    display: inline;
+}
