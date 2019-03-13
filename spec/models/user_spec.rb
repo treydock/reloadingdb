@@ -10,6 +10,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:loads) }
     it { is_expected.to have_many(:powders) }
     it { is_expected.to have_many(:primers) }
+    it { is_expected.to have_many(:shooting_locations) }
   end
 
   describe 'validations' do

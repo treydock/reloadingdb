@@ -1,0 +1,2 @@
+module ShootingLocationsHelper
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_10_211613) do
+ActiveRecord::Schema.define(version: 2019_03_13_133730) do
 
   create_table "brasses", force: :cascade do |t|
     t.string "name"
@@ -81,6 +81,17 @@ ActiveRecord::Schema.define(version: 2019_03_10_211613) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_primers_on_user_id"
+  end
+
+  create_table "shooting_locations", force: :cascade do |t|
+    t.string "name"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.decimal "elevation"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_shooting_locations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

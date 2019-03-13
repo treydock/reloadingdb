@@ -1,0 +1,2 @@
+class ShootingLocationPolicy < UserObjectPolicy
+end

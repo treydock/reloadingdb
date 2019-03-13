@@ -1,0 +1,13 @@
+
+<%= simple_form_for(@shooting_location, validate: true) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :latitude %>
+    <%= f.input :longitude %>
+    <%= f.input :elevation %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn-primary' %>
+  </div>
+<% end %>

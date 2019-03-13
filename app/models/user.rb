@@ -11,4 +11,5 @@ class User < ApplicationRecord
   has_many :loads
   has_many :powders
   has_many :primers
+  has_many :shooting_locations
 end

@@ -47,6 +47,12 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><%= link_to 'Home', root_path, class: 'nav-link' %></li>
           <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="shooting-data" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shooting Data</a>
+            <div class="dropdown-menu" aria-labelledby="shooting-data">
+              <%= link_to 'Shooting Locations', shooting_locations_path, class: 'dropdown-item' %>
+            </div>
+          </li>
           <li class="nav-item"><%= link_to 'Loads', loads_path, class: 'nav-link' %></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="components" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Components</a>
