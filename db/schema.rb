@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_165631) do
+ActiveRecord::Schema.define(version: 2019_03_13_184548) do
 
   create_table "brasses", force: :cascade do |t|
     t.string "name"
@@ -113,6 +113,9 @@ ActiveRecord::Schema.define(version: 2019_03_13_165631) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "temperature_unit"
+    t.string "pressure_unit"
+    t.string "wind_speed_unit"
     t.index ["shooting_location_id"], name: "index_shooting_logs_on_shooting_location_id"
     t.index ["user_id"], name: "index_shooting_logs_on_user_id"
   end

@@ -3,10 +3,19 @@
     <%= f.input :date, as: :date, html5: true %>
     <%= f.input :time, as: :time, html5: true %>
     <%= f.association :shooting_location, collection: @shooting_locations %>
-    <%= f.input :temperature %>
-    <%= f.input :pressure %>
-    <%= f.input :humidity %>
-    <%= f.input :wind_speed %>
+    <%= f.input :temperature do %>
+      <%= f.input_field :temperature, class: 'form-control-with-unit' %>
+      <%= f.input_field :temperature_unit, as: :select, collection: Unit.temperature %>
+    <% end %>
+    <%= f.input :pressure do %>
+      <%= f.input_field :pressure, class: 'form-control-with-unit' %>
+      <%= f.input_field :pressure_unit, as: :select, collection: Unit.pressure %>
+    <% end %>
+    <%= f.input :humidity, hint: 'percent (%)' %>
+    <%= f.input :wind_speed do %>
+      <%= f.input_field :wind_speed, class: 'form-control-with-unit' %>
+      <%= f.input_field :wind_speed_unit, as: :select, collection: Unit.speed %>
+    <% end %>
     <%= f.input :wind_direction %>
     <%= f.input :angle %>
     <%= f.input :conditions %>
