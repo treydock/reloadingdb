@@ -1,0 +1,2 @@
+class ShootingLogPolicy < UserObjectPolicy
+end

@@ -1,0 +1,37 @@
+<%= show_header(@shooting_log) %>
+
+<dl class='dl-horizontal'>
+  <dt>Date:</dt>
+  <dd><%= @shooting_log.date %></dd>
+
+  <dt>Time:</dt>
+  <dd><%= @shooting_log.time %></dd>
+
+  <dt>Shooting location:</dt>
+  <dd><%= @shooting_log.shooting_location.name %></dd>
+
+  <dt>Temperature:</dt>
+  <dd><%= @shooting_log.temperature %></dd>
+
+  <dt>Pressure:</dt>
+  <dd><%= @shooting_log.pressure %></dd>
+
+  <dt>Humidity:</dt>
+  <dd><%= @shooting_log.humidity %></dd>
+
+  <dt>Wind speed:</dt>
+  <dd><%= @shooting_log.wind_speed %></dd>
+
+  <dt>Wind direction:</dt>
+  <dd><%= @shooting_log.wind_direction %></dd>
+
+  <dt>Angle:</dt>
+  <dd><%= @shooting_log.angle %></dd>
+
+  <dt>Conditions:</dt>
+  <dd><%= @shooting_log.conditions %></dd>
+
+  <dt>Notes:</dt>
+  <dd><%= @shooting_log.notes %></dd>
+
+</dl>

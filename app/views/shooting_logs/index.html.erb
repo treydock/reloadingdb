@@ -1,0 +1,25 @@
+<%= index_header(ShootingLog) %>
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Shooting location</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shooting_logs.each do |shooting_log| %>
+      <tr>
+        <td><%= shooting_log.date %></td>
+        <td><%= shooting_log.time %></td>
+        <td><%= shooting_log.shooting_location.name %></td>
+        <td><%= index_actions(shooting_log) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

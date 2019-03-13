@@ -14,6 +14,7 @@ RSpec.describe "loads/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", load_path(@load), "post" do
+      assert_select "input[name=?]", "load[date]"
       assert_select "select[name=?]", "load[caliber_id]"
       assert_select "select[name=?]", "load[brass_id]"
       assert_select "input[name=?]", "load[brass_length]"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_133730) do
+ActiveRecord::Schema.define(version: 2019_03_13_144432) do
 
   create_table "brasses", force: :cascade do |t|
     t.string "name"
@@ -92,6 +92,25 @@ ActiveRecord::Schema.define(version: 2019_03_13_133730) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_shooting_locations_on_user_id"
+  end
+
+  create_table "shooting_logs", force: :cascade do |t|
+    t.date "date"
+    t.time "time"
+    t.integer "shooting_location_id"
+    t.integer "temperature"
+    t.float "pressure"
+    t.integer "angle"
+    t.text "conditions"
+    t.integer "humidity"
+    t.integer "wind_speed"
+    t.integer "wind_direction"
+    t.text "notes"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shooting_location_id"], name: "index_shooting_logs_on_shooting_location_id"
+    t.index ["user_id"], name: "index_shooting_logs_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :shooting_logs
   resources :shooting_locations
   resources :loads do
     get 'autocomplete', on: :collection
