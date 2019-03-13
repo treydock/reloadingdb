@@ -1,9 +1,10 @@
-<%%= index_header(<%= plural_table_name.titleize %>)%>
+<%%= index_header(<%= singular_table_name.camelize.constantize %>) %>
 
 <table class='table table-striped'>
   <thead>
     <tr>
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
+<%- next if attribute.column_name == 'user_id' -%>
       <th><%= attribute.human_name %></th>
 <% end -%>
       <th></th>
@@ -17,7 +18,7 @@
 <% next if attribute.column_name == 'user_id' -%>
         <td><%%= <%= singular_table_name %>.<%= attribute.column_name %> %></td>
 <% end -%>
-        <td><%%= index_actions(<%= singular_route_name %> %></td>
+        <td><%%= index_actions(<%= singular_route_name %>) %></td>
       </tr>
     <%% end %>
   </tbody>

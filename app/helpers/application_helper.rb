@@ -22,9 +22,9 @@ module ApplicationHelper
   def index_header(object)
     content_tag :div, class: 'page-header pb-2 mt-2 mb-2' do
       concat(link_to(send("new_#{object.model_name.singular_route_key}_path"), class: 'btn btn-primary') do
-        content_tag(:span, "New #{object.model_name.name}", class: 'fa fa-plus')
+        content_tag(:span, "New #{object.model_name.name.titlecase}", class: 'fa fa-plus')
       end)
-      concat(content_tag(:h2, "List #{object.model_name.name.pluralize}"))
+      concat(content_tag(:h2, "List #{object.model_name.name.pluralize.titlecase}"))
     end
   end
 
@@ -36,7 +36,7 @@ module ApplicationHelper
       concat(link_to(send("#{object.model_name.route_key}_path"), class: 'btn btn-outline-secondary') do
         content_tag(:span, 'Back', class: 'fa fa-list')
       end)
-      concat(content_tag(:h2, "Show #{object.model_name.name}"))
+      concat(content_tag(:h2, "Show #{object.model_name.name.titlecase}"))
     end
   end
 
@@ -45,7 +45,7 @@ module ApplicationHelper
       concat(link_to(send("#{object.model_name.route_key}_path"), class: 'btn btn-outline-secondary') do
         content_tag(:span, 'Back', class: 'fa fa-list')
       end)
-      concat(content_tag(:h2, "New #{object.model_name.name}"))
+      concat(content_tag(:h2, "New #{object.model_name.name.titlecase}"))
     end
   end
 
@@ -57,7 +57,7 @@ module ApplicationHelper
       concat(link_to(send("#{object.model_name.route_key}_path"), class: 'btn btn-outline-secondary') do
         content_tag(:span, 'Back', class: 'fa fa-list')
       end)
-      concat(content_tag(:h2, "Show #{object.model_name.name}"))
+      concat(content_tag(:h2, "Show #{object.model_name.name.titlecase}"))
     end
   end
 end
