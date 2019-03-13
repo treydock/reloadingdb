@@ -32,7 +32,7 @@ gem 'scoped_search', github: 'treydock/scoped_search'
 gem 'pundit'
 gem 'config'
 gem 'unitwise'
-
+gem 'ledermann-rails-settings'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

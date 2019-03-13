@@ -1,0 +1,21 @@
+<div class="page-header pb-2 mt-2 mb-2 border-bottom">
+  <%= link_to user_settings_edit_path, class: 'btn btn-info' do %>
+    <span class="fa fa-edit">Edit</span>
+  <% end %>
+  <h2>Settings</h2>
+</div>
+
+<h3 class="border-bottom">Default Units</h3>
+
+<dl class='dl-horizontal'>
+  <dt>Temperature:</dt>
+  <dd><%= current_user.settings(:default_units).temperature %></dd>
+  <dt>Speed:</dt>
+  <dd><%= current_user.settings(:default_units).speed %></dd>
+  <dt>Pressure:</dt>
+  <dd><%= current_user.settings(:default_units).pressure %></dd>
+  <dt>Length:</dt>
+  <dd><%= current_user.settings(:default_units).length %></dd>
+  <dt>Distance:</dt>
+  <dd><%= current_user.settings(:default_units).distance %></dd>
+</dl>

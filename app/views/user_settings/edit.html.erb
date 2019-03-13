@@ -1,0 +1,24 @@
+<%= simple_form_for(:user_settings, url: user_settings_path, method: :put) do |f| %>
+  <h3 class='border-bottom'>Default Units</h3>
+  <div class="form-inputs">
+    <%= f.input :default_temperature, label: 'Temperature', required: false,
+                as: :select, collection: Unit.temperature,
+                selected: current_user.settings(:default_units).temperature %>
+    <%= f.input :default_speed, label: 'Speed', required: false,
+                as: :select, collection: Unit.speed,
+                selected: current_user.settings(:default_units).speed %>
+    <%= f.input :default_pressure, label: 'Pressure', required: false,
+                as: :select, collection: Unit.pressure,
+                selected: current_user.settings(:default_units).pressure %>
+    <%= f.input :default_length, label: 'Length', required: false,
+                as: :select, collection: Unit.length,
+                selected: current_user.settings(:default_units).length %>
+    <%= f.input :default_distance, label: 'Distance', required: false,
+                as: :select, collection: Unit.distance,
+                selected: current_user.settings(:default_units).distance %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn-primary' %>
+  </div>
+<% end %>
