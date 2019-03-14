@@ -40,7 +40,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2">
       <%= link_to t('site_title'), root_path, class: 'navbar-brand' %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       <div class="navbar-collapse collapse" id="navbar">
@@ -107,6 +107,14 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light mt-5 sticky-bottom">
       &copy; Company 2019
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#footer" aria-controls="footer" aria-expanded="false" aria-label="Toggle footer">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="navbar-collapse collapse" id="footer">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><%= link_to 'About', page_path('about'), class: 'nav-link' %></li>
+        </ul>
+      </div>
     </nav>
 
   </body>

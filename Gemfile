@@ -33,6 +33,8 @@ gem 'pundit'
 gem 'config'
 gem 'unitwise'
 gem 'ledermann-rails-settings'
+gem 'redcarpet'
+gem 'high_voltage', '~> 3.1'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

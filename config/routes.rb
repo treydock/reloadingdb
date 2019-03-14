@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   resources :powders
   resources :bullets
   devise_for :users
-  get 'home/index'
-  root to: "home#index"
+  get "/*id" => 'pages#show', as: :page, format: false
+  root to: "pages#show", id: 'home'
 end
