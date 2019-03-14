@@ -12,5 +12,6 @@ RSpec.describe "user_settings/show", type: :view do
     expect(rendered).to match(view.current_user.settings(:default_units).pressure)
     expect(rendered).to match(view.current_user.settings(:default_units).length)
     expect(rendered).to match(view.current_user.settings(:default_units).distance)
+    expect(rendered).to match(view.current_user.settings(:default_units).scope_adjustment)
   end
 end

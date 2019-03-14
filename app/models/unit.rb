@@ -40,4 +40,12 @@ class Unit
   def self.distance
     ['yd','m']
   end
+
+  def self.default_scope_adjustment
+    'moa'
+  end
+
+  def self.scope_adjustment
+    ['moa','mil','in','cm']
+  end
 end

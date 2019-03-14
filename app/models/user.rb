@@ -20,7 +20,8 @@ class User < ApplicationRecord
       speed: Unit.default_speed,
       pressure: Unit.default_pressure,
       length: Unit.default_length,
-      distance: Unit.default_distance
+      distance: Unit.default_distance,
+      scope_adjustment: Unit.default_scope_adjustment
     }
   end
 
@@ -30,6 +31,7 @@ class User < ApplicationRecord
     self.settings(:default_units).pressure = settings[:default_pressure]
     self.settings(:default_units).length = settings[:default_length]
     self.settings(:default_units).distance = settings[:default_distance]
+    self.settings(:default_units).scope_adjustment = settings[:default_scope_adjustment]
     self.save
   end
 end

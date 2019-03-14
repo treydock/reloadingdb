@@ -17,6 +17,9 @@ RSpec.describe Unit, type: :model do
     it 'should have distance' do
       expect(subject.class.default_distance).to eq('yd')
     end
+    it 'should have scope_adjustment' do
+      expect(subject.class.default_scope_adjustment).to eq('moa')
+    end
   end
   describe 'available units' do
     it 'should have temperature' do
@@ -33,6 +36,9 @@ RSpec.describe Unit, type: :model do
     end
     it 'should have distance' do
       expect(subject.class.distance).to eq(['yd','m'])
+    end
+    it 'should have scope_adjustment' do
+      expect(subject.class.scope_adjustment).to eq(['moa','mil','in','cm'])
     end
   end
 end
