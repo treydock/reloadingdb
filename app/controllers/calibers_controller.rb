@@ -1,5 +1,4 @@
 class CalibersController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_caliber, only: [:show, :edit, :update, :destroy]
 
   # GET /calibers

@@ -1,5 +1,4 @@
 class LoadsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_load, only: [:show, :edit, :update, :destroy]
   before_action :set_components, only: [:new, :create, :edit]
   after_action :verify_authorized, except: [:index, :autocomplete]

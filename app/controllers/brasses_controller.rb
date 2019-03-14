@@ -1,5 +1,4 @@
 class BrassesController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_brass, only: [:show, :edit, :update, :destroy]
   before_action :set_components, only: [:new, :create, :edit]
 
