@@ -38,7 +38,7 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2 sticky-top">
       <%= link_to t('site_title'), root_path, class: 'navbar-brand' %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -81,21 +81,30 @@
     </div>
     </nav>
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-12">
+        <nav class="col-md-2 d-block bg-light sidebar">
+          <div class="sidebar-sticky pt-md-5 mt-md-2">
+            <ul class="nav flex-column">
+              <li class="nav-item"><%= link_to "New Shooting Log", new_shooting_log_path, class: 'nav-link' %></li>
+              <li class="nav-item"><%= link_to "New Load", new_load_path, class: 'nav-link' %></li>
+              <div class="dropdown-divider"></div>
+            </ul>
+          </div>
+        </nav>
+        <main role="main" class="col-md-10 ml-sm-auto">
           <% flash.each do |key, value| %>
             <div class="<%= flash_class(key) %>">
               <%= value %>
             </div>
           <% end %>
           <%= yield %>
-        </div>
+        </main>
       </div><!--/row-->
     </div> <!-- /container -->
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mt-5 sticky-bottom">
-      &copy; Company 2019
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-5 offset-md-2">
+      <span class="text-white pr-1">&copy; Company 2019</span>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#footer" aria-controls="footer" aria-expanded="false" aria-label="Toggle footer">
           <span class="navbar-toggler-icon"></span>
         </button>
