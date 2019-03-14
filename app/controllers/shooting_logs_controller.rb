@@ -82,6 +82,8 @@ class ShootingLogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shooting_log_params
-      params.require(:shooting_log).permit(:date, :time, :shooting_location_id, :temperature, :pressure, :angle, :conditions, :humidity, :wind_speed, :wind_direction, :notes, :user_id)
+      params.require(:shooting_log).permit(:date, :time, :shooting_location_id, :temperature, :temperature_unit,
+                                           :pressure, :pressure_unit, :angle, :conditions, :humidity,
+                                           :wind_speed, :wind_speed_unit, :wind_direction, :notes)
     end
 end

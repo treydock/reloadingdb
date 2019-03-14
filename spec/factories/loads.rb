@@ -12,5 +12,8 @@ FactoryBot.define do
     powder
     primer
     user
+    #after(:create) do |load, evaluator|
+    #  load.user ||= create(:user)
+    #end
   end
 end
