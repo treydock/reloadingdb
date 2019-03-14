@@ -17,6 +17,7 @@ class ShootingLogsController < ApplicationController
   # GET /shooting_logs/new
   def new
     @shooting_log = ShootingLog.new
+    @shooting_log.user = current_user
     authorize @shooting_log
   end
 

@@ -17,6 +17,7 @@ class BrassesController < ApplicationController
   # GET /brasses/new
   def new
     @brass = Brass.new
+    @brass.user = current_user
     authorize @brass
   end
 

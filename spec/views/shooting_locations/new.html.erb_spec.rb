@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "shooting_locations/new", type: :view do
   before(:each) do
-    assign(:shooting_location, ShootingLocation.new)
+    assign(:shooting_location, ShootingLocation.new(user: create(:user)))
   end
 
   it "renders new shooting_location form" do

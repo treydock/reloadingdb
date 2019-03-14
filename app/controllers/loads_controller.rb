@@ -19,6 +19,7 @@ class LoadsController < ApplicationController
   # GET /loads/new
   def new
     @load = Load.new
+    @load.user = current_user
     authorize @load
   end
 

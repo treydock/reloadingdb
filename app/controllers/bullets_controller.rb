@@ -17,6 +17,7 @@ class BulletsController < ApplicationController
   # GET /bullets/new
   def new
     @bullet = Bullet.new
+    @bullet.user = current_user
     authorize @bullet
   end
 

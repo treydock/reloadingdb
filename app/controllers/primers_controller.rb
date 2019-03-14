@@ -16,6 +16,7 @@ class PrimersController < ApplicationController
   # GET /primers/new
   def new
     @primer = Primer.new
+    @primer.user = current_user
     authorize @primer
   end
 

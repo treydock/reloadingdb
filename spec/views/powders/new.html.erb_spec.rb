@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "powders/new", type: :view do
   before(:each) do
-    assign(:powder, Powder.new)
+    assign(:powder, Powder.new(user: create(:user)))
   end
 
   it "renders new powder form" do

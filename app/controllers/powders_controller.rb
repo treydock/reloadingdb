@@ -16,6 +16,7 @@ class PowdersController < ApplicationController
   # GET /powders/new
   def new
     @powder = Powder.new
+    @powder.user = current_user
     authorize @powder
   end
 

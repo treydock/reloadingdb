@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "primers/new", type: :view do
   before(:each) do
-    assign(:primer, Primer.new)
+    assign(:primer, Primer.new(user: create(:user)))
   end
 
   it "renders new primer form" do

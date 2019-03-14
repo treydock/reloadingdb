@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "bullets/new", type: :view do
   before(:each) do
-    assign(:bullet, Bullet.new)
-    assign(:calibers, create_list(:caliber, 2))
+    user = create(:user)
+    assign(:bullet, Bullet.new(user: user))
+    assign(:calibers, create_list(:caliber, 2, user: user))
   end
 
   it "renders new bullet form" do

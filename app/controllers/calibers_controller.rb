@@ -16,6 +16,7 @@ class CalibersController < ApplicationController
   # GET /calibers/new
   def new
     @caliber = Caliber.new
+    @caliber.user = current_user
     authorize @caliber
   end
 

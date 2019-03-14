@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "brasses/new", type: :view do
   before(:each) do
-    assign(:brass, Brass.new)
-    assign(:calibers, create_list(:caliber, 2))
+    user = create(:user)
+    assign(:brass, Brass.new(user: user))
+    assign(:calibers, create_list(:caliber, 2, user: user))
   end
 
   it "renders new brass form" do

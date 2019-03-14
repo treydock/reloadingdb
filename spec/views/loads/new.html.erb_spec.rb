@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "loads/new", type: :view do
   before(:each) do
-    assign(:load, Load.new)
+    assign(:load, Load.new(user: create(:user)))
   end
 
   it "renders new load form" do
