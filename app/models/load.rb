@@ -23,4 +23,20 @@ class Load < ApplicationRecord
   scoped_search relation: :brass, on: :name, complete_value: true, rename: :brass
   scoped_search relation: :bullet, on: :name, complete_value: true, rename: :bullet
   scoped_search relation: :bullet, on: :grain, complete_value: true, rename: :bullet_grain
+
+  def brass_length_unit
+    self[:brass_length_unit].present? ? self[:brass_length_unit] : user.settings(:default_units).length
+  end
+
+  def col_unit
+    self[:col_unit].present? ? self[:col_unit] : user.settings(:default_units).length
+  end
+
+  def run_out_unit
+    self[:run_out_unit].present? ? self[:run_out_unit] : user.settings(:default_units).length
+  end
+
+  def speed_unit
+    self[:speed_unit].present? ? self[:speed_unit] : user.settings(:default_units).speed
+  end
 end
