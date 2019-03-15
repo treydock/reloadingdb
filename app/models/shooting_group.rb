@@ -10,7 +10,7 @@ class ShootingGroup < ApplicationRecord
   validates :windage_adjustment_direction, absence: true, unless: Proc.new { |a| a.windage_adjustment.present? }
 
   def name
-    "#{shooting_log.date} - #{number} (#{distance} #{distance_unit})"
+    "#{shooting_log.date} - ##{number} (#{distance} #{distance_unit})"
   end
 
   def distance_unit

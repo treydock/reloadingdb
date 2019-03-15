@@ -39,7 +39,7 @@ RSpec.describe ShootingGroup, type: :model do
     it 'should be set' do
       shooting_log = create(:shooting_log, date: Date.parse('2019-03-14'))
       shooting_group = create(:shooting_group, shooting_log: shooting_log, number: 1, distance: 100, distance_unit: 'yd')
-      expect(shooting_group.name).to eq('2019-03-14 - 1 (100 yd)')
+      expect(shooting_group.name).to eq('2019-03-14 - #1 (100 yd)')
     end
   end
 
