@@ -1,4 +1,8 @@
-<%= show_header(@shooting_log) %>
+<%= show_header(@shooting_log) do %>
+<%= link_to(new_shooting_group_path(shooting_log_id: @shooting_log.id), class: 'btn btn-primary') do %>
+  <span class="fa fa-plus">New Group</span>
+<% end %>
+<% end %>
 
 <dl class='dl-horizontal'>
   <dt>Date:</dt>
@@ -20,10 +24,7 @@
   <dd><%= @shooting_log.humidity %></dd>
 
   <dt>Wind speed:</dt>
-  <dd><%= @shooting_log.wind_speed %></dd>
-
-  <dt>Wind direction:</dt>
-  <dd><%= @shooting_log.wind_direction %></dd>
+  <dd><%= @shooting_log.wind_speed_full %></dd>
 
   <dt>Angle:</dt>
   <dd><%= @shooting_log.angle %></dd>
@@ -33,5 +34,27 @@
 
   <dt>Notes:</dt>
   <dd><%= @shooting_log.notes %></dd>
-
 </dl>
+
+<h3>Groups</h3>
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Load</th>
+      <th>Group size</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shooting_log.shooting_groups.each do |shooting_group| %>
+      <tr>
+        <td><%= link_to shooting_group.name, shooting_group %></td>
+        <td><%= shooting_group.load.name %></td>
+        <td><%= shooting_group.group_size %></td>
+        <td><%= index_actions(shooting_group) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

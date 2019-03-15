@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_193031) do
+ActiveRecord::Schema.define(version: 2019_03_14_192158) do
 
   create_table "brasses", force: :cascade do |t|
     t.string "name"
@@ -96,6 +96,34 @@ ActiveRecord::Schema.define(version: 2019_03_13_193031) do
     t.datetime "updated_at"
     t.index ["target_type", "target_id", "var"], name: "index_settings_on_target_type_and_target_id_and_var", unique: true
     t.index ["target_type", "target_id"], name: "index_settings_on_target_type_and_target_id"
+  end
+
+  create_table "shooting_groups", force: :cascade do |t|
+    t.integer "shooting_log_id"
+    t.integer "user_id"
+    t.integer "load_id"
+    t.integer "number"
+    t.integer "distance"
+    t.string "distance_unit"
+    t.integer "shots"
+    t.float "elevation_adjustment"
+    t.string "elevation_adjustment_direction"
+    t.string "elevation_adjustment_unit"
+    t.float "windage_adjustment"
+    t.string "windage_adjustment_direction"
+    t.string "windage_adjustment_unit"
+    t.integer "wind_speed"
+    t.string "wind_speed_unit"
+    t.integer "wind_direction"
+    t.float "group_size"
+    t.string "group_size_unit"
+    t.integer "velocity"
+    t.string "velocity_unit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["load_id"], name: "index_shooting_groups_on_load_id"
+    t.index ["shooting_log_id"], name: "index_shooting_groups_on_shooting_log_id"
+    t.index ["user_id"], name: "index_shooting_groups_on_user_id"
   end
 
   create_table "shooting_locations", force: :cascade do |t|

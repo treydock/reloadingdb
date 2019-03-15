@@ -1,0 +1,2 @@
+class ShootingGroupPolicy < UserObjectPolicy
+end

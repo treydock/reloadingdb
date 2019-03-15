@@ -1,6 +1,8 @@
 class ShootingLog < ApplicationRecord
   include UserOwned
+  include HasWindSpeed
   belongs_to :shooting_location
+  has_many :shooting_groups
 
   validates :date, presence: true
   validates :time, presence: true
@@ -11,9 +13,5 @@ class ShootingLog < ApplicationRecord
 
   def pressure_unit
     self[:pressure_unit].present? ? self[:pressure_unit] : user.settings(:default_units).pressure
-  end
-
-  def wind_speed_unit
-    self[:wind_speed_unit].present? ? self[:wind_speed_unit] : user.settings(:default_units).speed
   end
 end

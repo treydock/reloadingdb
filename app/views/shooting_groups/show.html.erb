@@ -1,0 +1,34 @@
+<%= show_header(@shooting_group) %>
+
+<dl class='dl-horizontal'>
+  <dt>Shooting log:</dt>
+  <dd><%= @shooting_group.shooting_log.date %></dd>
+
+  <dt>Load:</dt>
+  <dd><%= @shooting_group.load.name %></dd>
+
+  <dt>Number:</dt>
+  <dd><%= @shooting_group.number %></dd>
+
+  <dt>Distance:</dt>
+  <dd><%= @shooting_group.distance_full %></dd>
+
+  <dt>Shots:</dt>
+  <dd><%= @shooting_group.shots %></dd>
+
+  <dt>Elevation adjustment:</dt>
+  <dd><%= @shooting_group.elevation_adjustment_full %></dd>
+
+  <dt>Windage adjustment:</dt>
+  <dd><%= @shooting_group.windage_adjustment_full %></dd>
+
+  <dt>Wind speed:</dt>
+  <dd><%= @shooting_group.wind_speed_full %></dd>
+
+  <dt>Group size:</dt>
+  <dd><%= @shooting_group.group_size_full %></dd>
+
+  <dt>Velocity:</dt>
+  <dd><%= @shooting_group.velocity_full %></dd>
+
+</dl>

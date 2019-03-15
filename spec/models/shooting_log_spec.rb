@@ -1,9 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe ShootingLog, type: :model do
+  it_behaves_like 'HasWindSpeed'
+
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:shooting_location) }
+    it { is_expected.to have_many(:shooting_groups) }
   end
 
   describe 'validations' do

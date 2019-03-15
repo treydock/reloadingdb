@@ -1,0 +1,49 @@
+<%= simple_form_for(@shooting_group, validate: true) do |f| %>
+  <%= render 'form_errors', f: f %>
+
+  <div class="form-inputs">
+    <%= f.association :shooting_log, label_method: :date, collection: @shooting_logs %>
+    <%= f.association :load %>
+    <%= f.input :number %>
+    <%= f.input :distance do %>
+      <%= f.input_field :distance, class: 'col-sm-3' %>
+      <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
+      <%= f.input_field :distance_unit, as: :select, collection: Unit.distance, class: 'col-sm-2' %>
+    <% end %>
+    <%= f.input :shots %>
+    <%= f.input :elevation_adjustment do %>
+      <%= f.input_field :elevation_adjustment, class: 'col-sm-3' %>
+      <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
+      <%= f.input_field :elevation_adjustment_unit, as: :select, collection: Unit.scope_adjustment, class: 'col-sm-2' %>
+      <%= f.label 'Direction:', class: 'col-sm-2 text-sm-right' %>
+      <%= f.input_field :elevation_adjustment_direction, as: :select, collection: ['up','down'], class: 'col-sm-2' %>
+    <% end %>
+    <%= f.input :windage_adjustment do %>
+      <%= f.input_field :windage_adjustment, class: 'col-sm-3' %>
+      <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
+      <%= f.input_field :windage_adjustment_unit, as: :select, collection: Unit.scope_adjustment, class: 'col-sm-2' %>
+      <%= f.label 'Direction:', class: 'col-sm-2 text-sm-right' %>
+      <%= f.input_field :windage_adjustment_direction, as: :select, collection: ['left','right'], class: 'col-sm-2' %>
+    <% end %>
+    <%= f.input :wind_speed do %>
+      <%= f.input_field :wind_speed, class: 'col-sm-3' %>
+      <%= f.input_field :wind_direction, class: 'col-sm-4', placeholder: 'Direction in degrees' %>
+      <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
+      <%= f.input_field :wind_speed_unit, as: :select, collection: Unit.speed, class: 'col-sm-2' %>
+    <% end %>
+    <%= f.input :group_size do %>
+      <%= f.input_field :group_size, class: 'col-sm-3' %>
+      <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
+      <%= f.input_field :group_size_unit, as: :select, collection: Unit.length, class: 'col-sm-2' %>
+    <% end %>
+    <%= f.input :velocity do %>
+      <%= f.input_field :velocity, class: 'col-sm-3' %>
+      <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
+      <%= f.input_field :velocity_unit, as: :select, collection: Unit.speed, class: 'col-sm-2' %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn-primary' %>
+  </div>
+<% end %>
