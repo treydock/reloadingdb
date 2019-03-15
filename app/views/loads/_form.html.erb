@@ -16,7 +16,7 @@
     <%= f.input :bullet_id, collection: @calibers,
                 label_method: :name_caliber_grain, as: :grouped_select, group_method: :bullets, required: true %>
     <%= f.input :powder do %>
-      <%= f.input_field :powder, as: :select, collection: @powders, class: 'col-sm-4'  %>
+      <%= f.input_field :powder_id, as: :select, collection: @powders, class: 'col-sm-4'  %>
       <%= f.label 'Weight:', class: 'col-sm-3 col-lg-2 text-sm-right' %>
       <%= f.input_field :powder_weight, class: 'col-sm-2' %>
     <% end %>

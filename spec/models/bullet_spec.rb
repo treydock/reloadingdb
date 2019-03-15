@@ -23,4 +23,12 @@ RSpec.describe Bullet, type: :model do
       expect(build(:bullet, user: user1, caliber: caliber1, name: 'test')).not_to be_valid
     end
   end
+
+  describe 'name_caliber_grain' do
+    it 'should be set' do
+      caliber = create(:caliber, name: '308')
+      bullet = create(:bullet, caliber: caliber, name: 'Sierra HPBT', grain: 168)
+      expect(bullet.name_caliber_grain).to eq('Sierra HPBT (308 - 168gr)')
+    end
+  end
 end

@@ -23,6 +23,16 @@ RSpec.describe Load, type: :model do
     it { is_expected.to validate_numericality_of(:rounds).only_integer }
   end
 
+  describe 'name' do
+    it 'should be set' do
+      caliber = create(:caliber, name: '308')
+      bullet = create(:bullet, caliber: caliber, name: 'Sierra HPBT', grain: 168)
+      powder = create(:powder, name: 'test')
+      load = create(:load, caliber: caliber, bullet: bullet, powder: powder, powder_weight: 40, date: Date.parse('2019-03-14'))
+      expect(load.name).to eq('2019-03-14 - Sierra HPBT (308 - 168gr) - test (40.0gr)')
+    end
+  end
+
   describe 'brass_length_unit' do
     it 'should pull value from database' do
       user = create(:user)
@@ -78,7 +88,7 @@ RSpec.describe Load, type: :model do
     it 'should pull value from database' do
       user = create(:user)
       load = create(:load, user: user, speed_unit: 'mph')
-      user.settings(:default_units).length = 'kph'
+      user.settings(:default_units).speed = 'kph'
       user.save!
       expect(load.speed_unit).to eq('mph')
     end
