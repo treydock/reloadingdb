@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Load, type: :model do
   it_behaves_like 'HasVelocity'
 
+  let(:subject) { create(:load) }
+
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:caliber) }
@@ -31,6 +33,39 @@ RSpec.describe Load, type: :model do
       powder = create(:powder, name: 'test')
       load = create(:load, caliber: caliber, bullet: bullet, powder: powder, powder_weight: 40, date: Date.parse('2019-03-14'))
       expect(load.name).to eq('2019-03-14 - Sierra HPBT (308 - 168gr) - test (40.0gr)')
+    end
+  end
+
+  describe 'brass_length_full' do
+    it 'should return brass_length' do
+      subject.brass_length = ''
+      expect(subject.brass_length_full).to be_nil
+    end
+    it 'shuld return full text' do
+      subject.brass_length = 2.0
+      expect(subject.brass_length_full).to eq('2.0 in')
+    end
+  end
+
+  describe 'col_full' do
+    it 'should return col' do
+      subject.col = ''
+      expect(subject.col_full).to be_nil
+    end
+    it 'shuld return full text' do
+      subject.col = 2.0
+      expect(subject.col_full).to eq('2.0 in')
+    end
+  end
+
+  describe 'run_out_full' do
+    it 'should return run_out' do
+      subject.run_out = ''
+      expect(subject.run_out_full).to be_nil
+    end
+    it 'shuld return full text' do
+      subject.run_out = 2.0
+      expect(subject.run_out_full).to eq('2.0 in')
     end
   end
 

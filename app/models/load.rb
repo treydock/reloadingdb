@@ -28,6 +28,21 @@ class Load < ApplicationRecord
     "#{date} - #{bullet.name_caliber_grain} - #{powder.name} (#{powder_weight}gr)"
   end
 
+  def brass_length_full
+    return brass_length unless brass_length.present?
+    "#{brass_length} #{brass_length_unit}"
+  end
+
+  def col_full
+    return col unless col.present?
+    "#{col} #{col_unit}"
+  end
+
+  def run_out_full
+    return run_out unless run_out.present?
+    "#{run_out} #{run_out_unit}"
+  end
+
   def brass_length_unit
     self[:brass_length_unit].present? ? self[:brass_length_unit] : user.settings(:default_units).length
   end
