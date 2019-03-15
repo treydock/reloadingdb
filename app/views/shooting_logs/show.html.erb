@@ -9,7 +9,7 @@
   <dd><%= @shooting_log.date %></dd>
 
   <dt>Time:</dt>
-  <dd><%= @shooting_log.time %></dd>
+  <dd><%= print_time(@shooting_log.time) %></dd>
 
   <dt>Shooting location:</dt>
   <dd><%= @shooting_log.shooting_location.name %></dd>

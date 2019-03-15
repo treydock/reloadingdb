@@ -14,7 +14,7 @@
     <% @shooting_logs.each do |shooting_log| %>
       <tr>
         <td><%= link_to shooting_log.date, shooting_log %></td>
-        <td><%= shooting_log.time %></td>
+        <td><%= print_time(shooting_log.time) %></td>
         <td><%= shooting_log.shooting_location.name %></td>
         <td><%= index_actions(shooting_log) %></td>
       </tr>

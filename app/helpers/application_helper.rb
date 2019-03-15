@@ -8,6 +8,10 @@ module ApplicationHelper
     end
   end
 
+  def print_time(time)
+    time.strftime("%H:%M")
+  end
+
   def index_actions(object)
     content_tag :div, class: 'dropdown' do
       concat button_tag('Actions', class: 'btn btn-secondary dropdown-toggle', id: 'button', type: 'button', 'aria-haspopup' => 'true', 'aria-expanded' => 'false', data: { toggle: 'dropdown' })
