@@ -19,6 +19,4 @@
 //= require turbolinks
 //= require bootstrap
 //= require scoped_search
-//= require rails.validations
-//= require rails.validations.simple_form.bootstrap4
 //= require_tree .

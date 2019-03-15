@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "shooting_groups/new", type: :view do
   before(:each) do
-    view.lookup_context.prefixes << 'application'
     user = create(:user)
     assign(:shooting_logs, create_list(:shooting_log, 2, user: user))
     assign(:shooting_group, ShootingGroup.new(user: user))

@@ -17,8 +17,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'mini_racer', platforms: :ruby
 
 gem 'simple_form'
-gem 'client_side_validations'
-gem 'client_side_validations-simple_form'
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '< 5.0.0'
 gem 'bootstrap'

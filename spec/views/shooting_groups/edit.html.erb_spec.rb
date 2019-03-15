@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "shooting_groups/edit", type: :view do
   before(:each) do
-    view.lookup_context.prefixes << 'application'
     @shooting_logs = assign(:shooting_logs, create_list(:shooting_log, 2))
     @loads = assign(:loads, create_list(:load, 2))
     @shooting_group = assign(:shooting_group, create(:shooting_group))

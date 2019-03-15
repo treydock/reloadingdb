@@ -1,7 +1,5 @@
-
-<%= simple_form_for(@caliber, validate: true) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<%= simple_form_for(@caliber) do |f| %>
+  <%= render 'form_errors', f: f %>
 
   <div class="form-inputs">
     <%= f.input :name %>
