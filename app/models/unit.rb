@@ -46,6 +46,6 @@ class Unit
   end
 
   def self.scope_adjustment
-    ['moa','mil','in','cm']
+    ['moa','mil','clicks','in','cm']
   end
 end

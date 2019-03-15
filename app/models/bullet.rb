@@ -5,7 +5,7 @@ class Bullet < ApplicationRecord
   validates :caliber, presence: true
   validates :grain, numericality: { only_integer: true }
 
-  def name_grain_caliber
+  def name_caliber_grain
     "#{name} (#{caliber.name} - #{grain}gr)"
   end
 end

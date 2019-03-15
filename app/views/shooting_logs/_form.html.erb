@@ -1,22 +1,25 @@
 <%= simple_form_for(@shooting_log, validate: true) do |f| %>
   <div class="form-inputs">
     <%= f.input :date, as: :date, html5: true %>
-    <%= f.input :time, as: :time, html5: true %>
+    <%= f.input :time, as: :time_picker %>
     <%= f.association :shooting_location, collection: @shooting_locations %>
     <%= f.input :temperature do %>
-      <%= f.input_field :temperature, class: 'form-control-with-unit' %>
-      <%= f.input_field :temperature_unit, as: :select, collection: Unit.temperature %>
+      <%= f.input_field :temperature, class: 'col-sm-3' %>
+      <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
+      <%= f.input_field :temperature_unit, as: :select, collection: Unit.temperature, class: 'col-sm-2' %>
     <% end %>
     <%= f.input :pressure do %>
-      <%= f.input_field :pressure, class: 'form-control-with-unit' %>
-      <%= f.input_field :pressure_unit, as: :select, collection: Unit.pressure %>
+      <%= f.input_field :pressure, class: 'col-sm-3' %>
+      <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
+      <%= f.input_field :pressure_unit, as: :select, collection: Unit.pressure, class: 'col-sm-2' %>
     <% end %>
     <%= f.input :humidity, hint: 'percent (%)' %>
     <%= f.input :wind_speed do %>
-      <%= f.input_field :wind_speed, class: 'form-control-with-unit' %>
-      <%= f.input_field :wind_speed_unit, as: :select, collection: Unit.speed %>
+      <%= f.input_field :wind_speed, class: 'col-sm-3' %>
+      <%= f.input_field :wind_direction, class: 'col-sm-4', placeholder: 'Direction in degrees' %>
+      <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
+      <%= f.input_field :wind_speed_unit, as: :select, collection: Unit.speed, class: 'col-sm-2' %>
     <% end %>
-    <%= f.input :wind_direction %>
     <%= f.input :angle %>
     <%= f.input :conditions %>
     <%= f.input :notes %>

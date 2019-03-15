@@ -24,6 +24,10 @@ class Load < ApplicationRecord
   scoped_search relation: :bullet, on: :name, complete_value: true, rename: :bullet
   scoped_search relation: :bullet, on: :grain, complete_value: true, rename: :bullet_grain
 
+  def name
+    "#{date} - #{bullet.name_caliber_grain} - #{powder.name} (#{powder_weight}gr)"
+  end
+
   def brass_length_unit
     self[:brass_length_unit].present? ? self[:brass_length_unit] : user.settings(:default_units).length
   end

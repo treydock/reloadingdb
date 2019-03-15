@@ -38,7 +38,7 @@ RSpec.describe Unit, type: :model do
       expect(subject.class.distance).to eq(['yd','m'])
     end
     it 'should have scope_adjustment' do
-      expect(subject.class.scope_adjustment).to eq(['moa','mil','in','cm'])
+      expect(subject.class.scope_adjustment).to eq(['moa','mil','clicks','in','cm'])
     end
   end
 end
