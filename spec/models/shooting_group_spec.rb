@@ -4,6 +4,8 @@ RSpec.describe ShootingGroup, type: :model do
   it_behaves_like 'HasWindSpeed'
   it_behaves_like 'HasVelocity'
 
+  let(:subject) { create(:shooting_group) }
+
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:load) }
@@ -110,6 +112,52 @@ RSpec.describe ShootingGroup, type: :model do
       user.settings(:default_units).length = 'in'
       user.save!
       expect(shooting_log.group_size_unit).to eq('in')
+    end
+  end
+
+  describe 'distance_full' do
+    it 'should return temperature' do
+      subject.distance = ''
+      expect(subject.distance_full).to be_nil
+    end
+    it 'shuld return full text' do
+      subject.distance = 100
+      expect(subject.distance_full).to eq('100 yd')
+    end
+  end
+
+  describe 'elevation_adjustment_full' do
+    it 'should return temperature' do
+      subject.elevation_adjustment = ''
+      expect(subject.elevation_adjustment_full).to be_nil
+    end
+    it 'shuld return full text' do
+      subject.elevation_adjustment = 4
+      subject.elevation_adjustment_direction = 'up'
+      expect(subject.elevation_adjustment_full).to eq('4.0 moa up')
+    end
+  end
+
+  describe 'windage_adjustment_full' do
+    it 'should return temperature' do
+      subject.windage_adjustment = ''
+      expect(subject.windage_adjustment_full).to be_nil
+    end
+    it 'shuld return full text' do
+      subject.windage_adjustment = 4
+      subject.windage_adjustment_direction = 'left'
+      expect(subject.windage_adjustment_full).to eq('4.0 moa left')
+    end
+  end
+
+  describe 'group_size_full' do
+    it 'should return temperature' do
+      subject.group_size = ''
+      expect(subject.group_size_full).to be_nil
+    end
+    it 'shuld return full text' do
+      subject.group_size = 1.0
+      expect(subject.group_size_full).to eq('1.0 in')
     end
   end
 end
