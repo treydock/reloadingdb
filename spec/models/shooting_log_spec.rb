@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe ShootingLog, type: :model do
   it_behaves_like 'HasWindSpeed'
 
+  let(:subject) { create(:shooting_log) }
+
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:shooting_location) }
@@ -12,6 +14,28 @@ RSpec.describe ShootingLog, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of :date }
     it { is_expected.to validate_presence_of :time }
+  end
+
+  describe 'temperature_full' do
+    it 'should return temperature' do
+      subject.temperature = ''
+      expect(subject.temperature_full).to be_nil
+    end
+    it 'shuld return full text' do
+      subject.temperature = 70
+      expect(subject.temperature_full).to eq('70 F')
+    end
+  end
+
+  describe 'pressure_full' do
+    it 'should return temperature' do
+      subject.pressure = ''
+      expect(subject.pressure_full).to be_nil
+    end
+    it 'shuld return full text' do
+      subject.pressure = 30.0
+      expect(subject.pressure_full).to eq('30.0 inhg')
+    end
   end
 
   describe 'temperature_unit' do
