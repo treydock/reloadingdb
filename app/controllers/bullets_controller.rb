@@ -1,6 +1,6 @@
 class BulletsController < ApplicationController
   before_action :set_bullet, only: [:show, :edit, :update, :destroy]
-  before_action :set_components, only: [:new, :create, :edit]
+  before_action :set_components, only: [:new, :create, :edit, :update]
 
   # GET /bullets
   # GET /bullets.json

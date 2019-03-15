@@ -1,6 +1,6 @@
 class ShootingGroupsController < ApplicationController
   before_action :set_shooting_group, only: [:show, :edit, :update, :destroy]
-  before_action :set_associations, only: [:new, :edit]
+  before_action :set_associations, only: [:new, :create, :edit, :update]
 
   # GET /shooting_groups
   # GET /shooting_groups.json

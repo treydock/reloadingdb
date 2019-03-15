@@ -1,6 +1,6 @@
 class LoadsController < ApplicationController
   before_action :set_load, only: [:show, :edit, :update, :destroy]
-  before_action :set_components, only: [:new, :create, :edit]
+  before_action :set_components, only: [:new, :create, :edit, :update]
   after_action :verify_authorized, except: [:index, :autocomplete]
   helper_method :sort_column, :sort_direction
 

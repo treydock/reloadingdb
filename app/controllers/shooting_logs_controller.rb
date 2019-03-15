@@ -1,6 +1,6 @@
 class ShootingLogsController < ApplicationController
   before_action :set_shooting_log, only: [:show, :edit, :update, :destroy]
-  before_action :set_associations, only: [:new, :create, :edit]
+  before_action :set_associations, only: [:new, :create, :edit, :update]
 
   # GET /shooting_logs
   # GET /shooting_logs.json
