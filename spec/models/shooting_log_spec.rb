@@ -47,21 +47,4 @@ RSpec.describe ShootingLog, type: :model do
       expect(shooting_log.pressure_unit).to eq('inhg')
     end
   end
-
-  describe 'wind_speed_unit' do
-    it 'should pull value from database' do
-      user = create(:user)
-      shooting_log = create(:shooting_log, user: user, wind_speed_unit: 'kph')
-      user.settings(:default_units).speed = 'mph'
-      user.save!
-      expect(shooting_log.wind_speed_unit).to eq('kph')
-    end
-    it 'should pull value from user default' do
-      user = create(:user)
-      shooting_log = create(:shooting_log, user: user, wind_speed_unit: '')
-      user.settings(:default_units).speed = 'mph'
-      user.save!
-      expect(shooting_log.wind_speed_unit).to eq('mph')
-    end
-  end
 end

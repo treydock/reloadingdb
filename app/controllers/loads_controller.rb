@@ -105,8 +105,8 @@ class LoadsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def load_params
       params.require(:load).permit(:caliber_id, :brass_id, :brass_length, :date, :bullet_id, :powder_id, :powder_weight,
-                                   :primer_id, :col, :speed, :run_out, :brass_uses, :rounds, :notes,
-                                   :brass_length_unit, :col_unit, :run_out_unit, :speed_unit)
+                                   :primer_id, :col, :velocity, :run_out, :brass_uses, :rounds, :notes,
+                                   :brass_length_unit, :col_unit, :run_out_unit, :velocity_unit)
     end
 
     def sortable_columns

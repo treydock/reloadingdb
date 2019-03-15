@@ -11,7 +11,7 @@ RSpec.describe "user_settings/edit", type: :view do
     assert_select "form[action=?][method=?]", user_settings_path, "post" do
       assert_select "input[name=?][value=?]", "_method", "put"
       assert_select "select[name=?]", "user_settings[default_temperature]"
-      assert_select "select[name=?]", "user_settings[default_speed]"
+      assert_select "select[name=?]", "user_settings[default_velocity]"
       assert_select "select[name=?]", "user_settings[default_pressure]"
       assert_select "select[name=?]", "user_settings[default_length]"
       assert_select "select[name=?]", "user_settings[default_distance]"

@@ -9,11 +9,11 @@ class Unit
     ['F','C']
   end
 
-  def self.default_speed
+  def self.default_velocity
     'mph'
   end
 
-  def self.speed
+  def self.velocity
     ['mph','kph']
   end
 

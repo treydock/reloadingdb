@@ -29,7 +29,7 @@
       <%= f.input_field :wind_speed, class: 'col-sm-3' %>
       <%= f.input_field :wind_direction, class: 'col-sm-4', placeholder: 'Direction in degrees' %>
       <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
-      <%= f.input_field :wind_speed_unit, as: :select, collection: Unit.speed, class: 'col-sm-2' %>
+      <%= f.input_field :wind_speed_unit, as: :select, collection: Unit.velocity, class: 'col-sm-2' %>
     <% end %>
     <%= f.input :group_size do %>
       <%= f.input_field :group_size, class: 'col-sm-3' %>
@@ -39,7 +39,7 @@
     <%= f.input :velocity do %>
       <%= f.input_field :velocity, class: 'col-sm-3' %>
       <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
-      <%= f.input_field :velocity_unit, as: :select, collection: Unit.speed, class: 'col-sm-2' %>
+      <%= f.input_field :velocity_unit, as: :select, collection: Unit.velocity, class: 'col-sm-2' %>
     <% end %>
   </div>
 

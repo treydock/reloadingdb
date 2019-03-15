@@ -10,7 +10,7 @@ module HasWindSpeed
     end
 
     def wind_speed_unit
-      self[:wind_speed_unit].present? ? self[:wind_speed_unit] : user.settings(:default_units).speed
+      self[:wind_speed_unit].present? ? self[:wind_speed_unit] : user.settings(:default_units).velocity
     end
   end
 

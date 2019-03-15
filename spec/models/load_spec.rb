@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Load, type: :model do
+  it_behaves_like 'HasVelocity'
+
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:caliber) }
@@ -18,7 +20,6 @@ RSpec.describe Load, type: :model do
     it { is_expected.to validate_presence_of(:col) }
     it { is_expected.to validate_numericality_of(:brass_length) }
     it { is_expected.to validate_numericality_of(:brass_uses).only_integer }
-    it { is_expected.to validate_numericality_of(:speed).only_integer }
     it { is_expected.to validate_numericality_of(:run_out) }
     it { is_expected.to validate_numericality_of(:rounds).only_integer }
   end
@@ -81,23 +82,6 @@ RSpec.describe Load, type: :model do
       user.settings(:default_units).length = 'cm'
       user.save!
       expect(load.run_out_unit).to eq('cm')
-    end
-  end
-
-  describe 'speed_unit' do
-    it 'should pull value from database' do
-      user = create(:user)
-      load = create(:load, user: user, speed_unit: 'mph')
-      user.settings(:default_units).speed = 'kph'
-      user.save!
-      expect(load.speed_unit).to eq('mph')
-    end
-    it 'should pull value from user default' do
-      user = create(:user)
-      load = create(:load, user: user, speed_unit: '')
-      user.settings(:default_units).speed = 'kph'
-      user.save!
-      expect(load.speed_unit).to eq('kph')
     end
   end
 end

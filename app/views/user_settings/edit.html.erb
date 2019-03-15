@@ -4,9 +4,9 @@
     <%= f.input :default_temperature, label: 'Temperature', required: false,
                 as: :select, collection: Unit.temperature,
                 selected: current_user.settings(:default_units).temperature %>
-    <%= f.input :default_speed, label: 'Speed', required: false,
-                as: :select, collection: Unit.speed,
-                selected: current_user.settings(:default_units).speed %>
+    <%= f.input :default_velocity, label: 'Velocity', required: false,
+                as: :select, collection: Unit.velocity,
+                selected: current_user.settings(:default_units).velocity %>
     <%= f.input :default_pressure, label: 'Pressure', required: false,
                 as: :select, collection: Unit.pressure,
                 selected: current_user.settings(:default_units).pressure %>

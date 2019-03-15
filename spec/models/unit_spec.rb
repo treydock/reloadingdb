@@ -5,8 +5,8 @@ RSpec.describe Unit, type: :model do
     it 'should have temperature' do
       expect(subject.class.default_temperature).to eq('F')
     end
-    it 'should have speed' do
-      expect(subject.class.default_speed).to eq('mph')
+    it 'should have velocity' do
+      expect(subject.class.default_velocity).to eq('mph')
     end
     it 'should have pressure' do
       expect(subject.class.default_pressure).to eq('inhg')
@@ -25,8 +25,8 @@ RSpec.describe Unit, type: :model do
     it 'should have temperature' do
       expect(subject.class.temperature).to eq(['F','C'])
     end
-    it 'should have speed' do
-      expect(subject.class.speed).to eq(['mph','kph'])
+    it 'should have velocity' do
+      expect(subject.class.velocity).to eq(['mph','kph'])
     end
     it 'should have pressure' do
       expect(subject.class.pressure).to eq(['atm','mbar','psi','inhg','mmhg'])

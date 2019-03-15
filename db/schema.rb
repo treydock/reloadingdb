@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_14_192158) do
+ActiveRecord::Schema.define(version: 2019_03_15_170005) do
 
   create_table "brasses", force: :cascade do |t|
     t.string "name"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2019_03_14_192158) do
     t.float "powder_weight"
     t.integer "primer_id"
     t.float "col"
-    t.integer "speed"
+    t.integer "velocity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "notes"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2019_03_14_192158) do
     t.float "run_out"
     t.integer "rounds"
     t.string "col_unit"
-    t.string "speed_unit"
+    t.string "velocity_unit"
     t.string "run_out_unit"
     t.string "brass_length_unit"
     t.index ["brass_id"], name: "index_loads_on_brass_id"

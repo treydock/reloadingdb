@@ -23,7 +23,7 @@ RSpec.describe "loads/edit", type: :view do
       assert_select "input[name=?]", "load[powder_weight]"
       assert_select "select[name=?]", "load[primer_id]"
       assert_select "input[name=?]", "load[col]"
-      assert_select "input[name=?]", "load[speed]"
+      assert_select "input[name=?]", "load[velocity]"
     end
   end
 end

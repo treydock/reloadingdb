@@ -31,10 +31,10 @@
       <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
       <%= f.input_field :run_out_unit, as: :select, collection: Unit.length, class: 'col-sm-2' %>
     <% end %>
-    <%= f.input :speed do %>
-      <%= f.input_field :speed, class: 'col-sm-3' %>
+    <%= f.input :velocity do %>
+      <%= f.input_field :velocity, class: 'col-sm-3' %>
       <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
-      <%= f.input_field :speed_unit, as: :select, collection: Unit.speed, class: 'col-sm-2' %>
+      <%= f.input_field :velocity_unit, as: :select, collection: Unit.velocity, class: 'col-sm-2' %>
     <% end %>
     <%= f.input :rounds, label: 'Number of Rounds' %>
     <%= f.input :notes %>

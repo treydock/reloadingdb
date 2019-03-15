@@ -17,7 +17,7 @@ RSpec.describe "loads/show", type: :view do
     expect(rendered).to match(/#{@load.powder_weight}/)
     expect(rendered).to match(@load.primer.name)
     expect(rendered).to match(/#{@load.col}/)
-    expect(rendered).to match(/#{@load.speed}/)
+    expect(rendered).to include(@load.velocity_full)
     expect(rendered).to match(simple_format(@load.notes))
   end
 end

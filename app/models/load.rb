@@ -1,5 +1,6 @@
 class Load < ApplicationRecord
   include UserOwned
+  include HasVelocity
   belongs_to :caliber
   belongs_to :brass
   belongs_to :bullet
@@ -11,12 +12,11 @@ class Load < ApplicationRecord
   validates :col, numericality: true, presence: true
   validates :brass_length, numericality: true, allow_blank: true
   validates :brass_uses, numericality: { only_integer: true }, allow_blank: true
-  validates :speed, numericality: { only_integer: true }, allow_blank: true
   validates :run_out, numericality: true, allow_blank: true
   validates :rounds, numericality: { only_integer: true }, allow_blank: true
 
   scoped_search on: [:date], complete_value: true
-  scoped_search on: [:brass_length, :col, :speed, :powder_weight], complete_value: true
+  scoped_search on: [:brass_length, :col, :powder_weight], complete_value: true
   scoped_search relation: :caliber, on: :name, complete_value: true, rename: :caliber
   scoped_search relation: :powder, on: :name, complete_value: true, rename: :powder
   scoped_search relation: :primer, on: :name, complete_value: true, rename: :primer
@@ -38,9 +38,5 @@ class Load < ApplicationRecord
 
   def run_out_unit
     self[:run_out_unit].present? ? self[:run_out_unit] : user.settings(:default_units).length
-  end
-
-  def speed_unit
-    self[:speed_unit].present? ? self[:speed_unit] : user.settings(:default_units).speed
   end
 end

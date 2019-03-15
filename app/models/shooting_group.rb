@@ -1,6 +1,7 @@
 class ShootingGroup < ApplicationRecord
   include UserOwned
   include HasWindSpeed
+  include HasVelocity
   belongs_to :shooting_log
   belongs_to :load
 
@@ -29,10 +30,6 @@ class ShootingGroup < ApplicationRecord
     self[:group_size_unit].present? ? self[:group_size_unit] : user.settings(:default_units).length
   end
 
-  def velocity_unit
-    self[:velocity_unit].present? ? self[:velocity_unit] : user.settings(:default_units).speed
-  end
-
   def distance_full
     return distance unless distance.present?
     "#{distance} #{distance_unit}"
@@ -51,10 +48,5 @@ class ShootingGroup < ApplicationRecord
   def group_size_full
     return group_size unless group_size.present?
     "#{group_size} #{group_size_unit}"
-  end
-
-  def velocity_full
-    return velocity unless velocity.present?
-    "#{velocity} #{velocity_unit}"
   end
 end

@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ShootingGroup, type: :model do
   it_behaves_like 'HasWindSpeed'
+  it_behaves_like 'HasVelocity'
+
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:load) }
@@ -94,23 +96,6 @@ RSpec.describe ShootingGroup, type: :model do
     end
   end
 
-  describe 'wind_speed_unit' do
-    it 'should pull value from database' do
-      user = create(:user)
-      shooting_log = create(:shooting_group, user: user, wind_speed_unit: 'kph')
-      user.settings(:default_units).speed = 'mph'
-      user.save!
-      expect(shooting_log.wind_speed_unit).to eq('kph')
-    end
-    it 'should pull value from user default' do
-      user = create(:user)
-      shooting_log = create(:shooting_group, user: user, wind_speed_unit: '')
-      user.settings(:default_units).speed = 'mph'
-      user.save!
-      expect(shooting_log.wind_speed_unit).to eq('mph')
-    end
-  end
-
   describe 'group_size_unit' do
     it 'should pull value from database' do
       user = create(:user)
@@ -125,23 +110,6 @@ RSpec.describe ShootingGroup, type: :model do
       user.settings(:default_units).length = 'in'
       user.save!
       expect(shooting_log.group_size_unit).to eq('in')
-    end
-  end
-
-  describe 'velocity_unit' do
-    it 'should pull value from database' do
-      user = create(:user)
-      load = create(:shooting_group, user: user, velocity_unit: 'mph')
-      user.settings(:default_units).speed = 'kph'
-      user.save!
-      expect(load.velocity_unit).to eq('mph')
-    end
-    it 'should pull value from user default' do
-      user = create(:user)
-      load = create(:shooting_group, user: user, velocity_unit: '')
-      user.settings(:default_units).speed = 'kph'
-      user.save!
-      expect(load.velocity_unit).to eq('kph')
     end
   end
 end
