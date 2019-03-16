@@ -19,4 +19,19 @@
 //= require turbolinks
 //= require bootstrap
 //= require scoped_search
+//= require moment
+//= require tempusdominus-bootstrap-4
 //= require_tree .
+
+$(document).on("turbolinks:load", function() {
+    $('#timepicker').datetimepicker({
+        //format: 'HH:mm'
+        format: 'HH:mm',
+        timeZone: ''
+    });
+    $('#datepicker').datetimepicker({
+        //format: 'HH:mm'
+        format: 'YYYY-MM-DD',
+        timeZone: ''
+    });
+});

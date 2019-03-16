@@ -18,10 +18,19 @@
 @import 'jquery.ui.menu';
 @import 'jquery.ui.autocomplete';
 @import 'scoped_search';
+@import "tempusdominus-bootstrap-4";
 @import 'bootstrap3';
 
 .input-group-append {
   margin-left: 10px;
+}
+
+.time-picker .input-group-append {
+    margin-left: -1px;
+}
+
+.date-picker .input-group-append {
+    margin-left: -1px;
 }
 
 .page-header {
