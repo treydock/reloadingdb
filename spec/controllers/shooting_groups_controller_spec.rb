@@ -6,6 +6,7 @@ RSpec.describe ShootingGroupsController, type: :controller do
   let(:valid_attributes) {
     attributes_for(:shooting_group,
                    shooting_log_id: create(:shooting_log).id,
+                   caliber_id: create(:caliber).id,
                    load_id: create(:load).id)
   }
 

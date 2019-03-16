@@ -8,6 +8,7 @@ RSpec.describe ShootingGroup, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to belong_to(:caliber) }
     it { is_expected.to belong_to(:load) }
     it { is_expected.to belong_to(:shooting_log) }
   end

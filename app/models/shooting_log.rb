@@ -2,6 +2,7 @@ class ShootingLog < ApplicationRecord
   include UserOwned
   include HasWindSpeed
   belongs_to :shooting_location
+  belongs_to :caliber, optional: true
   has_many :shooting_groups
 
   validates :date, presence: true

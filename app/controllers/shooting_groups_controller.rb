@@ -79,16 +79,17 @@ class ShootingGroupsController < ApplicationController
     def set_associations
       @shooting_logs = policy_scope(ShootingLog).all
       @loads = policy_scope(Load).all
+      @calibers = policy_scope(Caliber).all
     end
 
     def shooting_group_new_params
-      params.permit(:shooting_log_id, :load_id)
+      params.permit(:shooting_log_id, :load_id, :caliber_id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shooting_group_params
       params.require(:shooting_group).permit(:shooting_log_id, :load_id, :number,
-                                             :distance, :distance_unit, :shots,
+                                             :distance, :distance_unit, :shots, :caliber_id,
                                              :elevation_adjustment, :elevation_adjustment_direction, :elevation_adjustment_unit,
                                              :windage_adjustment, :windage_adjustment_direction, :windage_adjustment_unit,
                                              :wind_speed, :wind_speed_unit, :wind_direction,

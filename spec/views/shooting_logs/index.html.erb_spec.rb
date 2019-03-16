@@ -8,10 +8,10 @@ RSpec.describe "shooting_logs/index", type: :view do
   it "renders a list of shooting_logs" do
     render
     assert_select "tr>td", :text => /#{@shooting_logs[0].date}/
-    assert_select "tr>td", :text => /#{view.print_time(@shooting_logs[0].time)}/
+    assert_select "tr>td", :text => /#{@shooting_logs[0].caliber.name}/
     assert_select "tr>td", :text => /#{@shooting_logs[0].shooting_location.name}/
     assert_select "tr>td", :text => /#{@shooting_logs[1].date}/
-    assert_select "tr>td", :text => /#{view.print_time(@shooting_logs[1].time)}/
+    assert_select "tr>td", :text => /#{@shooting_logs[1].caliber.name}/
     assert_select "tr>td", :text => /#{@shooting_logs[1].shooting_location.name}/
   end
 end

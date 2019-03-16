@@ -5,6 +5,7 @@
     <%= f.input :date, as: :date_picker, input_html: { class: 'col-sm-4' } %>
     <%= f.input :time, as: :time_picker, input_html: { class: 'col-sm-4' } %>
     <%= f.association :shooting_location, collection: @shooting_locations %>
+    <%= f.association :caliber, collection: @calibers %>
     <%= f.input :temperature do %>
       <%= f.input_field :temperature, class: 'col-sm-3' %>
       <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>

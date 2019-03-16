@@ -8,6 +8,7 @@ RSpec.describe "shooting_groups/show", type: :view do
   it "renders attributes in <p>" do
     render
     expect(rendered).to include("#{@shooting_group.shooting_log.date}")
+    expect(rendered).to include(@shooting_group.caliber.name)
     expect(rendered).to include(@shooting_group.load.name)
     expect(rendered).to match(/#{@shooting_group.number}/)
     expect(rendered).to include(@shooting_group.distance_full)

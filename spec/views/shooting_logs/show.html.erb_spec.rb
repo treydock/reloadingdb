@@ -10,6 +10,7 @@ RSpec.describe "shooting_logs/show", type: :view do
     expect(rendered).to match(/#{@shooting_log.date}/)
     expect(rendered).to match(/#{view.print_time(@shooting_log.time)}/)
     expect(rendered).to match(/#{@shooting_log.shooting_location.name}/)
+    expect(rendered).to match(/#{@shooting_log.caliber.name}/)
     expect(rendered).to match(/#{@shooting_log.temperature_full}/)
     expect(rendered).to match(/#{@shooting_log.pressure_full}/)
     expect(rendered).to match(/#{@shooting_log.humidity}/)

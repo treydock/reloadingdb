@@ -73,6 +73,7 @@ class ShootingLogsController < ApplicationController
   private
     def set_associations
       @shooting_locations = policy_scope(ShootingLocation).all
+      @calibers = policy_scope(Caliber).all
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -82,7 +83,7 @@ class ShootingLogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shooting_log_params
-      params.require(:shooting_log).permit(:date, :time, :shooting_location_id, :temperature, :temperature_unit,
+      params.require(:shooting_log).permit(:date, :time, :shooting_location_id, :caliber_id, :temperature, :temperature_unit,
                                            :pressure, :pressure_unit, :angle, :conditions, :humidity,
                                            :wind_speed, :wind_speed_unit, :wind_direction, :notes)
     end

@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :shooting_group do
     shooting_log
     user
+    caliber
     load
     number { 1 }
     distance { 1 }

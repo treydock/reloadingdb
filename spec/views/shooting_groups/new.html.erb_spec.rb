@@ -12,6 +12,7 @@ RSpec.describe "shooting_groups/new", type: :view do
 
     assert_select "form[action=?][method=?]", shooting_groups_path, "post" do
       assert_select "select[name=?]", "shooting_group[shooting_log_id]"
+      assert_select "select[name=?]", "shooting_group[caliber_id]"
       assert_select "select[name=?]", "shooting_group[load_id]"
       assert_select "input[name=?]", "shooting_group[number]"
       assert_select "input[name=?]", "shooting_group[distance]"

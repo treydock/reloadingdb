@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_16_144113) do
+ActiveRecord::Schema.define(version: 2019_03_16_152055) do
 
   create_table "brasses", force: :cascade do |t|
     t.string "name"
@@ -123,6 +123,8 @@ ActiveRecord::Schema.define(version: 2019_03_16_144113) do
     t.string "velocity_unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "caliber_id"
+    t.index ["caliber_id"], name: "index_shooting_groups_on_caliber_id"
     t.index ["load_id"], name: "index_shooting_groups_on_load_id"
     t.index ["shooting_log_id"], name: "index_shooting_groups_on_shooting_log_id"
     t.index ["user_id"], name: "index_shooting_groups_on_user_id"
@@ -157,6 +159,8 @@ ActiveRecord::Schema.define(version: 2019_03_16_144113) do
     t.string "temperature_unit"
     t.string "pressure_unit"
     t.string "wind_speed_unit"
+    t.integer "caliber_id"
+    t.index ["caliber_id"], name: "index_shooting_logs_on_caliber_id"
     t.index ["shooting_location_id"], name: "index_shooting_logs_on_shooting_location_id"
     t.index ["user_id"], name: "index_shooting_logs_on_user_id"
   end

@@ -1,5 +1,6 @@
 <%= show_header(@shooting_log) do %>
-<%= link_to(new_shooting_group_path(shooting_log_id: @shooting_log.id), class: 'btn btn-primary') do %>
+<% new_group_params = {shooting_log_id: @shooting_log.id, caliber_id: @shooting_log.caliber.present? ? @shooting_log.caliber.id : nil }%>
+<%= link_to(new_shooting_group_path(new_group_params), class: 'btn btn-primary') do %>
   <span class="fa fa-plus">New Group</span>
 <% end %>
 <% end %>
@@ -13,6 +14,9 @@
 
   <dt>Shooting location:</dt>
   <dd><%= @shooting_log.shooting_location.name %></dd>
+
+  <dt>Caliber:</dt>
+  <dd><%= @shooting_log.caliber.present? ? @shooting_log.caliber.name : '' %></dd>
 
   <dt>Temperature:</dt>
   <dd><%= @shooting_log.temperature_full %></dd>

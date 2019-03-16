@@ -3,6 +3,7 @@ FactoryBot.define do
     date { Date.today }
     time { Time.now }
     shooting_location
+    caliber
     temperature { 1 }
     pressure { 1.5 }
     angle { 1 }

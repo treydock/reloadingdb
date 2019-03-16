@@ -3,7 +3,9 @@
 
   <div class="form-inputs">
     <%= f.association :shooting_log, label_method: :date, collection: @shooting_logs %>
-    <%= f.association :load %>
+    <%= f.association :caliber, collection: @calibers %>
+    <%= f.input :load_id, collection: @calibers,
+                      label_method: :name, as: :grouped_select, group_method: :loads, required: true %>
     <%= f.input :number %>
     <%= f.input :distance do %>
       <%= f.input_field :distance, class: 'col-sm-3' %>

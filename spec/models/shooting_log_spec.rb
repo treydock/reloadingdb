@@ -7,11 +7,14 @@ RSpec.describe ShootingLog, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to belong_to(:caliber) }
     it { is_expected.to belong_to(:shooting_location) }
     it { is_expected.to have_many(:shooting_groups) }
   end
 
   describe 'validations' do
+    it { is_expected.not_to validate_presence_of :caliber }
+    it { is_expected.not_to validate_presence_of :caliber_id }
     it { is_expected.to validate_presence_of :date }
     it { is_expected.to validate_presence_of :time }
   end

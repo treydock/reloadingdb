@@ -12,6 +12,7 @@ RSpec.describe "shooting_logs/new", type: :view do
       assert_select "input[name=?]", "shooting_log[date]"
       assert_select "input[name=?]", "shooting_log[time]"
       assert_select "select[name=?]", "shooting_log[shooting_location_id]"
+      assert_select "select[name=?]", "shooting_log[caliber_id]"
       assert_select "input[name=?]", "shooting_log[temperature]"
       assert_select "input[name=?]", "shooting_log[pressure]"
       assert_select "input[name=?]", "shooting_log[humidity]"

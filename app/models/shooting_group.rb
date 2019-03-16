@@ -4,6 +4,7 @@ class ShootingGroup < ApplicationRecord
   include HasVelocity
   belongs_to :shooting_log
   belongs_to :load
+  belongs_to :caliber
 
   validates :distance, presence: true, numericality: { only_integer: true }
   validates :number, presence: true, numericality: { only_integer: true }
