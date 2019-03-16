@@ -7,7 +7,7 @@ class ShootingGroup < ApplicationRecord
   belongs_to :caliber
 
   validates :distance, presence: true, numericality: { only_integer: true }
-  validates :number, presence: true, numericality: { only_integer: true }
+  validates :number, presence: true, numericality: { only_integer: true }, uniqueness: { scope: [:shooting_log, :caliber, :user] }
   validates :elevation_adjustment_direction, absence: true, unless: Proc.new { |a| a.elevation_adjustment.present? }
   validates :windage_adjustment_direction, absence: true, unless: Proc.new { |a| a.windage_adjustment.present? }
 
