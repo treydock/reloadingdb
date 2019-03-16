@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Bullet, type: :model do
+  let(:subject) { create(:bullet) }
+
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:caliber) }
@@ -9,6 +11,7 @@ RSpec.describe Bullet, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of :name }
     it { is_expected.to validate_numericality_of :grain }
+    it { is_expected.to validate_numericality_of :ballistic_coefficient }
     it do
       skip("PENDING: https://github.com/thoughtbot/shoulda-matchers/issues/814")
       is_expected.to validate_uniqueness_of(:name).scoped_to([:caliber, :user])
@@ -29,6 +32,34 @@ RSpec.describe Bullet, type: :model do
       caliber = create(:caliber, name: '308')
       bullet = create(:bullet, caliber: caliber, name: 'Sierra HPBT', grain: 168)
       expect(bullet.name_caliber_grain).to eq('Sierra HPBT (308 - 168gr)')
+    end
+  end
+
+  describe 'ballistic_coefficient_full' do
+    it 'should return ballistic_coefficient' do
+      subject.ballistic_coefficient = ''
+      expect(subject.ballistic_coefficient_full).to be_nil
+    end
+    it 'shuld return full text' do
+      subject.ballistic_coefficient = 2.0
+      expect(subject.ballistic_coefficient_full).to eq('2.0 lb/in^2')
+    end
+  end
+
+  describe 'ballistic_coefficient_unit' do
+    it 'should pull value from database' do
+      user = create(:user)
+      bullet = create(:bullet, user: user, ballistic_coefficient_unit: 'kb/m^2')
+      user.settings(:default_units).ballistic_coefficient = 'lb/in^2'
+      user.save!
+      expect(bullet.ballistic_coefficient_unit).to eq('kb/m^2')
+    end
+    it 'should pull value from user default' do
+      user = create(:user)
+      bullet = create(:bullet, user: user, ballistic_coefficient_unit: '')
+      user.settings(:default_units).ballistic_coefficient = 'lb/in^2'
+      user.save!
+      expect(bullet.ballistic_coefficient_unit).to eq('lb/in^2')
     end
   end
 end

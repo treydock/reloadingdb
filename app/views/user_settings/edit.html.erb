@@ -19,6 +19,9 @@
     <%= f.input :default_scope_adjustment, label: 'Scope Adjustment', required: false,
                 as: :select, collection: Unit.scope_adjustment,
                 selected: current_user.settings(:default_units).scope_adjustment %>
+    <%= f.input :default_ballistic_coefficient, label: 'Ballistic Coefficient', required: false,
+                as: :select, collection: Unit.ballistic_coefficient,
+                selected: current_user.settings(:default_units).ballistic_coefficient %>
   </div>
 
   <div class="form-actions">

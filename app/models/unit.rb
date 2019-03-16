@@ -48,4 +48,12 @@ class Unit
   def self.scope_adjustment
     ['moa','mil','clicks','in','cm']
   end
+
+  def self.default_ballistic_coefficient
+    'lb/in^2'
+  end
+
+  def self.ballistic_coefficient
+    ['lb/in^2','kg/m^2']
+  end
 end

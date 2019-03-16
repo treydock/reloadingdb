@@ -10,5 +10,6 @@ RSpec.describe "bullets/show", type: :view do
     expect(rendered).to match(@bullet.name)
     expect(rendered).to match(/#{@bullet.grain}/)
     expect(rendered).to match(@bullet.caliber.name)
+    expect(rendered).to include(@bullet.ballistic_coefficient_full)
   end
 end

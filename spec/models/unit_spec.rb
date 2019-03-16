@@ -20,6 +20,9 @@ RSpec.describe Unit, type: :model do
     it 'should have scope_adjustment' do
       expect(subject.class.default_scope_adjustment).to eq('moa')
     end
+    it 'should have ballistic_coefficient' do
+      expect(subject.class.default_ballistic_coefficient).to eq('lb/in^2')
+    end
   end
   describe 'available units' do
     it 'should have temperature' do
@@ -39,6 +42,9 @@ RSpec.describe Unit, type: :model do
     end
     it 'should have scope_adjustment' do
       expect(subject.class.scope_adjustment).to eq(['moa','mil','clicks','in','cm'])
+    end
+    it 'should have ballistic_coefficient' do
+      expect(subject.class.ballistic_coefficient).to eq(['lb/in^2','kg/m^2'])
     end
   end
 end

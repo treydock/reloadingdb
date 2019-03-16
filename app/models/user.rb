@@ -21,7 +21,8 @@ class User < ApplicationRecord
       pressure: Unit.default_pressure,
       length: Unit.default_length,
       distance: Unit.default_distance,
-      scope_adjustment: Unit.default_scope_adjustment
+      scope_adjustment: Unit.default_scope_adjustment,
+      ballistic_coefficient: Unit.default_ballistic_coefficient
     }
   end
 
@@ -32,6 +33,7 @@ class User < ApplicationRecord
     self.settings(:default_units).length = settings[:default_length]
     self.settings(:default_units).distance = settings[:default_distance]
     self.settings(:default_units).scope_adjustment = settings[:default_scope_adjustment]
+    self.settings(:default_units).ballistic_coefficient = settings[:default_ballistic_coefficient]
     self.save
   end
 end

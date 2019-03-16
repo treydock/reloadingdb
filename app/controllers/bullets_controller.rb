@@ -82,6 +82,6 @@ class BulletsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bullet_params
-      params.require(:bullet).permit(:name, :grain, :caliber_id)
+      params.require(:bullet).permit(:name, :grain, :caliber_id, :ballistic_coefficient, :ballistic_coefficient_unit)
     end
 end

@@ -5,6 +5,11 @@
     <%= f.input :name %>
     <%= f.input :grain %>
     <%= f.association :caliber, collection: @calibers %>
+    <%= f.input :ballistic_coefficient do %>
+      <%= f.input_field :ballistic_coefficient, class: 'col-sm-3' %>
+      <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
+      <%= f.input_field :ballistic_coefficient_unit, as: :select, collection: Unit.ballistic_coefficient, class: 'col-sm-2' %>
+    <% end %>
   </div>
 
   <div class="form-actions">

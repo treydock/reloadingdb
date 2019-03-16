@@ -13,6 +13,8 @@ RSpec.describe "bullets/edit", type: :view do
       assert_select "input[name=?]", "bullet[name]"
       assert_select "input[name=?]", "bullet[grain]"
       assert_select "select[name=?]", "bullet[caliber_id]"
+      assert_select "input[name=?]", "bullet[ballistic_coefficient]"
+      assert_select "select[name=?]", "bullet[ballistic_coefficient_unit]"
     end
   end
 end
