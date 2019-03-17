@@ -1,0 +1,22 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+default: &default
+  adapter: mysql2
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: reloadingdb
+  timeout: 5000
+  encoding: utf8
+
+staging:
+  <<: *default
+  database: reloadingdb_staging
+  password: <%= ENV['RAILS_MYSQL_PASS'] || Rails.application.credentials.dig(:mysql, :password, :staging) %>
+
+production:
+  <<: *default
+  database: reloadingdb_production
+  password: <%= ENV['RAILS_MYSQL_PASS'] || Rails.application.credentials.dig(:mysql, :password, :production) %>
