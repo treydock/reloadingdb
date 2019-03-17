@@ -5,10 +5,12 @@ rvm:
 services:
   - mysql
 env:
-  - RUN=spec
-script:
+  - RAILS_ENV=test
+before_install:
   - cp -f config/database.yml.travis-ci config/database.yml
-  - RAILS_ENV=test bundle install --path vendor/bundle --jobs=3 --retry=3
-  - RAILS_ENV=test bundle exec rake db:create
-  - RAILS_ENV=test bundle exec rake db:migrate
-  - RAILS_ENV=test bundle exec rake $RUN
+install:
+  - bundle install --path vendor/bundle --jobs=3 --retry=3
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
+script:
+  - bundle exec rake spec
