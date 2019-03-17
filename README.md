@@ -1,6 +1,7 @@
 # reloadingdb
 
 [![Build Status](https://travis-ci.org/treydock/reloadingdb.svg?branch=master)](https://travis-ci.org/treydock/reloadingdb)
+[![Coverage Status](https://coveralls.io/repos/github/treydock/reloadingdb/badge.svg?branch=master)](https://coveralls.io/github/treydock/reloadingdb?branch=master)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
