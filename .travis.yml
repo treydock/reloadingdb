@@ -1,8 +1,5 @@
 language: ruby
-cache:
-  directories:
-    - /home/travis/.rvm/
-    - vendor/bundle
+cache: bundler
 rvm:
   - 2.5.1
 services:
