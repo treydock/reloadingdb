@@ -1,12 +1,5 @@
 # frozen_string_literal: true
 
-devise_secret_key_path = File.join(Rails.root, 'config/settings/devise_secret_key')
-if File.exists?(devise_secret_key_path)
-  devise_secret_key = File.read(devise_secret_key_path).chomp
-else
-  devise_secret_key = nil
-end
-
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -15,9 +8,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  if devise_secret_key
-    config.secret_key = devise_secret_key
-  end
+  config.secret_key = Rails.application.credentials.dig(:devise_secret_key, Rails.env.to_sym)
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
