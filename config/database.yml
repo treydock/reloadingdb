@@ -20,10 +20,20 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+deploy: &deploy
+  adapter: mysql2
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: reloadingdb
+  timeout: 5000
+  encoding: utf8
+
 staging:
-  <<: *default
-  database: db/staging.sqlite3
+  <<: *deploy
+  database: reloadingdb_staging
+  password: <%= ENV['RAILS_MYSQL_PASS'] || Rails.application.credentials.dig(:mysql, :password, :staging) %>
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  <<: *deploy
+  database: reloadingdb_production
+  password: <%= ENV['RAILS_MYSQL_PASS'] || Rails.application.credentials.dig(:mysql, :password, :production) %>
+
