@@ -1,7 +1,7 @@
 <h2>Resend confirmation instructions</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+  <%= render 'form_errors', f: f %>
   <%= f.full_error :confirmation_token %>
 
   <div class="form-inputs">
@@ -10,6 +10,10 @@
                 autofocus: true,
                 value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
                 input_html: { autocomplete: "email" } %>
+  </div>
+
+  <div class="form-inputs">
+    <%= recaptcha_tags %>
   </div>
 
   <div class="form-actions">

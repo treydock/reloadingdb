@@ -1,7 +1,7 @@
 <h2>Sign up</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+  <%= render 'form_errors', f: f %>
 
   <div class="form-inputs">
     <%= f.input :email,
@@ -15,6 +15,10 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
+  </div>
+
+  <div class="form-inputs">
+    <%= recaptcha_tags %>
   </div>
 
   <div class="form-actions">
