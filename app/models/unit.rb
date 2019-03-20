@@ -30,7 +30,7 @@ class Unit
   end
 
   def self.length
-    ['in','mm','cm']
+    ['in','mm','cm','moa']
   end
 
   def self.default_distance

@@ -35,7 +35,7 @@ RSpec.describe Unit, type: :model do
       expect(subject.class.pressure).to eq(['atm','mbar','psi','inhg','mmhg'])
     end
     it 'should have length' do
-      expect(subject.class.length).to eq(['in','mm','cm'])
+      expect(subject.class.length).to eq(['in','mm','cm','moa'])
     end
     it 'should have distance' do
       expect(subject.class.distance).to eq(['yd','m'])
