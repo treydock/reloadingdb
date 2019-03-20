@@ -7,4 +7,8 @@ class PagesController < ApplicationController
     authorize :page
     super
   end
+
+  def invalid_page
+    render_404
+  end
 end
