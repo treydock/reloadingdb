@@ -23,17 +23,19 @@ test:
 deploy: &deploy
   adapter: mysql2
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: reloadingdb
   timeout: 5000
   encoding: utf8
+  host: localhost
 
 staging:
   <<: *deploy
   database: reloadingdb_staging
+  username: staging
   password: <%= ENV['RAILS_MYSQL_PASS'] || Rails.application.credentials.dig(:mysql, :password, :staging) %>
 
 production:
   <<: *deploy
   database: reloadingdb_production
+  username: production
   password: <%= ENV['RAILS_MYSQL_PASS'] || Rails.application.credentials.dig(:mysql, :password, :production) %>
 
