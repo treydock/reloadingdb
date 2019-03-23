@@ -3,25 +3,32 @@
 [![Build Status](https://travis-ci.org/treydock/reloadingdb.svg?branch=master)](https://travis-ci.org/treydock/reloadingdb)
 [![Coverage Status](https://coveralls.io/repos/github/treydock/reloadingdb/badge.svg?branch=master)](https://coveralls.io/github/treydock/reloadingdb?branch=master)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+# Deploy
 
-* Ruby version
+## Setup
 
-* System dependencies
+```
+cap staging puma:config
+cap production puma:config
+```
 
-* Configuration
+## Staging
 
-* Database creation
+```
+cap staging deploy
+```
 
-* Database initialization
+## Production
 
-* How to run the test suite
+```
+cap production deploy
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Vagrant deploy testing
 
-* Deployment instructions
-
-* ...
+```
+vagrant up --provision
+DEPLOY_HOST=localhost DEPLOY_PORT=60022 cap staging deploy
+DEPLOY_HOST=localhost DEPLOY_PORT=60022 cap production deploy
+```
