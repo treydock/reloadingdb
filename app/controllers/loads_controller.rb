@@ -2,7 +2,6 @@ class LoadsController < ApplicationController
   before_action :set_load, only: [:show, :edit, :update, :destroy]
   before_action :set_components, only: [:new, :create, :edit, :update]
   after_action :verify_authorized, except: [:index, :autocomplete]
-  helper_method :sort_column, :sort_direction
 
   # GET /loads
   # GET /loads.json
@@ -117,11 +116,7 @@ class LoadsController < ApplicationController
       'date'
     end
 
-    def sort_column
-      sortable_columns.include?(params[:column]) ? params[:column] : default_sort_column
-    end
-
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+    def default_sort_direction
+      'desc'
     end
 end

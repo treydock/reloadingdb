@@ -5,7 +5,7 @@ class ShootingLogsController < ApplicationController
   # GET /shooting_logs
   # GET /shooting_logs.json
   def index
-    @shooting_logs = policy_scope(ShootingLog).all
+    @shooting_logs = policy_scope(ShootingLog).order("#{sort_column} #{sort_direction}")
   end
 
   # GET /shooting_logs/1
@@ -86,5 +86,17 @@ class ShootingLogsController < ApplicationController
       params.require(:shooting_log).permit(:date, :time, :shooting_location_id, :caliber_id, :temperature, :temperature_unit,
                                            :pressure, :pressure_unit, :angle, :conditions, :humidity,
                                            :wind_speed, :wind_speed_unit, :wind_direction, :notes)
+    end
+
+    def sortable_columns
+      ['date']
+    end
+
+    def default_sort_column
+      'date'
+    end
+
+    def default_sort_direction
+      'desc'
     end
 end

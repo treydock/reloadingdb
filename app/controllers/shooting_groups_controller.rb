@@ -5,7 +5,7 @@ class ShootingGroupsController < ApplicationController
   # GET /shooting_groups
   # GET /shooting_groups.json
   def index
-    @shooting_groups = policy_scope(ShootingGroup).all
+    @shooting_groups = policy_scope(ShootingGroup).joins(:shooting_log).order("#{sort_column} #{sort_direction}")
   end
 
   # GET /shooting_groups/1
@@ -94,5 +94,17 @@ class ShootingGroupsController < ApplicationController
                                              :windage_adjustment, :windage_adjustment_direction, :windage_adjustment_unit,
                                              :wind_speed, :wind_speed_unit, :wind_direction,
                                              :group_size, :group_size_unit, :velocity, :velocity_unit)
+    end
+
+    def sortable_columns
+      ['shooting_logs.date']
+    end
+
+    def default_sort_column
+      'shooting_logs.date'
+    end
+
+    def default_sort_direction
+      'desc'
     end
 end

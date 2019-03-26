@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActionController::RoutingError, with: :render_404
 
+  helper_method :sort_column, :sort_direction
+
   protected
 
   def after_sign_in_path_for(resource)
@@ -22,6 +24,14 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def sort_column
+    sortable_columns.include?(params[:column]) ? params[:column] : default_sort_column
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : default_sort_direction
+  end
 
   def record_not_found
     flash[:error] = "Record not found"
