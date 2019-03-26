@@ -57,16 +57,21 @@
           </li>
           <li class="nav-item"><%= link_to 'Loads', loads_path, class: 'nav-link' %></li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="components" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Components</a>
+            <a class="nav-link dropdown-toggle" href="#" id="components" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reloading Components</a>
             <div class="dropdown-menu" aria-labelledby="components">
-              <%= link_to 'Calibers', calibers_path, class: 'dropdown-item' %>
               <%= link_to 'Bullets', bullets_path, class: 'dropdown-item' %>
               <%= link_to 'Powders', powders_path, class: 'dropdown-item' %>
               <%= link_to 'Primers', primers_path, class: 'dropdown-item' %>
               <%= link_to 'Brass', brasses_path, class: 'dropdown-item' %>
             </div>
           </li>
-          <li class="nav-item"><%= link_to 'Guns', guns_path, class: 'nav-link' %></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="data-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Data</a>
+            <div class="dropdown-menu" aria-labelledby="data-dropdown">
+              <%= link_to 'Calibers', calibers_path, class: 'dropdown-item' %>
+              <%= link_to 'Guns', guns_path, class: 'dropdown-item' %>
+            </div>
+          </li>
           <% end -%>
         </ul>
         <ul class="nav navbar-nav navbar-right">
