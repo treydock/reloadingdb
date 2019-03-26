@@ -1,0 +1,2 @@
+class GunPolicy < UserObjectPolicy
+end

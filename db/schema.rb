@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_16_152055) do
+ActiveRecord::Schema.define(version: 2019_03_26_134556) do
 
   create_table "brasses", force: :cascade do |t|
     t.string "name"
@@ -41,6 +41,20 @@ ActiveRecord::Schema.define(version: 2019_03_16_152055) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_calibers_on_user_id"
+  end
+
+  create_table "guns", force: :cascade do |t|
+    t.string "name"
+    t.float "sight_height"
+    t.string "sight_height_unit"
+    t.integer "zero_distance"
+    t.integer "user_id"
+    t.integer "caliber_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "zero_distance_unit"
+    t.index ["caliber_id"], name: "index_guns_on_caliber_id"
+    t.index ["user_id"], name: "index_guns_on_user_id"
   end
 
   create_table "loads", force: :cascade do |t|

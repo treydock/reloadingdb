@@ -1,0 +1,15 @@
+<%= show_header(@gun) %>
+
+<dl class='dl-horizontal'>
+  <dt>Name:</dt>
+  <dd><%= @gun.name %></dd>
+
+  <dt>Caliber:</dt>
+  <dd><%= @gun.caliber.name %></dd>
+
+  <dt>Sight height:</dt>
+  <dd><%= @gun.sight_height_full %></dd>
+
+  <dt>Zero distance:</dt>
+  <dd><%= @gun.zero_distance_full %></dd>
+</dl>

@@ -1,0 +1,22 @@
+<%= simple_form_for(@gun) do |f| %>
+  <%= render 'form_errors', f: f %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.association :caliber, collection: @calibers %>
+    <%= f.input :sight_height do %>
+      <%= f.input_field :sight_height, class: 'col-sm-3' %>
+      <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
+      <%= f.input_field :sight_height_unit, as: :select, collection: Unit.length, class: 'col-sm-2' %>
+    <% end %>
+    <%= f.input :zero_distance do %>
+      <%= f.input_field :zero_distance, class: 'col-sm-3' %>
+      <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
+      <%= f.input_field :zero_distance_unit, as: :select, collection: Unit.distance, class: 'col-sm-2' %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn-primary' %>
+  </div>
+<% end %>

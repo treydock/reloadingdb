@@ -1,0 +1,23 @@
+<%= index_header(Gun) %>
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Caliber</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @guns.each do |gun| %>
+      <tr>
+        <td><%= gun.name %></td>
+        <td><%= gun.caliber.name %></td>
+        <td><%= index_actions(gun) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :loads
   has_many :powders
   has_many :primers
+  has_many :guns
   has_many :shooting_locations
   has_many :shooting_logs
 

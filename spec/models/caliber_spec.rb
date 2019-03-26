@@ -6,6 +6,7 @@ RSpec.describe Caliber, type: :model do
     it { is_expected.to have_many(:bullets) }
     it { is_expected.to have_many(:brasses) }
     it { is_expected.to have_many(:loads) }
+    it { is_expected.to have_many(:guns) }
     it { is_expected.to have_many(:shooting_logs) }
     it { is_expected.to have_many(:shooting_groups) }
   end

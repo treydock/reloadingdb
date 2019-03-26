@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :guns
   resources :shooting_groups
   get 'users/settings', to: 'user_settings#show', as: :user_settings
   get 'users/settings/edit', to: 'user_settings#edit', as: :user_settings_edit
