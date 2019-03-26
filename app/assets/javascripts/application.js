@@ -34,4 +34,25 @@ $(document).on("turbolinks:load", function() {
         format: 'YYYY-MM-DD',
         timeZone: ''
     });
+    $(document).on('change', '#per_page', function() {
+        console.log('per_page CHANGE');
+        $('#per_page_form').submit();
+    });
+
+    // Code borrowed from Foreman
+    uninitialized_autocompletes = $.grep($('.autocomplete-input'), function(i){ return !$(i).next().hasClass('autocomplete-clear'); });
+    if (uninitialized_autocompletes.length > 0) {
+      $.each(uninitialized_autocompletes, function(i, input) {$(input).scopedSearch({'delay': 250})});
+      $('.ui-helper-hidden-accessible').remove();
+    }
+    /*$(document).on('focus', '#search', function(e) {
+        $('.autocomplete-input').scopedSearch();
+    });
+    */
+
+    $(document).on('click', '#search-reset', function(e) {
+      e.preventDefault();
+      $('input[name=search]').val('');
+      $('#search').submit();
+    });
 });

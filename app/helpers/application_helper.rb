@@ -24,6 +24,18 @@ module ApplicationHelper
     end
   end
 
+  def search_bar(object)
+    form_tag(send("#{object.model_name.route_key}_path"), method: :get, role: 'form', id: 'search') do
+      concat(content_tag(:div, class: 'input-group md-3') do
+        concat text_field_tag 'search', params[:search], class: 'autocomplete-input form-control', autocomplete: 'off', placeholder: 'Search...', 'data-url' => send("autocomplete_#{object.model_name.route_key}_path")
+        concat(content_tag(:div, class: 'input-group-append') do
+          concat submit_tag "Search", class: 'btn btn-outline-secondary'
+          concat submit_tag "Reset", class: 'btn btn-outline-secondary', type: 'reset', id: 'search-reset'
+        end)
+      end)
+    end
+  end
+
   def index_header(object)
     content_tag :div, class: 'page-header pb-2 mt-2 mb-2' do
       concat(link_to(send("new_#{object.model_name.singular_route_key}_path"), class: 'btn btn-primary') do

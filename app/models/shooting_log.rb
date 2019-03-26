@@ -8,6 +8,10 @@ class ShootingLog < ApplicationRecord
   validates :date, presence: true
   validates :time, presence: true
 
+  scoped_search on: [:date], complete_value: true
+  scoped_search relation: :shooting_location, on: :name, complete_value: true, rename: :location
+  scoped_search relation: :caliber, on: :name, complete_value: true, rename: :caliber
+
   def temperature_full
     return temperature unless temperature.present?
     "#{temperature} #{temperature_unit}"

@@ -4,13 +4,29 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
-  after_action :verify_authorized, except: :index, unless: :devise_controller?
+  after_action :verify_authorized, except: [:index, :autocomplete], unless: :devise_controller?
   after_action :verify_policy_scoped, only: :index
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActionController::RoutingError, with: :render_404
 
   helper_method :sort_column, :sort_direction
+
+  def autocomplete
+    begin
+      model = controller_name.classify.constantize
+      @items = model.complete_for(params[:search], value_filter: {user_id: current_user.id})
+      @items = @items.map do |item|
+        category = (['and','or','not','has'].include?(item.to_s.sub(/^.*\s+/,''))) ? 'Operators' : ''
+        part = item.to_s.sub(/^.*\b(and|or)\b/i) {|match| match.sub(/^.*\s+/,'')}
+        completed = item.to_s.chomp(part)
+        {:completed => CGI.escapeHTML(completed), :part => CGI.escapeHTML(part), :label => item, :category => category}
+      end
+    rescue ScopedSearch::QueryNotSupported => e
+      @items = [{:error => e.to_s}]
+    end
+    render :json => @items
+  end
 
   protected
 

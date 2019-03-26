@@ -5,7 +5,7 @@ class ShootingLogsController < ApplicationController
   # GET /shooting_logs
   # GET /shooting_logs.json
   def index
-    @shooting_logs = policy_scope(ShootingLog).order("#{sort_column} #{sort_direction}")
+    @shooting_logs = policy_scope(ShootingLog).search_for(params[:search]).order("#{sort_column} #{sort_direction}")
   end
 
   # GET /shooting_logs/1

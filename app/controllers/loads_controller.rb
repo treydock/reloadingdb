@@ -1,7 +1,6 @@
 class LoadsController < ApplicationController
   before_action :set_load, only: [:show, :edit, :update, :destroy]
   before_action :set_components, only: [:new, :create, :edit, :update]
-  after_action :verify_authorized, except: [:index, :autocomplete]
 
   # GET /loads
   # GET /loads.json
@@ -69,22 +68,6 @@ class LoadsController < ApplicationController
       format.html { redirect_to loads_url, notice: 'Load was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def autocomplete
-    begin
-      model = controller_name.classify.constantize
-      @items = model.complete_for(params[:search], value_filter: {user_id: current_user.id})
-      @items = @items.map do |item|
-        category = (['and','or','not','has'].include?(item.to_s.sub(/^.*\s+/,''))) ? 'Operators' : ''
-        part = item.to_s.sub(/^.*\b(and|or)\b/i) {|match| match.sub(/^.*\s+/,'')}
-        completed = item.to_s.chomp(part)
-        {:completed => CGI.escapeHTML(completed), :part => CGI.escapeHTML(part), :label => item, :category => category}
-      end
-    rescue ScopedSearch::QueryNotSupported => e
-      @items = [{:error => e.to_s}]
-    end
-    render :json => @items
   end
 
   private
