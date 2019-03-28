@@ -6,6 +6,9 @@ class Bullet < ApplicationRecord
   validates :grain, numericality: { only_integer: true }
   validates :ballistic_coefficient, numericality: true, allow_blank: true
 
+  scoped_search on: [:name, :grain], complete_value: true
+  scoped_search relation: :caliber, on: :name, complete_value: true, rename: :caliber
+
   def name_caliber_grain
     "#{name} (#{caliber.name} - #{grain}gr)"
   end

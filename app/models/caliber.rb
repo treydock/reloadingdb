@@ -7,4 +7,6 @@ class Caliber < ApplicationRecord
   has_many :shooting_logs
   has_many :shooting_groups
   validates :name, presence: true, uniqueness: { scope: :user }
+
+  scoped_search on: [:name], complete_value: true
 end
