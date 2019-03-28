@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :guns
-  resources :shooting_groups
+  resources :shooting_groups do
+    get 'autocomplete', on: :collection
+  end
   get 'users/settings', to: 'user_settings#show', as: :user_settings
   get 'users/settings/edit', to: 'user_settings#edit', as: :user_settings_edit
   put 'users/settings', to: 'user_settings#update', as: nil
