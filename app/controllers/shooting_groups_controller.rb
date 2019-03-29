@@ -5,7 +5,7 @@ class ShootingGroupsController < ApplicationController
   # GET /shooting_groups
   # GET /shooting_groups.json
   def index
-    @shooting_groups = policy_scope(ShootingGroup).search_for(params[:search]).joins(:shooting_log).order("#{sort_column} #{sort_direction}")
+    @shooting_groups = policy_scope(ShootingGroup).search_for(params[:search]).joins(:shooting_log).order("#{sort_column} #{sort_direction}").page(params[:page]).per(params[:per_page])
   end
 
   # GET /shooting_groups/1

@@ -36,6 +36,24 @@ module ApplicationHelper
     end
   end
 
+  def pagination(obj)
+    content_tag(:div, class: 'container') do
+      concat(content_tag(:div, class: 'row') do
+        concat(content_tag(:div, class: 'col-3') do
+          concat(form_tag(send("#{obj.model_name.route_key}_path"), method: :get, id: 'per_page_form') do
+            concat(hidden_field_tag(:column, params[:column]))
+            concat(hidden_field_tag(:direction, params[:direction]))
+            concat(select_tag(:per_page, options_for_select([15,25,50,100], selected: (params[:per_page] || obj.default_per_page))))
+            concat(label_tag('per page', nil, class: 'ml-1'))
+          end)
+        end)
+        concat(content_tag(:div, class: 'col-7 offset-2') do
+          concat(paginate(instance_variable_get("@#{obj.model_name.route_key}"), theme: 'twitter-bootstrap-4'))
+        end)
+      end)
+    end
+  end
+
   def index_header(object)
     content_tag :div, class: 'page-header pb-2 mt-2 mb-2' do
       concat(link_to(send("new_#{object.model_name.singular_route_key}_path"), class: 'btn btn-primary') do

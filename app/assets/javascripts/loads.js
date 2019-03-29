@@ -1,4 +1,4 @@
-jQuery(function() {
+$(document).on("turbolinks:load", function() {
   var brass = $('#load_brass_id').html();
   var bullets = $('#load_bullet_id').html();
   console.log(brass);

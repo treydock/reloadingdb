@@ -28,19 +28,4 @@
   </tbody>
 </table>
 
-<div class='container'>
-  <div class='row'>
-    <div class='col-3'>
-<%= form_tag loads_path, method: :get, id: 'per_page_form' do %>
-  <%= hidden_field_tag :column, params[:column] %>
-  <%= hidden_field_tag :direction, params[:direction] %>
-  <%= select_tag :per_page, options_for_select([15,25,50,100], selected: (params[:per_page] || Load.default_per_page)) %>
-  <%= label_tag 'per page' %>
-<% end -%>
-    </div>
-    <div class='col-7 offset-2'>
-<%= paginate @loads, theme: 'twitter-bootstrap-4' %>
-    </div>
-  </div>
-</div>
-<br>
+<%= pagination(Load) %>
