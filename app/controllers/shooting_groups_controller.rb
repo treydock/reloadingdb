@@ -1,11 +1,11 @@
 class ShootingGroupsController < ApplicationController
+  before_action :set_index, only: [:index]
   before_action :set_shooting_group, only: [:show, :edit, :update, :destroy]
   before_action :set_associations, only: [:new, :create, :edit, :update]
 
   # GET /shooting_groups
   # GET /shooting_groups.json
   def index
-    @shooting_groups = policy_scope(ShootingGroup).search_for(params[:search]).joins(:shooting_log).order("#{sort_column} #{sort_direction}").page(params[:page]).per(params[:per_page])
   end
 
   # GET /shooting_groups/1
@@ -71,6 +71,10 @@ class ShootingGroupsController < ApplicationController
   end
 
   private
+    def set_index(joins = :shooting_log)
+      super(joins)
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_shooting_group
       @shooting_group = policy_scope(ShootingGroup).find(params[:id])

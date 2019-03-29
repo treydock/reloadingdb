@@ -41,6 +41,28 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def set_index(joins = nil)
+    model = controller_name.classify.constantize
+    objects = policy_scope(model).search_for(params[:search])
+    if joins.present?
+      objects = objects.joins(joins)
+    end
+    records = objects.order("#{sort_column} #{sort_direction}").page(params[:page]).per(params[:per_page])
+    instance_variable_set("@#{model.model_name.route_key}", records)
+  end
+
+  def sortable_columns
+    []
+  end
+
+  def default_sort_column
+    'name'
+  end
+
+  def default_sort_direction
+    'desc'
+  end
+
   def sort_column
     sortable_columns.include?(params[:column]) ? params[:column] : default_sort_column
   end

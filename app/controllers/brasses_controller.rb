@@ -1,11 +1,11 @@
 class BrassesController < ApplicationController
+  before_action :set_index, only: [:index]
   before_action :set_brass, only: [:show, :edit, :update, :destroy]
   before_action :set_components, only: [:new, :create, :edit, :update]
 
   # GET /brasses
   # GET /brasses.json
   def index
-    @brasses = policy_scope(Brass).all
   end
 
   # GET /brasses/1

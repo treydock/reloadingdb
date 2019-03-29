@@ -1,10 +1,10 @@
 class PowdersController < ApplicationController
+  before_action :set_index, only: [:index]
   before_action :set_powder, only: [:show, :edit, :update, :destroy]
 
   # GET /powders
   # GET /powders.json
   def index
-    @powders = policy_scope(Powder).all
   end
 
   # GET /powders/1

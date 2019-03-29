@@ -1,10 +1,10 @@
 class CalibersController < ApplicationController
+  before_action :set_index, only: [:index]
   before_action :set_caliber, only: [:show, :edit, :update, :destroy]
 
   # GET /calibers
   # GET /calibers.json
   def index
-    @calibers = policy_scope(Caliber).all
   end
 
   # GET /calibers/1

@@ -1,10 +1,10 @@
 class PrimersController < ApplicationController
+  before_action :set_index, only: [:index]
   before_action :set_primer, only: [:show, :edit, :update, :destroy]
 
   # GET /primers
   # GET /primers.json
   def index
-    @primers = policy_scope(Primer).all
   end
 
   # GET /primers/1

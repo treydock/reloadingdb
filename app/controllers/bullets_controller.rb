@@ -1,11 +1,11 @@
 class BulletsController < ApplicationController
+  before_action :set_index, only: [:index]
   before_action :set_bullet, only: [:show, :edit, :update, :destroy]
   before_action :set_components, only: [:new, :create, :edit, :update]
 
   # GET /bullets
   # GET /bullets.json
   def index
-    @bullets = policy_scope(Bullet).all
   end
 
   # GET /bullets/1

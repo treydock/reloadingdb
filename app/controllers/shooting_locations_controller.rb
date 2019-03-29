@@ -1,10 +1,10 @@
 class ShootingLocationsController < ApplicationController
+  before_action :set_index, only: [:index]
   before_action :set_shooting_location, only: [:show, :edit, :update, :destroy]
 
   # GET /shooting_locations
   # GET /shooting_locations.json
   def index
-    @shooting_locations = policy_scope(ShootingLocation).all
   end
 
   # GET /shooting_locations/1

@@ -1,11 +1,11 @@
 class GunsController < ApplicationController
+  before_action :set_index, only: [:index]
   before_action :set_gun, only: [:show, :edit, :update, :destroy]
   before_action :set_associations, only: [:new, :create, :edit, :update]
 
   # GET /guns
   # GET /guns.json
   def index
-    @guns = policy_scope(Gun).all
   end
 
   # GET /guns/1

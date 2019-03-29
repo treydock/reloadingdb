@@ -1,11 +1,11 @@
 class LoadsController < ApplicationController
+  before_action :set_index, only: [:index]
   before_action :set_load, only: [:show, :edit, :update, :destroy]
   before_action :set_components, only: [:new, :create, :edit, :update]
 
   # GET /loads
   # GET /loads.json
   def index
-    @loads = policy_scope(Load).search_for(params[:search]).order("#{sort_column} #{sort_direction}").page(params[:page]).per(params[:per_page])
   end
 
   # GET /loads/1

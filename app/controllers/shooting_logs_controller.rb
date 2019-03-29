@@ -1,11 +1,11 @@
 class ShootingLogsController < ApplicationController
+  before_action :set_index, only: [:index]
   before_action :set_shooting_log, only: [:show, :edit, :update, :destroy]
   before_action :set_associations, only: [:new, :create, :edit, :update]
 
   # GET /shooting_logs
   # GET /shooting_logs.json
   def index
-    @shooting_logs = policy_scope(ShootingLog).search_for(params[:search]).order("#{sort_column} #{sort_direction}").page(params[:page]).per(params[:per_page])
   end
 
   # GET /shooting_logs/1
