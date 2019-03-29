@@ -56,11 +56,16 @@ class ApplicationController < ActionController::Base
   end
 
   def default_sort_column
-    'name'
+    sort_by = current_user.settings(:interface).sort_by
+    if controller_name.classify.constantize.column_names.include?(sort_by)
+      sort_by
+    else
+      'created_at'
+    end
   end
 
   def default_sort_direction
-    'desc'
+    current_user.settings(:interface).sort_direction
   end
 
   def sort_column

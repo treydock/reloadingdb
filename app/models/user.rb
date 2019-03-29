@@ -25,6 +25,10 @@ class User < ApplicationRecord
       scope_adjustment: Unit.default_scope_adjustment,
       ballistic_coefficient: Unit.default_ballistic_coefficient
     }
+    s.key :interface, defaults: {
+      sort_by: 'created_at',
+      sort_direction: 'desc',
+    }
   end
 
   def update_settings(settings)
@@ -35,6 +39,15 @@ class User < ApplicationRecord
     self.settings(:default_units).distance = settings[:default_distance]
     self.settings(:default_units).scope_adjustment = settings[:default_scope_adjustment]
     self.settings(:default_units).ballistic_coefficient = settings[:default_ballistic_coefficient]
+    self.settings(:interface).sort_by = settings[:default_sort_by]
+    self.settings(:interface).sort_direction = settings[:default_sort_direction]
     self.save
+  end
+
+  def self.interface_settings
+    {
+      sort_by: ['created_at','updated_at','name'],
+      sort_direction: ['desc','asc'],
+    }
   end
 end

@@ -23,3 +23,12 @@
   <dt>Ballistic Coefficient</dt>
   <dd><%= current_user.settings(:default_units).ballistic_coefficient %></dd>
 </dl>
+
+<h3 class="border-bottom">Interface Settings</h3>
+
+<dl class='dl-horizontal'>
+  <dt>Sort By:</dt>
+  <dd><%= current_user.settings(:interface).sort_by %></dd>
+  <dt>Sort Direction:</dt>
+  <dd><%= current_user.settings(:interface).sort_direction %></dd>
+</dl>

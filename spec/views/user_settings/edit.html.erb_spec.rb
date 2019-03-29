@@ -16,6 +16,8 @@ RSpec.describe "user_settings/edit", type: :view do
       assert_select "select[name=?]", "user_settings[default_length]"
       assert_select "select[name=?]", "user_settings[default_distance]"
       assert_select "select[name=?]", "user_settings[default_scope_adjustment]"
+      assert_select "select[name=?]", "user_settings[default_sort_by]"
+      assert_select "select[name=?]", "user_settings[default_sort_direction]"
     end
   end
 end

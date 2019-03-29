@@ -24,6 +24,16 @@
                 selected: current_user.settings(:default_units).ballistic_coefficient %>
   </div>
 
+  <h3 class='border-bottom'>Interface Settings</h3>
+  <div class="form-inputs">
+    <%= f.input :default_sort_by, label: 'Sort By', required: false,
+                as: :select, collection: User.interface_settings[:sort_by],
+                selected: current_user.settings(:interface).sort_by %>
+    <%= f.input :default_sort_direction, label: 'Sort Direction', required: false,
+                as: :select, collection: User.interface_settings[:sort_direction],
+                selected: current_user.settings(:interface).sort_direction %>
+  </div>
+
   <div class="form-actions">
     <%= f.button :submit, class: 'btn-primary' %>
   </div>
