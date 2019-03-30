@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
 
+  attr_writer :login
+
   has_many :brasses
   has_many :bullets
   has_many :calibers
@@ -14,6 +16,23 @@ class User < ApplicationRecord
   has_many :guns
   has_many :shooting_locations
   has_many :shooting_logs
+  has_many :shooting_groups
+
+  validates :username, presence: :true, uniqueness: { case_sensitive: false }
+  validate :validate_username
+
+  def login
+    @login || self.username || self.email
+  end
+
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+      where(conditions.to_h).first
+    end
+  end
 
   has_settings do |s|
     s.key :default_units, defaults: {
@@ -49,5 +68,13 @@ class User < ApplicationRecord
       sort_by: ['created_at','updated_at','name'],
       sort_direction: ['desc','asc'],
     }
+  end
+
+  private
+
+  def validate_username
+    if User.where(email: username).exists?
+      errors.add(:username, :invalid)
+    end
   end
 end
