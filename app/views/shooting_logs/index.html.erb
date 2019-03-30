@@ -6,8 +6,8 @@
   <thead>
     <tr>
       <th><%= sort_link 'date' %></th>
-      <th>Caliber</th>
       <th>Shooting location</th>
+      <th>Shooting Groups</th>
       <th></th>
     </tr>
   </thead>
@@ -16,8 +16,12 @@
     <% @shooting_logs.each do |shooting_log| %>
       <tr>
         <td><%= link_to shooting_log.date, shooting_log %></td>
-        <td><%= shooting_log.caliber.present? ? shooting_log.caliber.name : '' %></td>
         <td><%= shooting_log.shooting_location.name %></td>
+        <% if shooting_log.shooting_groups.present? %>
+        <td><%= link_to "#{shooting_log.shooting_groups.count} shooting groups", shooting_groups_path(search: "date = #{shooting_log.date}") %></td>
+        <% else %>
+        <td></td>
+        <% end %>
         <td><%= index_actions(shooting_log) %></td>
       </tr>
     <% end %>
