@@ -1,7 +1,7 @@
 class ShootingVelocity < ApplicationRecord
   include UserOwned
+  include HasLoad
   belongs_to :caliber
-  belongs_to :load
 
   serialize :velocities, ArrayOfIntegersSerializer
 
