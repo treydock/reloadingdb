@@ -70,14 +70,14 @@ RSpec.describe ShootingGroupsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        {velocities: [2000]}
+        {shots: 6}
       }
 
       it "updates the requested shooting_group" do
-        shooting_group = create(:shooting_group, user: @current_user, velocities: [1000])
+        shooting_group = create(:shooting_group, user: @current_user, shots: 5)
         put :update, params: {id: shooting_group.to_param, shooting_group: new_attributes}
         shooting_group.reload
-        expect(shooting_group.velocities).to eq([2000])
+        expect(shooting_group.shots).to eq(6)
       end
 
       it "redirects to the shooting_group" do

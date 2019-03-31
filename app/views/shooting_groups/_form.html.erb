@@ -38,17 +38,6 @@
       <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
       <%= f.input_field :group_size_unit, as: :select, collection: Unit.length, class: 'col-sm-2' %>
     <% end %>
-    <%= f.input :velocities do %>
-      <%= f.input_field :velocities, as: :array, type: :number, class: 'col-sm-3', placeholder: 'Velocity' %>
-      <%= link_to('#', id: 'add-velocity', class: 'btn btn-outline-secondary text-dark') do
-        content_tag(:span, "Add velocity", class: 'fa fa-plus')
-      end %>
-      <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
-      <%= f.input_field :velocity_unit, as: :select, collection: Unit.velocity, class: 'col-sm-2' %>
-    <% end %>
-    <%= content_tag(:div, class: "form-group row text optional") do %>
-      <%= content_tag(:div, nil, class: "col-sm-9 offset-sm-3 append-velocities") %>
-    <% end %>
   </div>
 
   <div class="form-actions">

@@ -1,0 +1,21 @@
+<%= show_header(@shooting_velocity) %>
+
+<dl class='dl-horizontal'>
+  <dt>Date:</dt>
+  <dd><%= @shooting_velocity.date %></dd>
+
+  <dt>Caliber:</dt>
+  <dd><%= @shooting_velocity.caliber.name %></dd>
+
+  <dt>Load:</dt>
+  <dd><%= @shooting_velocity.load.name %></dd>
+
+  <dt>Average Velocity:</dt>
+  <dd><%= @shooting_velocity.average_velocity %></dd>
+
+  <dt>Velocities:</dt>
+  <% @shooting_velocity.velocities.each do |v| %>
+    <dd><%= v %> <%= @shooting_velocity.velocity_unit %></dd>
+  <% end %>
+
+</dl>

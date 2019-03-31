@@ -134,23 +134,6 @@ RSpec.describe ShootingGroup, type: :model do
     end
   end
 
-  describe 'velocity_unit' do
-    it 'should pull value from database' do
-      user = create(:user)
-      object = create(:shooting_group, user: user, velocity_unit: 'mph')
-      user.settings(:default_units).velocity = 'kph'
-      user.save!
-      expect(object.velocity_unit).to eq('mph')
-    end
-    it 'should pull value from user default' do
-      user = create(:user)
-      object = create(:shooting_group, user: user, velocity_unit: '')
-      user.settings(:default_units).velocity = 'kph'
-      user.save!
-      expect(object.velocity_unit).to eq('kph')
-    end
-  end
-
   describe 'distance_full' do
     it 'should return temperature' do
       subject.distance = ''

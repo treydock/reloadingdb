@@ -18,6 +18,5 @@ FactoryBot.define do
     wind_speed_unit { 'mph' }
     wind_direction { 1 }
     group_size { 1.5 }
-    velocities { [1,2] }
   end
 end

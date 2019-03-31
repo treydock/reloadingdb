@@ -6,6 +6,10 @@ RSpec.describe LoadsController, type: :routing do
       expect(:get => "/loads").to route_to("loads#index")
     end
 
+    it "routes to #autocomplete" do
+      expect(get: "/loads/autocomplete").to route_to("loads#autocomplete")
+    end
+
     it "routes to #new" do
       expect(:get => "/loads/new").to route_to("loads#new")
     end

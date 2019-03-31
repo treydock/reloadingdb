@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :shooting_velocities do
+    get 'autocomplete', on: :collection
+  end
   resources :guns
   resources :shooting_groups do
     get 'autocomplete', on: :collection

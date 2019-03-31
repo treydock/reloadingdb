@@ -1,24 +1,10 @@
 $(document).on("turbolinks:load", function() {
-  $('#add-velocity').click(function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    add_velocity_field();
-  });
-
   load = $('#shooting_group_load_id').html();
   $('#shooting_group_caliber_id').change(function() {
     set_by_caliber(load);
   });
 
 });
-
-function add_velocity_field() {
-  $last_velocity_field = $('input[id="shooting_group_velocities"]:first-of-type').clone();
-  $last_velocity_field.removeAttr('id');
-  $last_velocity_field.removeAttr('style');
-  $last_velocity_field.val('');
-  $('.append-velocities').append($last_velocity_field);
-}
 
 function set_by_caliber(load) {
     caliber = $('#shooting_group_caliber_id :selected').text();

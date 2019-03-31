@@ -1,0 +1,2 @@
+class ShootingVelocityPolicy < UserObjectPolicy
+end

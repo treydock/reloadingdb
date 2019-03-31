@@ -97,7 +97,7 @@ class ShootingGroupsController < ApplicationController
                                              :elevation_adjustment, :elevation_adjustment_direction, :elevation_adjustment_unit,
                                              :windage_adjustment, :windage_adjustment_direction, :windage_adjustment_unit,
                                              :wind_speed, :wind_speed_unit, :wind_direction,
-                                             :group_size, :group_size_unit, :velocity_unit, velocities: [])
+                                             :group_size, :group_size_unit)
     end
 
     def sortable_columns

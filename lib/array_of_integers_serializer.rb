@@ -5,11 +5,14 @@ class ArrayOfIntegersSerializer
 
   def self.dump(value)
     value.reject!(&:blank?)
-    begin
-      value.map!(&:to_i)
-    rescue
-      raise ::ActiveRecord::SerializationTypeMismatch, "Unable to convert to integers -- #{value.inspect}"
+    values = []
+    value.each do |v|
+      if v.to_i.to_s == v.to_s
+        values << v.to_i
+      else
+        values << v
+      end
     end
-    JSON.dump(value)
+    JSON.dump(values)
   end
 end

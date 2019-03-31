@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_30_155337) do
+ActiveRecord::Schema.define(version: 2019_03_31_144510) do
 
   create_table "brasses", force: :cascade do |t|
     t.string "name"
@@ -137,7 +137,6 @@ ActiveRecord::Schema.define(version: 2019_03_30_155337) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "caliber_id"
-    t.text "velocities"
     t.index ["caliber_id"], name: "index_shooting_groups_on_caliber_id"
     t.index ["load_id"], name: "index_shooting_groups_on_load_id"
     t.index ["shooting_log_id"], name: "index_shooting_groups_on_shooting_log_id"
@@ -177,6 +176,20 @@ ActiveRecord::Schema.define(version: 2019_03_30_155337) do
     t.index ["caliber_id"], name: "index_shooting_logs_on_caliber_id"
     t.index ["shooting_location_id"], name: "index_shooting_logs_on_shooting_location_id"
     t.index ["user_id"], name: "index_shooting_logs_on_user_id"
+  end
+
+  create_table "shooting_velocities", force: :cascade do |t|
+    t.date "date"
+    t.text "velocities"
+    t.integer "user_id"
+    t.integer "caliber_id"
+    t.integer "load_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "velocity_unit"
+    t.index ["caliber_id"], name: "index_shooting_velocities_on_caliber_id"
+    t.index ["load_id"], name: "index_shooting_velocities_on_load_id"
+    t.index ["user_id"], name: "index_shooting_velocities_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

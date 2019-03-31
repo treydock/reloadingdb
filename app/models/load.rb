@@ -6,6 +6,8 @@ class Load < ApplicationRecord
   belongs_to :bullet
   belongs_to :powder
   belongs_to :primer
+  has_many :shooting_groups
+  has_many :shooting_velocities
 
   validates :date, presence: true
   validates :powder_weight, numericality: true, presence: true

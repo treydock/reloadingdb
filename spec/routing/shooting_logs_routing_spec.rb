@@ -6,6 +6,10 @@ RSpec.describe ShootingLogsController, type: :routing do
       expect(:get => "/shooting_logs").to route_to("shooting_logs#index")
     end
 
+    it "routes to #autocomplete" do
+      expect(get: "/shooting_logs/autocomplete").to route_to("shooting_logs#autocomplete")
+    end
+
     it "routes to #new" do
       expect(:get => "/shooting_logs/new").to route_to("shooting_logs#new")
     end

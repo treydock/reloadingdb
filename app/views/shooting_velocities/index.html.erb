@@ -1,0 +1,27 @@
+<%= index_header(ShootingVelocity) %>
+
+<%= search_bar(ShootingVelocity) %>
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th><%= sort_link 'date' %></th>
+      <th>Load</th>
+      <th>Avg. Velocity</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shooting_velocities.each do |shooting_velocity| %>
+      <tr>
+        <td><%= link_to shooting_velocity.date, shooting_velocity %></td>
+        <td><%= shooting_velocity.load.name %></td>
+        <td><%= shooting_velocity.average_velocity %></td>
+        <td><%= index_actions(shooting_velocity) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= pagination(ShootingVelocity) %>

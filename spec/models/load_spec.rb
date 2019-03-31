@@ -12,6 +12,8 @@ RSpec.describe Load, type: :model do
     it { is_expected.to belong_to(:bullet) }
     it { is_expected.to belong_to(:powder) }
     it { is_expected.to belong_to(:primer) }
+    it { is_expected.to have_many(:shooting_groups) }
+    it { is_expected.to have_many(:shooting_velocities) }
   end
 
   describe 'validations' do
