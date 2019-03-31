@@ -17,6 +17,8 @@ RSpec.describe "shooting_groups/show", type: :view do
     expect(rendered).to include(@shooting_group.windage_adjustment_full)
     expect(rendered).to include(@shooting_group.wind_speed_full)
     expect(rendered).to include(@shooting_group.group_size_full)
-    expect(rendered).to include(@shooting_group.velocity_full)
+    @shooting_group.velocities.each do |v|
+      expect(rendered).to include("#{v} #{@shooting_group.velocity_unit}")
+    end
   end
 end

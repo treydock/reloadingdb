@@ -9,12 +9,16 @@ class Unit
     ['F','C']
   end
 
-  def self.default_velocity
+  def self.default_speed
     'mph'
   end
 
+  def self.default_velocity
+    'fps'
+  end
+
   def self.velocity
-    ['mph','kph']
+    ['mph','kph','fps']
   end
 
   def self.default_pressure

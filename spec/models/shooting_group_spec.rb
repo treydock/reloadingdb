@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe ShootingGroup, type: :model do
   it_behaves_like 'HasWindSpeed'
-  it_behaves_like 'HasVelocity'
 
   let(:subject) { create(:shooting_group) }
 
@@ -132,6 +131,23 @@ RSpec.describe ShootingGroup, type: :model do
       user.settings(:default_units).length = 'in'
       user.save!
       expect(shooting_log.group_size_unit).to eq('in')
+    end
+  end
+
+  describe 'velocity_unit' do
+    it 'should pull value from database' do
+      user = create(:user)
+      object = create(:shooting_group, user: user, velocity_unit: 'mph')
+      user.settings(:default_units).velocity = 'kph'
+      user.save!
+      expect(object.velocity_unit).to eq('mph')
+    end
+    it 'should pull value from user default' do
+      user = create(:user)
+      object = create(:shooting_group, user: user, velocity_unit: '')
+      user.settings(:default_units).velocity = 'kph'
+      user.save!
+      expect(object.velocity_unit).to eq('kph')
     end
   end
 

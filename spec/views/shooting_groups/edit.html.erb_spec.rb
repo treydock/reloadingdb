@@ -29,7 +29,7 @@ RSpec.describe "shooting_groups/edit", type: :view do
       assert_select "select[name=?]", "shooting_group[wind_speed_unit]"
       assert_select "input[name=?]", "shooting_group[group_size]"
       assert_select "select[name=?]", "shooting_group[group_size_unit]"
-      assert_select "input[name=?]", "shooting_group[velocity]"
+      assert_select "input[name=?]", "shooting_group[velocities][]"
       assert_select "select[name=?]", "shooting_group[velocity_unit]"
     end
   end

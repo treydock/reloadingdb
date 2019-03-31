@@ -21,7 +21,7 @@ class UserSettingsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_setting_params
-      params.require(:user_settings).permit(:default_temperature, :default_velocity, :default_pressure,
+      params.require(:user_settings).permit(:default_temperature, :default_speed, :default_velocity, :default_pressure,
                                            :default_length, :default_distance, :default_ballistic_coefficient,
                                            :default_sort_by, :default_sort_direction)
     end

@@ -37,6 +37,7 @@ class User < ApplicationRecord
   has_settings do |s|
     s.key :default_units, defaults: {
       temperature: Unit.default_temperature,
+      speed: Unit.default_speed,
       velocity: Unit.default_velocity,
       pressure: Unit.default_pressure,
       length: Unit.default_length,
@@ -52,6 +53,7 @@ class User < ApplicationRecord
 
   def update_settings(settings)
     self.settings(:default_units).temperature = settings[:default_temperature]
+    self.settings(:default_units).velocity = settings[:default_speed]
     self.settings(:default_units).velocity = settings[:default_velocity]
     self.settings(:default_units).pressure = settings[:default_pressure]
     self.settings(:default_units).length = settings[:default_length]

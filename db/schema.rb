@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_30_131749) do
+ActiveRecord::Schema.define(version: 2019_03_30_155337) do
 
   create_table "brasses", force: :cascade do |t|
     t.string "name"
@@ -133,11 +133,11 @@ ActiveRecord::Schema.define(version: 2019_03_30_131749) do
     t.integer "wind_direction"
     t.float "group_size"
     t.string "group_size_unit"
-    t.integer "velocity"
     t.string "velocity_unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "caliber_id"
+    t.text "velocities"
     t.index ["caliber_id"], name: "index_shooting_groups_on_caliber_id"
     t.index ["load_id"], name: "index_shooting_groups_on_load_id"
     t.index ["shooting_log_id"], name: "index_shooting_groups_on_shooting_log_id"

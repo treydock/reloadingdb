@@ -1,13 +1,15 @@
 class ShootingGroup < ApplicationRecord
   include UserOwned
   include HasWindSpeed
-  include HasVelocity
   include HasSearch
 
   belongs_to :shooting_log
   belongs_to :load
   belongs_to :caliber
   delegate :bullet, to: :load
+  serialize :velocities, ArrayOfIntegersSerializer
+
+  before_save :remove_blank_velocities
 
   validates :distance, presence: true, numericality: { only_integer: true }
   validates :number, presence: true, numericality: { only_integer: true }, uniqueness: { scope: [:shooting_log, :caliber, :user] }
@@ -61,7 +63,16 @@ class ShootingGroup < ApplicationRecord
     "#{group_size} #{group_size_unit}"
   end
 
+  def velocity_unit
+    self[:velocity_unit].present? ? self[:velocity_unit] : user.settings(:default_units).velocity
+  end
+
   private
+
+  def remove_blank_velocities
+    return nil if velocities.nil?
+    velocities.reject!(&:blank?)
+  end
 
   def self.search_by_load(key, operator, value, assoc, attr)
     conditions = sanitize_sql_for_conditions(["#{assoc}s.#{attr} #{operator} ?", value_search(value, operator)])

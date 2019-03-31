@@ -31,7 +31,9 @@
   <dt>Group size:</dt>
   <dd><%= @shooting_group.group_size_full %></dd>
 
-  <dt>Velocity:</dt>
-  <dd><%= @shooting_group.velocity_full %></dd>
+  <dt>Velocities:</dt>
+  <% @shooting_group.velocities.each do |v| %>
+    <dd><%= v %> <%= @shooting_group.velocity_unit %></dd>
+  <% end %>
 
 </dl>

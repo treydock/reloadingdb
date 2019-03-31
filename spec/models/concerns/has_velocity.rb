@@ -16,7 +16,7 @@ shared_examples_for 'HasVelocity' do
     end
     it 'returns full value' do
       subject.velocity = 2000
-      expect(subject.velocity_full).to eq("2000 mph")
+      expect(subject.velocity_full).to eq("2000 fps")
     end
   end
 
@@ -24,16 +24,16 @@ shared_examples_for 'HasVelocity' do
     it 'should pull value from database' do
       user = create(:user)
       object = create(name, user: user, velocity_unit: 'mph')
-      user.settings(:default_units).velocity = 'kph'
+      user.settings(:default_units).velocity = 'fps'
       user.save!
       expect(object.velocity_unit).to eq('mph')
     end
     it 'should pull value from user default' do
       user = create(:user)
       object = create(name, user: user, velocity_unit: '')
-      user.settings(:default_units).velocity = 'kph'
+      user.settings(:default_units).velocity = 'fps'
       user.save!
-      expect(object.velocity_unit).to eq('kph')
+      expect(object.velocity_unit).to eq('fps')
     end
   end
 end
