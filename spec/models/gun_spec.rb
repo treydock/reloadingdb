@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Gun, type: :model do
+  it_behaves_like 'HasCaliber'
+
   let(:subject) { create(:gun) }
 
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
-    it { is_expected.to belong_to(:caliber) }
   end
 
   describe 'validations' do

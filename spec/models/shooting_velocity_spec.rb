@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe ShootingVelocity, type: :model do
+  it_behaves_like 'HasCaliber'
   it_behaves_like 'HasLoad'
 
   let(:subject) { create(:shooting_velocity) }
 
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
-    it { is_expected.to belong_to(:caliber) }
   end
 
   describe 'validations' do

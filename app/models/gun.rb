@@ -1,11 +1,10 @@
 class Gun < ApplicationRecord
   include UserOwned
-  belongs_to :caliber
+  include HasCaliber
 
   validates :name, presence: true, uniqueness: { scope: :user }
 
   scoped_search on: [:name], complete_value: true
-  scoped_search relation: :caliber, on: :name, complete_value: true, rename: :caliber
 
   def sight_height_unit
     self[:sight_height_unit].present? ? self[:sight_height_unit] : user.settings(:default_units).length

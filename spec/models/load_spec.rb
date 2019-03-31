@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Load, type: :model do
+  it_behaves_like 'HasCaliber'
   it_behaves_like 'HasVelocity'
 
   let(:subject) { create(:load) }
 
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
-    it { is_expected.to belong_to(:caliber) }
     it { is_expected.to belong_to(:brass) }
     it { is_expected.to belong_to(:bullet) }
     it { is_expected.to belong_to(:powder) }

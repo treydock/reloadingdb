@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe ShootingGroup, type: :model do
   it_behaves_like 'HasWindSpeed'
+  it_behaves_like 'HasCaliber'
   it_behaves_like 'HasLoad'
 
   let(:subject) { create(:shooting_group) }
 
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
-    it { is_expected.to belong_to(:caliber) }
     it { is_expected.to belong_to(:shooting_log) }
   end
 

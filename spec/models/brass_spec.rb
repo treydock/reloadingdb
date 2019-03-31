@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Brass, type: :model do
+  it_behaves_like 'HasCaliber'
+
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
-    it { is_expected.to belong_to(:caliber) }
   end
 
   describe 'validations' do

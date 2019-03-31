@@ -1,7 +1,7 @@
 class Load < ApplicationRecord
   include UserOwned
+  include HasCaliber
   include HasVelocity
-  belongs_to :caliber
   belongs_to :brass
   belongs_to :bullet
   belongs_to :powder
@@ -19,7 +19,6 @@ class Load < ApplicationRecord
 
   scoped_search on: [:date], complete_value: true
   scoped_search on: [:brass_length, :col, :powder_weight], complete_value: true
-  scoped_search relation: :caliber, on: :name, complete_value: true, rename: :caliber
   scoped_search relation: :powder, on: :name, complete_value: true, rename: :powder
   scoped_search relation: :primer, on: :name, complete_value: true, rename: :primer
   scoped_search relation: :brass, on: :name, complete_value: true, rename: :brass

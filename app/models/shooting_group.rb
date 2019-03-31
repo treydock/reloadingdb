@@ -1,10 +1,10 @@
 class ShootingGroup < ApplicationRecord
   include UserOwned
+  include HasCaliber
   include HasLoad
   include HasWindSpeed
 
   belongs_to :shooting_log
-  belongs_to :caliber
   delegate :bullet, to: :load
 
   validates :distance, presence: true, numericality: { only_integer: true }
@@ -14,7 +14,6 @@ class ShootingGroup < ApplicationRecord
 
   scoped_search on: [:distance], complete_value: true
   scoped_search relation: :shooting_log, on: :date, complete_value: true, rename: :date
-  scoped_search relation: :caliber, on: :name, complete_value: true, rename: :caliber
 
   def name
     "#{shooting_log.date} - ##{number} (#{distance} #{distance_unit})"
