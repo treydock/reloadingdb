@@ -6,12 +6,12 @@
     <%= f.association :caliber, collection: @calibers %>
     <%= f.input :load_id, collection: @calibers,
                       label_method: :name, as: :grouped_select, group_method: :loads, required: true %>
-    <%= f.input :number %>
     <%= f.input :distance do %>
       <%= f.input_field :distance, class: 'col-sm-3' %>
       <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
       <%= f.input_field :distance_unit, as: :select, collection: Unit.distance, class: 'col-sm-2' %>
     <% end %>
+    <%= f.input :number %>
     <%= f.input :shots %>
     <%= f.input :elevation_adjustment do %>
       <%= f.input_field :elevation_adjustment, class: 'col-sm-3' %>

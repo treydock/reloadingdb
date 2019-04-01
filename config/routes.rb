@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   end
   resources :guns
   resources :shooting_groups do
-    get 'autocomplete', on: :collection
+    collection do
+      get 'autocomplete'
+      get 'next_number', constraints: { format: 'json' }
+    end
   end
   get 'users/settings', to: 'user_settings#show', as: :user_settings
   get 'users/settings/edit', to: 'user_settings#edit', as: :user_settings_edit

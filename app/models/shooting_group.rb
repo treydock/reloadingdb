@@ -55,4 +55,23 @@ class ShootingGroup < ApplicationRecord
     "#{group_size} #{group_size_unit}"
   end
 
+  def self.next_number(scope, shooting_log = nil, load = nil, distance = nil)
+    if ! shooting_log.present? && ! load.present? && ! distance.present?
+      return 1
+    end
+    if shooting_log.present?
+      scope = scope.where(shooting_log_id: shooting_log)
+    end
+    if load.present?
+      scope = scope.where(load_id: load)
+    end
+    if distance.present?
+      scope = scope.where(distance: distance)
+    end
+    numbers = scope.pluck(:number)
+    highest_number = numbers.sort.last
+    return 1 unless highest_number.present?
+    highest_number + 1
+  end
+
 end

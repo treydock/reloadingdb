@@ -4,6 +4,25 @@ $(document).on("turbolinks:load", function() {
     set_by_caliber(load);
   });
 
+  $('#shooting_group_number').focus(function(e) {
+    if ($(this).val()) {
+      return;
+    }
+    shooting_log_id = $('#shooting_group_shooting_log_id :selected').val();
+    load_id = $('#shooting_group_load_id :selected').val();
+    distance = $('#shooting_group_distance').val();
+    data = {shooting_log_id: shooting_log_id, load_id: load_id, distance: distance};
+    $.ajax({
+      type: 'GET',
+      url: '/shooting_groups/next_number',
+      dataType: 'json',
+      data: data,
+      success: function(result) {
+        $('#shooting_group_number').val(result['next_number']);
+      }
+    })
+  })
+
   function set_by_caliber(load) {
       caliber = $('#shooting_group_caliber_id :selected').text();
       if (!caliber) {

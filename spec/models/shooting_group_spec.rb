@@ -179,4 +179,45 @@ RSpec.describe ShootingGroup, type: :model do
       expect(subject.group_size_full).to eq('1.0 in')
     end
   end
+
+  describe 'self.next_number' do
+    before(:each) do
+      @user = create(:user)
+      @shooting_log1 = create(:shooting_log, user: @user)
+      @shooting_log2 = create(:shooting_log, user: @user)
+      @load1 = create(:load, user: @user)
+      @load2 = create(:load, user: @user)
+      @shooting_group1 = create(:shooting_group, number: 1, distance: 100, shooting_log: @shooting_log1, load: @load1, user: @user)
+      @shooting_group2 = create(:shooting_group, number: 1, distance: 200, shooting_log: @shooting_log1, load: @load1, user: @user)
+      @shooting_group3 = create(:shooting_group, number: 2, distance: 200, shooting_log: @shooting_log1, load: @load1, user: @user)
+      @scope = subject.class.by_user(@user)
+    end
+    it 'should return 1 with no parameters' do
+      expect(subject.class.next_number(@scope)).to eq(1)
+    end
+    it 'should return next number based on shooting_log' do
+      expect(subject.class.next_number(@scope, @shooting_log1.id)).to eq(3)
+    end
+    it 'should return next number based on shooting_log - no shooting group' do
+      expect(subject.class.next_number(@scope, @shooting_log2.id)).to eq(1)
+    end
+    it 'should return next number based on load' do
+      expect(subject.class.next_number(@scope, '', @load1.id)).to eq(3)
+    end
+    it 'should return next number based on load - no shooting group' do
+      expect(subject.class.next_number(@scope, '', @load2.id)).to eq(1)
+    end
+    it 'should return next number based on distance' do
+      expect(subject.class.next_number(@scope, '', '', 100)).to eq(2)
+    end
+    it 'should return next number based on distance - no shooting group' do
+      expect(subject.class.next_number(@scope, '', '', 300)).to eq(1)
+    end
+    it 'should return next number based on all conditions - single' do
+      expect(subject.class.next_number(@scope, @shooting_log1.id, @load1.id, 100)).to eq(2)
+    end
+    it 'should return next number based on all conditions - multiple' do
+      expect(subject.class.next_number(@scope, @shooting_log1.id, @load1.id, 200)).to eq(3)
+    end
+  end
 end

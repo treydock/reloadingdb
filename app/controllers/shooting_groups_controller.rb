@@ -2,6 +2,8 @@ class ShootingGroupsController < ApplicationController
   before_action :set_index, only: [:index]
   before_action :set_shooting_group, only: [:show, :edit, :update, :destroy]
   before_action :set_associations, only: [:new, :create, :edit, :update]
+  after_action :verify_authorized, except: [:index, :autocomplete, :next_number]
+  after_action :verify_policy_scoped, only: [:index, :next_number]
 
   # GET /shooting_groups
   # GET /shooting_groups.json
@@ -68,6 +70,13 @@ class ShootingGroupsController < ApplicationController
       format.html { redirect_to shooting_groups_url, notice: 'Shooting group was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # GET /shooting_groups/next_number.json
+  def next_number
+    scope = policy_scope(ShootingGroup).all
+    next_number = ShootingGroup.next_number(scope, params[:shooting_log_id], params[:load_id], params[:distance])
+    render json: { next_number: next_number }
   end
 
   private

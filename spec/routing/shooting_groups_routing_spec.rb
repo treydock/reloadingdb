@@ -10,6 +10,10 @@ RSpec.describe ShootingGroupsController, type: :routing do
       expect(get: "/shooting_groups/autocomplete").to route_to("shooting_groups#autocomplete")
     end
 
+    it "routes to #next_number" do
+      expect(get: "/shooting_groups/next_number").to route_to("shooting_groups#next_number")
+    end
+
     it "routes to #new" do
       expect(:get => "/shooting_groups/new").to route_to("shooting_groups#new")
     end

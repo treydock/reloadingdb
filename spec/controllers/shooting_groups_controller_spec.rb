@@ -111,4 +111,11 @@ RSpec.describe ShootingGroupsController, type: :controller do
     end
   end
 
+  describe "GET #next_number" do
+    it "should respond with JSON" do
+      get :next_number, params: {}
+      expect(response.body).to eq({next_number: 1}.to_json)
+    end
+  end
+
 end
