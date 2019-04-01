@@ -42,6 +42,9 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 # set :ssh_options, verify_host_key: :secure
 
 set :puma_bind,  -> { "tcp://127.0.0.1:#{fetch(:puma_port)}" }
+set :puma_env, -> { fetch(:rails_env) }
+set :puma_tag, -> { fetch(:rails_env) }
+set :puma_daemonize, true
 set :puma_preload_app, true
 set :puma_init_active_record, true
 set :puma_restart_command, 'bundle exec puma'
