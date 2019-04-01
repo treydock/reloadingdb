@@ -25,12 +25,10 @@
 
 $(document).on("turbolinks:load", function() {
     $('#timepicker').datetimepicker({
-        //format: 'HH:mm'
         format: 'HH:mm',
         timeZone: ''
     });
     $('#datepicker').datetimepicker({
-        //format: 'HH:mm'
         format: 'YYYY-MM-DD',
         timeZone: ''
     });
@@ -44,7 +42,8 @@ $(document).on("turbolinks:load", function() {
       $.each(uninitialized_autocompletes, function(i, input) {$(input).scopedSearch({'delay': 250})});
       $('.ui-helper-hidden-accessible').remove();
     }
-    /*$(document).on('focus', '#search', function(e) {
+    /* simple approach that causes problems
+    $(document).on('focus', '#search', function(e) {
         $('.autocomplete-input').scopedSearch();
     });
     */
