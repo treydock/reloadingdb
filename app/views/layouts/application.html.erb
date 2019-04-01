@@ -41,8 +41,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2 sticky-top">
       <%= link_to t('site_title'), root_path, class: 'navbar-brand' %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="navbar-collapse collapse" id="navbar">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><%= link_to 'Home', root_path, class: 'nav-link' %></li>
@@ -91,7 +91,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-block bg-light sidebar">
+        <nav class="col-md-2 bg-light sidebar collapse show" id="sidebar">
           <div class="sidebar-sticky pt-md-5 mt-md-2">
             <ul class="nav flex-column">
               <li class="nav-item"><%= link_to "New Shooting Log", new_shooting_log_path, class: 'nav-link' %></li>
@@ -100,6 +100,9 @@
             </ul>
           </div>
         </nav>
+        <button type="button" id="toggle-sidebar" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle sidebar" class="offset-md-2" title="Toggle Sidebar">
+          <span id="toggle-sidebar-icon" class="fa fa-angle-double-left"></span>
+        </button>
         <main role="main" class="col-md-10 ml-sm-auto">
           <% flash.each do |key, value| %>
             <div class="<%= flash_class(key) %>">
@@ -111,7 +114,7 @@
       </div><!--/row-->
     </div> <!-- /container -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-5 offset-md-2">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-5 offset-md-2" id="footer-nav">
       <span class="text-white pr-1">&copy; Company 2019</span>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#footer" aria-controls="footer" aria-expanded="false" aria-label="Toggle footer">
           <span class="navbar-toggler-icon"></span>
