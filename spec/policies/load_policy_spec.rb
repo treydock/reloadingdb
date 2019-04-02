@@ -81,4 +81,13 @@ RSpec.describe LoadPolicy, type: :policy do
       expect(subject).not_to permit(user2, load)
     end
   end
+
+  permissions :clone? do
+    it 'allows access' do
+      expect(subject).to permit(user, load)
+    end
+    it 'denies access' do
+      expect(subject).not_to permit(user2, load)
+    end
+  end
 end

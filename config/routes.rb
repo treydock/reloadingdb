@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     end
     member do
       get 'calculate_velocity'
+      get 'clone'
     end
   end
   resources :brasses

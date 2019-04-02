@@ -62,4 +62,11 @@ class Load < ApplicationRecord
     avg = velocities.mean
     avg.to_i
   end
+
+  def clone
+    new_load = self.dup
+    new_load.date = nil
+    new_load.velocity = nil
+    new_load
+  end
 end

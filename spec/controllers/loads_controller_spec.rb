@@ -138,4 +138,11 @@ RSpec.describe LoadsController, type: :controller do
     end
   end
 
+  describe "GET #clone" do
+    it "returns a success response" do
+      load = create(:load, user: @current_user)
+      get :clone, params: {id: load.id}
+      expect(response).to be_successful
+    end
+  end
 end

@@ -26,6 +26,10 @@ RSpec.describe LoadsController, type: :routing do
       expect(:get => "/loads/1/calculate_velocity").to route_to("loads#calculate_velocity", :id => "1")
     end
 
+    it "routes to #clone" do
+      expect(:get => "/loads/1/clone").to route_to("loads#clone", :id => "1")
+    end
+
     it "routes to #create" do
       expect(:post => "/loads").to route_to("loads#create")
     end

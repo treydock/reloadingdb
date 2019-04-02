@@ -22,7 +22,11 @@
         <td><%= load.bullet.name_caliber_grain %></td>
         <td><%= load.powder.name %> - <%= load.powder_weight %> gr</td>
         <td><%= load.primer.name %></td>
-        <td><%= index_actions(load) %></td>
+        <td>
+          <%= index_actions(load) do %>
+            <%= link_to('Clone', clone_load_path(load), class: 'dropdown-item') %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

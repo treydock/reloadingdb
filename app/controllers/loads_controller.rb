@@ -1,7 +1,7 @@
 class LoadsController < ApplicationController
   before_action :set_index, only: [:index]
-  before_action :set_load, only: [:show, :edit, :update, :destroy, :calculate_velocity]
-  before_action :set_components, only: [:new, :create, :edit, :update]
+  before_action :set_load, only: [:show, :edit, :update, :destroy, :calculate_velocity, :clone]
+  before_action :set_components, only: [:new, :create, :edit, :update, :clone]
 
   # GET /loads
   # GET /loads.json
@@ -83,6 +83,13 @@ class LoadsController < ApplicationController
       end
       format.json { render json: { velocity: @load.calculate_velocity } }
     end
+  end
+
+  # GET /loads/1/clone
+  def clone
+    @load = @load.clone
+    authorize @load
+    render :new
   end
 
   private

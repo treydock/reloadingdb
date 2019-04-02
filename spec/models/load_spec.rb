@@ -136,4 +136,16 @@ RSpec.describe Load, type: :model do
       expect(@load2.calculate_velocity).to be_nil
     end
   end
+
+  describe 'clone' do
+    it 'should clone successfully' do
+      clone = subject.clone
+      expect(clone.new_record?).to eq(true)
+    end
+    it 'should clone and remove some attributes' do
+      clone = subject.clone
+      expect(clone.date).to be_nil
+      expect(clone.velocity).to be_nil
+    end
+  end
 end
