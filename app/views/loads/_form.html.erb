@@ -37,8 +37,7 @@
       <%= f.input_field :velocity_unit, as: :select, collection: Unit.velocity, class: 'col-sm-2' %>
       <% if ! @load.new_record? %>
         <%= link_to '#', id: 'calculate-velocity', class: 'btn btn-outline-secondary ml-sm-2 mt-sm-0 mt-2', data: { id: @load.id, toggle: 'tooltip', placement: 'bottom' }, title: 'Calculate based on defined velocities' do %>
-          <%= content_tag :span, nil, class: 'fa fa-calculator' %>
-          Calculate velocity
+          <%= content_tag :span, nil, class: 'fa fa-calculator' %>Calculate velocity
         <% end %>
       <% end %>
     <% end %>

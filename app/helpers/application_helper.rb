@@ -58,7 +58,8 @@ module ApplicationHelper
   def index_header(object)
     content_tag :div, class: 'page-header pb-2 mt-2 mb-2' do
       concat(link_to(send("new_#{object.model_name.singular_route_key}_path"), class: 'btn btn-primary') do
-        content_tag(:span, "New #{object.model_name.name.titlecase}", class: 'fa fa-plus')
+        concat(content_tag(:span, nil, class: 'fa fa-plus'))
+        concat("New #{object.model_name.name.titlecase}")
       end)
       concat(content_tag(:h2, "List #{object.model_name.name.pluralize.titlecase}"))
     end
@@ -67,12 +68,38 @@ module ApplicationHelper
   def show_header(object, &block)
     content_tag :div, class: 'page-header pb-2 mt-2 mb-2 border-bottom' do
       concat(link_to(send("#{object.model_name.route_key}_path"), class: 'btn btn-outline-secondary') do
-        content_tag(:span, 'Back', class: 'fa fa-list')
+        concat(content_tag(:span, nil, class: 'fa fa-list'))
+        concat('Back')
       end)
       concat(link_to(send("edit_#{object.model_name.singular_route_key}_path", object), class: 'btn btn-info') do
-        content_tag(:span, 'Edit', class: 'fa fa-edit')
+        concat(content_tag(:span, nil, class: 'fa fa-edit'))
+        concat('Edit')
       end)
       yield if block_given?
+      concat(content_tag(:h2, "Show #{object.model_name.name.titlecase}"))
+    end
+  end
+
+  def show_header_as_dropdown(object, &block)
+    content_tag :div, class: 'page-header pb-2 mt-2 mb-2 border-bottom' do
+      concat(link_to(send("#{object.model_name.route_key}_path"), class: 'btn btn-outline-secondary ml-2') do
+        concat(content_tag(:span, nil, class: 'fa fa-list'))
+        concat('Back')
+      end)
+      concat(content_tag(:div, class: 'dropdown') do
+        concat button_tag('Actions', class: 'btn btn-secondary dropdown-toggle', id: 'button', type: 'button', 'aria-haspopup' => 'true', 'aria-expanded' => 'false', data: { toggle: 'dropdown' })
+        concat(content_tag(:div, class: 'dropdown-menu', 'aria-labelledby' => 'actions-dropdown') do
+          yield if block_given?
+          concat(link_to(send("edit_#{object.model_name.singular_route_key}_path", object), class: 'dropdown-item') do
+            concat(content_tag(:span, nil, class: 'fa fa-edit'))
+            concat('Edit')
+          end)
+          concat(link_to(object, method: :delete, data: { confirm: 'Are you sure?'}, class: 'dropdown-item') do
+            concat(content_tag(:span, nil, class: 'fa fa-trash'))
+            concat('Destroy')
+          end)
+        end)
+      end)
       concat(content_tag(:h2, "Show #{object.model_name.name.titlecase}"))
     end
   end
@@ -80,7 +107,8 @@ module ApplicationHelper
   def new_header(object)
     content_tag :div, class: 'page-header pb-2 mt-2 mb-2 border-bottom' do
       concat(link_to(send("#{object.model_name.route_key}_path"), class: 'btn btn-outline-secondary') do
-        content_tag(:span, 'Back', class: 'fa fa-list')
+        concat(content_tag(:span, nil, class: 'fa fa-list'))
+        concat('Back')
       end)
       concat(content_tag(:h2, "New #{object.model_name.name.titlecase}"))
     end
@@ -89,10 +117,12 @@ module ApplicationHelper
   def edit_header(object)
     content_tag :div, class: 'page-header pb-2 mt-2 mb-2 border-bottom' do
       concat(link_to(object, class: 'btn btn-info') do
-        content_tag(:span, 'Show', class: 'fa fa-search')
+        concat(content_tag(:span, nil, class: 'fa fa-search'))
+        concat('Show')
       end)
       concat(link_to(send("#{object.model_name.route_key}_path"), class: 'btn btn-outline-secondary') do
-        content_tag(:span, 'Back', class: 'fa fa-list')
+        concat(content_tag(:span, nil, class: 'fa fa-list'))
+        concat('Back')
       end)
       concat(content_tag(:h2, "Show #{object.model_name.name.titlecase}"))
     end

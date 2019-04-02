@@ -41,6 +41,14 @@
   a.btn + a.btn {
     margin-right: 8px;
   }
+
+  button {
+    float: right;
+  }
+}
+
+span.fa {
+  @extend .mr-1;
 }
 
 .form-control-with-unit {
