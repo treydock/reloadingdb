@@ -14,7 +14,7 @@ class ShootingVelocity < ApplicationRecord
 
   def average_velocity
     return nil if velocities.nil? || velocities.size == 0
-    avg = velocities.inject(0.0) { |sum, el| sum + el } / velocities.size
+    avg = velocities.mean
     avg.to_i
   end
 
