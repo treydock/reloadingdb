@@ -33,7 +33,9 @@ function set_by_caliber(load) {
     load_options = $(load).filter("optgroup[label=" + caliber + "]").html();
     if (load_options) {
       $('#shooting_velocity_load_id').html(load_options);
-      $('#shooting_velocity_load_id').prepend("<option value='' selected='selected'></option>");
+      if (!$('#shooting_velocity_load_id :selected')) {
+        $('#shooting_velocity_load_id').prepend("<option value='' selected='selected'></option>");
+      }
     } else {
       $('#shooting_velocity_load_id').empty();
     }

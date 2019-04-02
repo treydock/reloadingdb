@@ -36,7 +36,9 @@ $(document).on("turbolinks:load", function() {
       load_options = $(load).filter("optgroup[label=" + caliber + "]").html();
       if (load_options) {
         $('#shooting_group_load_id').html(load_options);
-        $('#shooting_group_load_id').prepend("<option value='' selected='selected'></option>");
+        if (!$('#shooting_group_load_id :selected')) {
+          $('#shooting_group_load_id').prepend("<option value='' selected='selected'></option>");
+        }
       } else {
         $('#shooting_group_load_id').empty();
       }

@@ -33,13 +33,17 @@ $(document).on("turbolinks:load", function() {
       bullet_options = $(bullets).filter("optgroup[label=" + caliber + "]").html();
       if (brass_options) {
         $('#load_brass_id').html(brass_options);
-        $('#load_brass_id').prepend("<option value='' selected='selected'></option>");
+        if (!$('#load_brass_id :selected')) {
+          $('#load_brass_id').prepend("<option value='' selected='selected'></option>");
+        }
       } else {
         $('#load_brass_id').empty();
       }
       if (bullet_options) {
         $('#load_bullet_id').html(bullet_options);
-        $('#load_bullet_id').prepend("<option value='' selected='selected'></option>");
+        if (!$('#load_bullet_id :selected')) {
+          $('#load_bullet_id').prepend("<option value='' selected='selected'></option>");
+        }
       } else {
         $('#load_bullet_id').empty();
       }
