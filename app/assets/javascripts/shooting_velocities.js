@@ -6,6 +6,10 @@ $(document).on("turbolinks:load", function() {
   });
 
   load = $('#shooting_velocity_load_id').html();
+  caliber = $('#shooting_velocity_caliber_id :selected').text();
+  if (caliber) {
+    set_by_caliber(load);
+  }
   $('#shooting_velocity_caliber_id').change(function() {
     set_by_caliber(load);
   });

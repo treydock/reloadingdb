@@ -1,5 +1,9 @@
 $(document).on("turbolinks:load", function() {
   var load = $('#shooting_group_load_id').html();
+  caliber = $('#shooting_group_caliber_id :selected').text();
+  if (caliber) {
+    set_by_caliber(load);
+  }
   $('#shooting_group_caliber_id').change(function() {
     set_by_caliber(load);
   });

@@ -1,6 +1,10 @@
 $(document).on("turbolinks:load", function() {
   var brass = $('#load_brass_id').html();
   var bullets = $('#load_bullet_id').html();
+  caliber = $('#load_caliber_id :selected').text();
+  if (caliber) {
+    set_by_caliber(brass, bullets);
+  }
   $('#load_caliber_id').change(function() {
     set_by_caliber(brass, bullets);
   });
