@@ -16,7 +16,7 @@
     <% @shooting_velocities.each do |shooting_velocity| %>
       <tr>
         <td><%= link_to shooting_velocity.date, shooting_velocity %></td>
-        <td><%= link_to shooting_velocity.load.name, shooting_velocity.load %></td>
+        <td><%= shooting_velocity.load.name %></td>
         <td><%= shooting_velocity.average_velocity %></td>
         <td><%= index_actions(shooting_velocity) %></td>
       </tr>

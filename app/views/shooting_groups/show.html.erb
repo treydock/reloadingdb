@@ -2,13 +2,13 @@
 
 <dl class='dl-horizontal'>
   <dt>Shooting log:</dt>
-  <dd><%= @shooting_group.shooting_log.date %></dd>
+  <dd><%= link_to @shooting_group.shooting_log.date, @shooting_group.shooting_log %></dd>
 
   <dt>Caliber:</dt>
   <dd><%= @shooting_group.caliber.name %></dd>
 
   <dt>Load:</dt>
-  <dd><%= @shooting_group.load.name %></dd>
+  <dd><%= link_to @shooting_group.load.name, @shooting_group.load %></dd>
 
   <dt>Distance:</dt>
   <dd><%= @shooting_group.distance_full %></dd>
