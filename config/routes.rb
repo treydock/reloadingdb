@@ -17,7 +17,12 @@ Rails.application.routes.draw do
   end
   resources :shooting_locations
   resources :loads do
-    get 'autocomplete', on: :collection
+    collection do
+      get 'autocomplete'
+    end
+    member do
+      get 'calculate_velocity'
+    end
   end
   resources :brasses
   resources :calibers

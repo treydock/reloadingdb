@@ -9,6 +9,19 @@ $(document).on("turbolinks:load", function() {
     set_by_caliber(brass, bullets);
   });
 
+  $('#calculate-velocity').click(function(e) {
+    e.preventDefault();
+    id = $(this).data('id');
+    $.ajax({
+      type: 'GET',
+      url: '/loads/' + id + '/calculate_velocity',
+      dataType: 'json',
+      success: function(result) {
+        $('#load_velocity').val(result['velocity']);
+      }
+    })
+  });
+
   function set_by_caliber(brass, bullets) {
       caliber = $('#load_caliber_id :selected').text();
       if (!caliber) {

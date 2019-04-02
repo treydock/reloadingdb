@@ -121,4 +121,19 @@ RSpec.describe Load, type: :model do
       expect(load.run_out_unit).to eq('cm')
     end
   end
+
+  describe 'calculate_velocity' do
+    before(:each) do
+      @load1 = create(:load)
+      @load2 = create(:load)
+      create(:shooting_velocity, load: @load1, velocities: [2000,2000,2001])
+      create(:shooting_velocity, load: @load1, velocities: [2100,2100])
+    end
+    it 'should calculate average velocity' do
+      expect(@load1.calculate_velocity).to eq(2040)
+    end
+    it "should handle no velocities" do
+      expect(@load2.calculate_velocity).to be_nil
+    end
+  end
 end

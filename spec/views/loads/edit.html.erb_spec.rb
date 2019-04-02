@@ -12,7 +12,6 @@ RSpec.describe "loads/edit", type: :view do
 
   it "renders the edit load form" do
     render
-
     assert_select "form[action=?][method=?]", load_path(@load), "post" do
       assert_select "input[name=?]", "load[date]"
       assert_select "select[name=?]", "load[caliber_id]"
@@ -24,6 +23,11 @@ RSpec.describe "loads/edit", type: :view do
       assert_select "select[name=?]", "load[primer_id]"
       assert_select "input[name=?]", "load[col]"
       assert_select "input[name=?]", "load[velocity]"
+      assert_select "select[name=?]", "load[velocity_unit]"
     end
+  end
+  it "renders calculate-velocity" do
+    render
+    expect(rendered).to match /id="calculate-velocity"/
   end
 end

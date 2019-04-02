@@ -1,6 +1,6 @@
 class LoadsController < ApplicationController
   before_action :set_index, only: [:index]
-  before_action :set_load, only: [:show, :edit, :update, :destroy]
+  before_action :set_load, only: [:show, :edit, :update, :destroy, :calculate_velocity]
   before_action :set_components, only: [:new, :create, :edit, :update]
 
   # GET /loads
@@ -67,6 +67,21 @@ class LoadsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to loads_url, notice: 'Load was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  # GET /loads/1/calculate_velocity.json
+  def calculate_velocity
+    authorize @load
+    respond_to do |format|
+      format.html do
+        if @load.update(velocity: @load.calculate_velocity)
+          redirect_to @load, notice: 'Load velocity successfully updated.'
+        else
+          render :show
+        end
+      end
+      format.json { render json: { velocity: @load.calculate_velocity } }
     end
   end
 

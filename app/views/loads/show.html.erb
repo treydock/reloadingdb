@@ -1,11 +1,18 @@
+<%= render 'errors', object: @load %>
 <%= show_header(@load) do %>
 <% new_group_params = {load_id: @load.id, caliber_id: @load.caliber.id}%>
 <%= link_to(new_shooting_group_path(new_group_params), class: 'btn btn-primary') do %>
-  <span class="fa fa-plus">New Group</span>
+  <span class="fa fa-plus"></span>
+  New Group
 <% end %>
 <% new_velocity_params = {load_id: @load.id, caliber_id: @load.caliber.id} %>
 <%= link_to(new_shooting_velocity_path(new_velocity_params), class: 'btn btn-primary') do %>
-  <span class="fa fa-plus">New Velocities</span>
+  <span class="fa fa-plus"></span>
+  New Velocities
+<% end %>
+<%= link_to(calculate_velocity_load_path(@load), class: 'btn btn-primary') do %>
+  <span class="fa fa-calculator"></span>
+  Calculate velocity
 <% end %>
 <% end %>
 

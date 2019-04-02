@@ -36,6 +36,8 @@ $(document).on("turbolinks:load", function() {
         $('#per_page_form').submit();
     });
 
+    $('[data-toggle="tooltip"]').tooltip()
+
     // Code borrowed from Foreman
     uninitialized_autocompletes = $.grep($('.autocomplete-input'), function(i){ return !$(i).next().hasClass('autocomplete-clear'); });
     if (uninitialized_autocompletes.length > 0) {

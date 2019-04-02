@@ -114,4 +114,28 @@ RSpec.describe LoadsController, type: :controller do
     end
   end
 
+  describe "GET #calculate_velocity" do
+    before(:each) do
+      @load = create(:load, user: @current_user, velocity: 1000)
+      create(:shooting_velocity, user: @current_user, load: @load, velocities: [2000,2000,2001])
+      create(:shooting_velocity, user: @current_user, load: @load, velocities: [2100,2100])
+    end
+    it "updates requested load" do
+      get :calculate_velocity, params: {id: @load.id}
+      @load.reload
+      expect(@load.velocity).to eq(2040)
+    end
+    it "redirects to show" do
+      get :calculate_velocity, params: {id: @load.id}
+      expect(response).to redirect_to(@load)
+    end
+    it "handles no velocities and does not update" do
+      load = create(:load, user: @current_user, velocity: 1000)
+      get :calculate_velocity, params: {id: @load.id}
+      expect(response).to redirect_to(@load)
+      load.reload
+      expect(load.velocity).to eq(1000)
+    end
+  end
+
 end

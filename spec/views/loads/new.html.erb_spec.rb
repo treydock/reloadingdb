@@ -7,7 +7,6 @@ RSpec.describe "loads/new", type: :view do
 
   it "renders new load form" do
     render
-
     assert_select "form[action=?][method=?]", loads_path, "post" do
       assert_select "select[name=?]", "load[caliber_id]"
       assert_select "select[name=?]", "load[brass_id]"
@@ -18,6 +17,11 @@ RSpec.describe "loads/new", type: :view do
       assert_select "select[name=?]", "load[primer_id]"
       assert_select "input[name=?]", "load[col]"
       assert_select "input[name=?]", "load[velocity]"
+      assert_select "select[name=?]", "load[velocity_unit]"
     end
+  end
+  it "does not render calculate-velocity" do
+    render
+    expect(rendered).not_to match /id="calculate-velocity"/
   end
 end

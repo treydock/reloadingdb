@@ -55,4 +55,11 @@ class Load < ApplicationRecord
   def run_out_unit
     self[:run_out_unit].present? ? self[:run_out_unit] : user.settings(:default_units).length
   end
+
+  def calculate_velocity
+    velocities = shooting_velocities.map(&:velocities).flatten
+    return nil unless velocities.present?
+    avg = velocities.mean
+    avg.to_i
+  end
 end
