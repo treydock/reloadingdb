@@ -1,4 +1,8 @@
-<%= show_header(@shooting_group) %>
+<%= show_header(@shooting_group) do %>
+<%= link_to(clone_shooting_group_path(@shooting_group), class: 'btn btn-primary') do %>
+  <span class="fa fa-plus"></span>Clone
+<% end %>
+<% end %>
 
 <dl class='dl-horizontal'>
   <dt>Shooting log:</dt>

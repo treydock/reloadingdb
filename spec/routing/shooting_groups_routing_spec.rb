@@ -26,6 +26,9 @@ RSpec.describe ShootingGroupsController, type: :routing do
       expect(:get => "/shooting_groups/1/edit").to route_to("shooting_groups#edit", :id => "1")
     end
 
+    it "routes to #clone" do
+      expect(:get => "/shooting_groups/1/clone").to route_to("shooting_groups#clone", :id => "1")
+    end
 
     it "routes to #create" do
       expect(:post => "/shooting_groups").to route_to("shooting_groups#create")

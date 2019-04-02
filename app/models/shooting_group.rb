@@ -74,4 +74,12 @@ class ShootingGroup < ApplicationRecord
     highest_number + 1
   end
 
+  def clone
+    new_shooting_group = self.dup
+    scope = self.class.by_user(user)
+    new_shooting_group.number = self.class.next_number(scope, shooting_log.id, load.id, distance)
+    new_shooting_group.group_size = nil
+    new_shooting_group
+  end
+
 end

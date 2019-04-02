@@ -220,4 +220,23 @@ RSpec.describe ShootingGroup, type: :model do
       expect(subject.class.next_number(@scope, @shooting_log1.id, @load1.id, 200)).to eq(3)
     end
   end
+
+  describe 'clone' do
+    before(:each) do
+      user = create(:user)
+      load = create(:load, user: user)
+      shooting_log = create(:shooting_log, user: user)
+      @shooting_group = create(:shooting_group, number: 1, distance: 100, shooting_log: shooting_log, load: load, user: user)
+    end
+    it 'should create new record' do
+      expect(@shooting_group.clone.new_record?).to eq(true)
+    end
+    it 'should have next number' do
+      expect(@shooting_group.clone.number).to eq(2)
+    end
+    it 'should remove some values' do
+      clone = @shooting_group.clone
+      expect(clone.group_size).to be_nil
+    end
+  end
 end

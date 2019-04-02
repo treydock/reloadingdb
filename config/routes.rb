@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       get 'autocomplete'
       get 'next_number', constraints: { format: 'json' }
     end
+    member do
+      get 'clone'
+    end
   end
   get 'users/settings', to: 'user_settings#show', as: :user_settings
   get 'users/settings/edit', to: 'user_settings#edit', as: :user_settings_edit

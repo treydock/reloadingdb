@@ -118,4 +118,11 @@ RSpec.describe ShootingGroupsController, type: :controller do
     end
   end
 
+  describe "GET #clone" do
+    it "returns a success response" do
+      shooting_group = create(:shooting_group, user: @current_user)
+      get :clone, params: {id: shooting_group.id}
+      expect(response).to be_successful
+    end
+  end
 end

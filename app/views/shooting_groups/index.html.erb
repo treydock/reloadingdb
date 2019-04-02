@@ -18,7 +18,11 @@
         <td><%= link_to shooting_group.name, shooting_group %></td>
         <td><%= shooting_group.load.name %></td>
         <td><%= shooting_group.group_size %></td>
-        <td><%= index_actions(shooting_group) %></td>
+        <td>
+          <%= index_actions(shooting_group) do %>
+            <%= link_to('Clone', clone_shooting_group_path(shooting_group), class: 'dropdown-item') %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

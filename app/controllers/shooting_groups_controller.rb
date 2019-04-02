@@ -1,7 +1,7 @@
 class ShootingGroupsController < ApplicationController
   before_action :set_index, only: [:index]
-  before_action :set_shooting_group, only: [:show, :edit, :update, :destroy]
-  before_action :set_associations, only: [:new, :create, :edit, :update]
+  before_action :set_shooting_group, only: [:show, :edit, :update, :destroy, :clone]
+  before_action :set_associations, only: [:new, :create, :edit, :update, :clone]
   after_action :verify_authorized, except: [:index, :autocomplete, :next_number]
   after_action :verify_policy_scoped, only: [:index, :next_number]
 
@@ -77,6 +77,13 @@ class ShootingGroupsController < ApplicationController
     scope = policy_scope(ShootingGroup).all
     next_number = ShootingGroup.next_number(scope, params[:shooting_log_id], params[:load_id], params[:distance])
     render json: { next_number: next_number }
+  end
+
+  # GET /shooting_groups/1/clone
+  def clone
+    @shooting_group = @shooting_group.clone
+    authorize @shooting_group
+    render :new
   end
 
   private
