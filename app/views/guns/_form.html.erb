@@ -9,6 +9,7 @@
       <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
       <%= f.input_field :sight_height_unit, as: :select, collection: Unit.length, class: 'col-sm-2' %>
     <% end %>
+    <%= f.input :scope_moa_adjustment, as: :select, collection: Unit.scope_moa_adjustments %>
     <%= f.input :zero_distance do %>
       <%= f.input_field :zero_distance, class: 'col-sm-3' %>
       <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>

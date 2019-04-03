@@ -60,4 +60,17 @@ class Unit
   def self.ballistic_coefficient
     ['lb/in^2','kg/m^2']
   end
+
+  def self.scope_moa_adjustments
+    [
+      ['1/4',0.25],
+      ['1/8',0.125],
+      ['1/2',0.5],
+    ]
+  end
+
+  def self.scope_moa_adjustment_name(value)
+    return nil unless value.present?
+    self.scope_moa_adjustments.select { |a| a[1] == value }[0][0]
+  end
 end

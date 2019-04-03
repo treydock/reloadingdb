@@ -12,7 +12,7 @@
   <tbody>
     <% @guns.each do |gun| %>
       <tr>
-        <td><%= gun.name %></td>
+        <td><%= link_to gun.name, gun %></td>
         <td><%= gun.caliber.name %></td>
         <td><%= index_actions(gun) %></td>
       </tr>

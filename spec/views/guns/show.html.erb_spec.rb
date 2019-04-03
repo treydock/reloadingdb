@@ -10,6 +10,7 @@ RSpec.describe "guns/show", type: :view do
     expect(rendered).to match(/#{@gun.name}/)
     expect(rendered).to match(/#{@gun.caliber.name}/)
     expect(rendered).to match(/#{@gun.sight_height_full}/)
+    expect(rendered).to match(/#{@gun.scope_moa_adjustment_name}/)
     expect(rendered).to match(/#{@gun.zero_distance_full}/)
   end
 end

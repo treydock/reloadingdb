@@ -50,4 +50,19 @@ RSpec.describe Unit, type: :model do
       expect(subject.class.ballistic_coefficient).to eq(['lb/in^2','kg/m^2'])
     end
   end
+
+  describe 'scope_moa_adjustment_name' do
+    it 'should return 1/4' do
+      expect(subject.class.scope_moa_adjustment_name(0.25)).to eq('1/4')
+    end
+    it 'should return 1/8' do
+      expect(subject.class.scope_moa_adjustment_name(0.125)).to eq('1/8')
+    end
+    it 'should return 1/2' do
+      expect(subject.class.scope_moa_adjustment_name(0.5)).to eq('1/2')
+    end
+    it 'should return nil' do
+      expect(subject.class.scope_moa_adjustment_name('')).to be_nil
+    end
+  end
 end

@@ -79,4 +79,11 @@ RSpec.describe Gun, type: :model do
       expect(subject.zero_distance_full).to eq('100 yd')
     end
   end
+
+  describe 'scope_moa_adjustment_name' do
+    it 'should return 1/4' do
+      subject.scope_moa_adjustment = 0.25
+      expect(subject.scope_moa_adjustment_name).to eq('1/4')
+    end
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_31_144510) do
+ActiveRecord::Schema.define(version: 2019_04_03_174811) do
 
   create_table "brasses", force: :cascade do |t|
     t.string "name"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2019_03_31_144510) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "zero_distance_unit"
+    t.float "scope_moa_adjustment"
     t.index ["caliber_id"], name: "index_guns_on_caliber_id"
     t.index ["user_id"], name: "index_guns_on_user_id"
   end

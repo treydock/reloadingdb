@@ -23,4 +23,8 @@ class Gun < ApplicationRecord
     return zero_distance unless zero_distance.present?
     "#{zero_distance} #{zero_distance_unit}"
   end
+
+  def scope_moa_adjustment_name
+    Unit.scope_moa_adjustment_name(scope_moa_adjustment)
+  end
 end

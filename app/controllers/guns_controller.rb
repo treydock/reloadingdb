@@ -82,6 +82,7 @@ class GunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gun_params
-      params.require(:gun).permit(:name, :sight_height, :sight_height_unit, :zero_distance, :zero_distance_unit, :caliber_id)
+      params.require(:gun).permit(:name, :sight_height, :sight_height_unit, :scope_moa_adjustment,
+                                  :zero_distance, :zero_distance_unit, :caliber_id)
     end
 end
