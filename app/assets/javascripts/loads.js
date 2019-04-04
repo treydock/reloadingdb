@@ -1,12 +1,14 @@
 $(document).on("turbolinks:load", function() {
-  var brass = $('#load_brass_id').html();
+  var brasses = $('#load_brass_id').html();
+  var brass = $('#load_brass_id :selected').val();
   var bullets = $('#load_bullet_id').html();
+  var bullet = $('#load_bullet_id :selected').val();
   caliber = $('#load_caliber_id :selected').text();
   if (caliber) {
-    set_by_caliber(brass, bullets);
+    set_by_caliber(brass, brasses, bullet, bullets);
   }
   $('#load_caliber_id').change(function() {
-    set_by_caliber(brass, bullets);
+    set_by_caliber(brass, brasses, bullet, bullets);
   });
 
   $('#calculate-velocity').click(function(e) {
@@ -22,18 +24,18 @@ $(document).on("turbolinks:load", function() {
     })
   });
 
-  function set_by_caliber(brass, bullets) {
+  function set_by_caliber(brass, brasses, bullet, bullets) {
       caliber = $('#load_caliber_id :selected').text();
       if (!caliber) {
-        $('#load_brass_id').html(brass);
+        $('#load_brass_id').html(brasses);
         $('#load_bullet_id').html(bullets);
         return
       }
-      brass_options = $(brass).filter("optgroup[label=" + caliber + "]").html();
+      brass_options = $(brasses).filter("optgroup[label=" + caliber + "]").html();
       bullet_options = $(bullets).filter("optgroup[label=" + caliber + "]").html();
       if (brass_options) {
         $('#load_brass_id').html(brass_options);
-        if (!$('#load_brass_id :selected')) {
+        if (!brass) {
           $('#load_brass_id').prepend("<option value='' selected='selected'></option>");
         }
       } else {
@@ -41,7 +43,7 @@ $(document).on("turbolinks:load", function() {
       }
       if (bullet_options) {
         $('#load_bullet_id').html(bullet_options);
-        if (!$('#load_bullet_id :selected')) {
+        if (!bullet) {
           $('#load_bullet_id').prepend("<option value='' selected='selected'></option>");
         }
       } else {

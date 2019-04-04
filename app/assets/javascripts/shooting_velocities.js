@@ -5,13 +5,14 @@ $(document).on("turbolinks:load", function() {
     add_velocity_field();
   });
 
-  load = $('#shooting_velocity_load_id').html();
+  loads = $('#shooting_velocity_load_id').html();
+  load = $('#shooting_velocity_load_id :selected').val();
   caliber = $('#shooting_velocity_caliber_id :selected').text();
   if (caliber) {
-    set_by_caliber(load);
+    set_by_caliber(load, loads);
   }
   $('#shooting_velocity_caliber_id').change(function() {
-    set_by_caliber(load);
+    set_by_caliber(load, loads);
   });
 
 });
@@ -24,16 +25,16 @@ function add_velocity_field() {
   $('.append-velocities').append($last_velocity_field);
 }
 
-function set_by_caliber(load) {
+function set_by_caliber(load, loads) {
     caliber = $('#shooting_velocity_caliber_id :selected').text();
     if (!caliber) {
-      $('#shooting_velocity_load_id').html(load);
+      $('#shooting_velocity_load_id').html(loads);
       return
     }
-    load_options = $(load).filter("optgroup[label=" + caliber + "]").html();
+    load_options = $(loads).filter("optgroup[label=" + caliber + "]").html();
     if (load_options) {
       $('#shooting_velocity_load_id').html(load_options);
-      if (!$('#shooting_velocity_load_id :selected')) {
+      if (!load) {
         $('#shooting_velocity_load_id').prepend("<option value='' selected='selected'></option>");
       }
     } else {
