@@ -1,0 +1,30 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Ballistic Calculator Results</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <dl class='dl-horizontal'>
+        <dt>Ballistic coefficient:</dt>
+        <dd><%= @ballistic_calculator.ballistic_coefficient %></dd>
+
+        <dt>Velocity:</dt>
+        <dd><%= @ballistic_calculator.velocity %></dd>
+
+        <dt>Range:</dt>
+        <dd><%= @ballistic_calculator.range %></dd>
+
+        <dt>Height of sight:</dt>
+        <dd><%= @ballistic_calculator.height_of_sight %></dd>
+
+        <dt>Zero range:</dt>
+        <dd><%= @ballistic_calculator.zero_range %></dd>
+
+      </dl>
+    </div>
+  </div>
+</div>
