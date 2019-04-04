@@ -1,17 +1,23 @@
 # REF: https://www.ar15.com/forums/armory/Bullet_Drop_Formula/42-351773/#i3198632
 class BallisticCalculator
+  include ActiveModel::Model
+
   attr_accessor :ballistic_coefficient
   attr_accessor :velocity
   attr_accessor :range
   attr_accessor :height_of_sight
   attr_accessor :zero_range
 
-  def initialize(bc, v, r, h, z)
-    @ballistic_coefficient = bc.to_f
-    @velocity = v.to_f
-    @range = r.to_f
-    @height_of_sight = h.to_f
-    @zero_range = z.to_f
+  validates :ballistic_coefficient, presence: true, numericality: true
+  validates :velocity, presence: true, numericality: true
+  validates :range, presence: true, numericality: true
+  validates :height_of_sight, presence: true, numericality: true
+  validates :zero_range, presence: true, numericality: true
+
+  def initialize(attributes = {})
+    attributes.each do |name, value|
+      send("#{name}=", value.to_f)
+    end
   end
 
   # remaining velocity, fps
@@ -72,7 +78,7 @@ class BallisticCalculator
     #if wind_angle > 180.0
     #  wind_angle = 360.0 - wind_angle
     #end
-    (wind_speed / 10) * (wind_angle) * (self.TF - ((3 * @range) / @velocity))
+    (wind_speed / 10) * (wind_angle) * (self.TF - ((3 * @range.to_f) / @velocity.to_f))
   end
 
   # wind deflection, moa
@@ -80,8 +86,10 @@ class BallisticCalculator
     self.WD(wind_speed, wind_angle) / (@range / 100)
   end
 
+  # USMC method
+  # http://www.millettsights.com/resources/shooting-tips/mathematics-for-precision-shooters/
   def wind_drift_moa(wind_speed, single_value = false)
-    value = ((@range / 100) * wind_speed) / 15
+    value = ((@range / 100) * wind_speed.to_f) / 15
     return value if single_value
     [value.round(1), self.WD_moa(wind_speed).round(1)]
   end

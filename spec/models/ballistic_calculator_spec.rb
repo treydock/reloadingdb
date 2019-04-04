@@ -1,7 +1,20 @@
 require 'rails_helper'
 
-describe BallisticCalculator do
-  let(:subject) { BallisticCalculator.new(0.314,2820,200,1.5,100) }
+RSpec.describe BallisticCalculator, type: :model do
+  let(:subject) { create(:ballistic_calculator) }
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of :ballistic_coefficient }
+    it { is_expected.to validate_numericality_of :ballistic_coefficient }
+    it { is_expected.to validate_presence_of :velocity }
+    it { is_expected.to validate_numericality_of :velocity }
+    it { is_expected.to validate_presence_of :range }
+    it { is_expected.to validate_numericality_of :range }
+    it { is_expected.to validate_presence_of :height_of_sight }
+    it { is_expected.to validate_numericality_of :height_of_sight }
+    it { is_expected.to validate_presence_of :zero_range }
+    it { is_expected.to validate_numericality_of :zero_range }
+  end
 
   describe 'RV' do
     it 'should return value' do
