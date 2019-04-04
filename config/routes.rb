@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/ballistic_calculator', to: 'ballistic_calculator#new', as: :ballistic_calculator
+  post '/ballistic_calculator', to: 'ballistic_calculator#create', as: nil
   resources :shooting_velocities do
     get 'autocomplete', on: :collection
   end

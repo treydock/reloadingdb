@@ -1,0 +1,2 @@
+module BallisticCalculatorsHelper
+end

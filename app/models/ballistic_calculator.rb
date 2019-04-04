@@ -8,6 +8,10 @@ class BallisticCalculator
   attr_accessor :height_of_sight
   attr_accessor :zero_range
 
+  attr_accessor :caliber_id
+  attr_accessor :load_id
+  attr_accessor :gun_id
+
   validates :ballistic_coefficient, numericality: true
   validates :velocity, numericality: true
   validates :range, numericality: true
