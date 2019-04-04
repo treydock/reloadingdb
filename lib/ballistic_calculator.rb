@@ -41,7 +41,7 @@ class BallisticCalculator
 
   # maximum height of trajectory above sight line, inches
   def MH
-    
+    (48.6 * self.TF**2) - (0.4 * @height_of_sight)
   end
 
   # elevation required, moa
@@ -63,5 +63,32 @@ class BallisticCalculator
   # bullet path above or below line of sight, moa
   def BP_moa
     self.BP / (@range / 100)
+  end
+
+  # wind deflection, inches
+  def WD(ws, wa = 180)
+    wind_speed = ws.to_f
+    wind_angle = wa.to_f
+    #if wind_angle > 180.0
+    #  wind_angle = 360.0 - wind_angle
+    #end
+    (wind_speed / 10) * (wind_angle) * (self.TF - ((3 * @range) / @velocity))
+  end
+
+  # wind deflection, moa
+  def WD_moa(wind_speed, wind_angle = 180)
+    self.WD(wind_speed, wind_angle) / (@range / 100)
+  end
+
+  def wind_drift_moa(wind_speed, single_value = false)
+    value = ((@range / 100) * wind_speed) / 15
+    return value if single_value
+    [value.round(1), self.WD_moa(wind_speed).round(1)]
+  end
+
+  def wind_drift(wind_speed)
+    moa = self.wind_drift_moa(wind_speed, true)
+    value = moa * (@range / 100)
+    [value.round(1), self.WD(wind_speed).round(1)]
   end
 end
