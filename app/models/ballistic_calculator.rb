@@ -7,6 +7,9 @@ class BallisticCalculator
   attr_accessor :height_of_sight
   attr_accessor :zero_range
 
+  attr_accessor :ranges_max
+  attr_accessor :ranges_interval
+
   attr_accessor :caliber_id
   attr_accessor :load_id
   attr_accessor :gun_id
@@ -20,6 +23,8 @@ class BallisticCalculator
     attributes.each do |name, value|
       send("#{name}=", value)
     end
+    @ranges_max ||= 500
+    @ranges_interval ||= 100
   end
 
   [
@@ -31,12 +36,18 @@ class BallisticCalculator
     define_method(a) do
       value = instance_variable_get("@#{a}")
       if value.present?
-        if value.to_f.to_s == value.to_s
+        if value.to_i.to_s == value.to_s || value.to_f.to_s == value.to_s
           value = value.to_f
         end
       end
       value
     end
+  end
+
+  def self.ranges(max, interval)
+    max = max.to_i
+    interval = interval.to_i
+    (0..max).step(interval).to_a
   end
 
   # remaining velocity, fps
@@ -77,13 +88,17 @@ class BallisticCalculator
   # bullet path above or below line of sight, inches
   def BP(range)
     el0 = self.EL(zero_range)
-    el1 = self.EL(range)
-    ((el0 - el1) * range) / 100
+    if range < zero_range
+      el1 = 0.0
+    else
+      el1 = self.EL(range)
+    end
+    ((el0 - el1) * range) / 100.0
   end
 
   # bullet path above or below line of sight, moa
   def BP_moa(range)
-    self.BP(range) / (range / 100)
+    self.BP(range) / (range / 100.0)
   end
 
   # wind deflection, inches

@@ -14,6 +14,8 @@ class BallisticCalculatorController < ApplicationController
   def create
     @ballistic_calculator = BallisticCalculator.new(ballistic_calculator_params)
     authorize @ballistic_calculator
+    @ranges = BallisticCalculator.ranges(@ballistic_calculator.ranges_max, @ballistic_calculator.ranges_interval)
+    puts @ranges.map(&:class)
 
     respond_to do |format|
       if @ballistic_calculator.valid?
@@ -37,6 +39,7 @@ class BallisticCalculatorController < ApplicationController
     def ballistic_calculator_params
       params.require(:ballistic_calculator).permit(:caliber_id, :load_id, :gun_id,
                                                    :ballistic_coefficient, :velocity,
-                                                   :height_of_sight, :zero_range)
+                                                   :height_of_sight, :zero_range,
+                                                   :ranges_max, :ranges_interval)
     end
 end

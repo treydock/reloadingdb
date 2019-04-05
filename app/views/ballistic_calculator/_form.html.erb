@@ -13,6 +13,12 @@
     <%= f.input :velocity, required: true %>
     <%= f.input :height_of_sight, required: true %>
     <%= f.input :zero_range, required: true %>
+    <%= f.input :range do %>
+      <%= f.label 'Maximum Range', class: 'col-sm-3 col-lg-3 text-sm-right' %>
+      <%= f.input_field :ranges_max, class: 'col-sm-2' %>
+      <%= f.label 'Interval', class: 'col-sm-2 col-lg-2 text-sm-right' %>
+      <%= f.input_field :ranges_interval, class: 'col-sm-2' %>
+    <% end %>
   </div>
 
   <div class="form-actions">
