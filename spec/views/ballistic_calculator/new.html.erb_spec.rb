@@ -15,7 +15,6 @@ RSpec.describe "ballistic_calculator/new", type: :view do
       assert_select "select[name=?]", "ballistic_calculator[gun_id]"
       assert_select "input[name=?]", "ballistic_calculator[ballistic_coefficient]"
       assert_select "input[name=?]", "ballistic_calculator[velocity]"
-      assert_select "input[name=?]", "ballistic_calculator[range]"
       assert_select "input[name=?]", "ballistic_calculator[height_of_sight]"
       assert_select "input[name=?]", "ballistic_calculator[zero_range]"
     end

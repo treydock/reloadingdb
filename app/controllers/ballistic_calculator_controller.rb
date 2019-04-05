@@ -36,7 +36,7 @@ class BallisticCalculatorController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def ballistic_calculator_params
       params.require(:ballistic_calculator).permit(:caliber_id, :load_id, :gun_id,
-                                                   :ballistic_coefficient, :velocity, :range,
+                                                   :ballistic_coefficient, :velocity,
                                                    :height_of_sight, :zero_range)
     end
 end
