@@ -27,7 +27,10 @@
       <%= f.label 'Interval', class: 'col-sm-3 text-sm-right' %>
       <%= f.input_field :ranges_interval, class: 'col-sm-2' %>
     <% end %>
-    <%= f.input :wind_speed %>
+    <%= f.input :advanced do %>
+      <%= f.label 'Wind Speed', class: 'col-sm-3 text-sm-right' %>
+      <%= f.input_field :wind_speed, class: 'col-sm-2' %>
+    <% end %>
   </div>
 
   <div class="form-actions">
