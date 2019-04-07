@@ -6,17 +6,14 @@
     <%= f.association :caliber, collection: @calibers %>
     <%= f.input :load_id, collection: @calibers,
                       label_method: :name, as: :grouped_select, group_method: :loads, required: true %>
-    <%= f.input :velocities do %>
-      <%= f.input_field :velocities, as: :array, type: :number, class: 'col-sm-3', placeholder: 'Velocity' %>
-      <%= link_to('#', id: 'add-velocity', class: 'btn btn-outline-secondary text-dark') do
-        content_tag(:span, "Add velocity", class: 'fa fa-plus')
-      end %>
-      <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
-      <%= f.input_field :velocity_unit, as: :select, collection: Unit.velocity, class: 'col-sm-2' %>
-    <% end %>
+    <%= f.input :velocity_unit, as: :select, collection: Unit.velocity, class: 'col-sm-3' %>
+    <%= f.input :velocities, as: :array, type: :number, class: 'col-sm-3', placeholder: 'Velocity' %>
     <%= content_tag(:div, class: "form-group row text optional") do %>
       <%= content_tag(:div, nil, class: "col-sm-9 offset-sm-3 append-velocities") %>
     <% end %>
+    <%= link_to('#', id: 'add-velocity', class: 'btn btn-outline-secondary text-dark offset-sm-3 mb-2') do
+      content_tag(:span, "Add velocity", class: 'fa fa-plus')
+    end %>
   </div>
 
   <div class="form-actions">
