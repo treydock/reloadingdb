@@ -9,14 +9,22 @@
                       label_method: :name, as: :grouped_select, group_method: :loads, required: false %>
     <%= f.input :gun_id, collection: @calibers,
                       label_method: :name, as: :grouped_select, group_method: :guns, required: false %>
-    <%= f.input :ballistic_coefficient, required: true %>
-    <%= f.input :velocity, required: true %>
-    <%= f.input :height_of_sight, required: true %>
-    <%= f.input :zero_range, required: true %>
+    <%= f.input :ammo, label: 'Ammunition' do %>
+      <%= f.label 'Ballistic Coefficient', class: 'col-sm-3 text-sm-right' %>
+      <%= f.input_field :ballistic_coefficient, required: true, class: 'col-sm-2' %>
+      <%= f.label 'Velocity', class: 'col-sm-3 text-sm-right' %>
+      <%= f.input_field :velocity, required: true, class: 'col-sm-2' %>
+    <% end %>
+    <%= f.input :firearm, label: 'Firearm' do %>
+      <%= f.label 'Height of Sight', class: 'col-sm-3 text-sm-right' %>
+      <%= f.input_field :height_of_sight, required: true, class: 'col-sm-2' %>
+      <%= f.label 'Zero Range', class: 'col-sm-3 text-sm-right' %>
+      <%= f.input_field :zero_range, required: true, class: 'col-sm-2' %>
+    <% end %>
     <%= f.input :range do %>
-      <%= f.label 'Maximum Range', class: 'col-sm-3 col-lg-3 text-sm-right' %>
+      <%= f.label 'Maximum Range', class: 'col-sm-3 text-sm-right' %>
       <%= f.input_field :ranges_max, class: 'col-sm-2' %>
-      <%= f.label 'Interval', class: 'col-sm-2 col-lg-2 text-sm-right' %>
+      <%= f.label 'Interval', class: 'col-sm-3 text-sm-right' %>
       <%= f.input_field :ranges_interval, class: 'col-sm-2' %>
     <% end %>
     <%= f.input :wind_speed %>
