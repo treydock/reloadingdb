@@ -57,25 +57,25 @@ RSpec.describe BallisticCalculator, type: :model do
 
   describe 'WD' do
     it 'should return value' do
-      expect(subject.WD(200,10).round(1).to_s).to eq('4.4')
+      expect(subject.WD(200).round(1).to_s).to eq('4.4')
     end
   end
 
   describe 'WD_moa' do
     it 'should return value' do
-      expect(subject.WD_moa(200,10).round(1).to_s).to eq('2.2')
+      expect(subject.WD_moa(200).round(1).to_s).to eq('2.2')
     end
   end
 
   describe 'wind_drift_moa' do
     it 'should return value' do
-      expect(subject.wind_drift_moa(200,10)).to eq([1.3, 2.2])
+      expect(subject.wind_drift_moa(200)).to eq([1.3, 2.2])
     end
   end
 
   describe 'wind_drift' do
     it 'should return value' do
-      expect(subject.wind_drift(200,10)).to eq([2.7, 4.4])
+      expect(subject.wind_drift(200)).to eq([2.7, 4.4])
     end
   end
 end

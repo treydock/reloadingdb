@@ -21,6 +21,10 @@
           <td class="table-dark">Zero range:</td>
           <td class="table-secondary"><%= @ballistic_calculator.zero_range %></td>
         </tr>
+        <tr>
+          <td class="table-dark"> Wind speed:</td>
+          <td class="table-secondary"><%= @ballistic_calculator.wind_speed %></td>
+        </tr>
       </table>
       <table class='table table-striped'>
         <thead>
@@ -28,12 +32,16 @@
             <th>Range</th>
             <th>Drop (in)</th>
             <th>Drop (MOA)</th>
+            <th>Wind Drift (in)</th>
+            <th>Wind Drift (MOA)</th>
           </tr>
           <% @ranges.each do |range| %>
             <tr>
               <td><%= range %></td>
               <td><%= @ballistic_calculator.BP(range).round(2) %></td>
               <td><%= @ballistic_calculator.BP_moa(range).round(1) %></td>
+              <td><%= @ballistic_calculator.wind_drift(range)[0] %></td>
+              <td><%= @ballistic_calculator.wind_drift_moa(range)[0] %></td>
             </tr>
           <% end %>
       </table>

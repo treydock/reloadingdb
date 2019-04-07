@@ -9,6 +9,7 @@ class BallisticCalculator
 
   attr_accessor :ranges_max
   attr_accessor :ranges_interval
+  attr_accessor :wind_speed
 
   attr_accessor :caliber_id
   attr_accessor :load_id
@@ -25,6 +26,7 @@ class BallisticCalculator
     end
     @ranges_max ||= 500
     @ranges_interval ||= 100
+    @wind_speed ||= 0
   end
 
   [
@@ -98,35 +100,36 @@ class BallisticCalculator
 
   # bullet path above or below line of sight, moa
   def BP_moa(range)
+    return 0.0 if range == 0
     self.BP(range) / (range / 100.0)
   end
 
   # wind deflection, inches
-  def WD(range, ws, wa = 180)
-    wind_speed = ws.to_f
+  def WD(range, wa = 180)
     wind_angle = wa.to_f
     #if wind_angle > 180.0
     #  wind_angle = 360.0 - wind_angle
     #end
-    (wind_speed / 10) * (wind_angle) * (self.TF(range) - ((3 * range.to_f) / velocity.to_f))
+    (wind_speed.to_f / 10) * (wind_angle) * (self.TF(range) - ((3 * range.to_f) / velocity.to_f))
   end
 
   # wind deflection, moa
-  def WD_moa(range, wind_speed, wind_angle = 180)
-    self.WD(range, wind_speed, wind_angle) / (range / 100)
+  def WD_moa(range, wind_angle = 180)
+    return 0.0 if range == 0
+    self.WD(range, wind_angle) / (range / 100)
   end
 
   # USMC method
   # http://www.millettsights.com/resources/shooting-tips/mathematics-for-precision-shooters/
-  def wind_drift_moa(range, wind_speed, single_value = false)
+  def wind_drift_moa(range, single_value = false)
     value = ((range / 100) * wind_speed.to_f) / 15
     return value if single_value
-    [value.round(1), self.WD_moa(range, wind_speed).round(1)]
+    [value.round(1), self.WD_moa(range).round(1)]
   end
 
-  def wind_drift(range, wind_speed)
-    moa = self.wind_drift_moa(range, wind_speed, true)
+  def wind_drift(range)
+    moa = self.wind_drift_moa(range, true)
     value = moa * (range / 100)
-    [value.round(1), self.WD(range, wind_speed).round(1)]
+    [value.round(1), self.WD(range).round(1)]
   end
 end
