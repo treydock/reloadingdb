@@ -57,6 +57,11 @@ span.fa {
     display: inline;
 }
 
+.form-control.input_field {
+  width: auto;
+  display: inline-block;
+}
+
 //https://getbootstrap.com/docs/4.0/examples/dashboard/
 .sidebar {
     position: fixed;
