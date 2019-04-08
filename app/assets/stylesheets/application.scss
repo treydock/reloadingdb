@@ -58,7 +58,6 @@ span.fa {
 }
 
 .form-control.input_field {
-  width: auto;
   display: inline-block;
 }
 
@@ -95,4 +94,14 @@ span.fa {
     .sidebar {
         position: relative !important;
     }
+}
+
+.date_picker .invalid-feedback {
+  display: block;
+}
+.time_picker .invalid-feedback {
+  display: block;
+}
+.datetime_picker .invalid-feedback {
+  display: block;
 }

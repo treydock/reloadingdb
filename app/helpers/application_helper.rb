@@ -136,4 +136,13 @@ module ApplicationHelper
     link_to "#{title} <span class='#{icon}'></span>".html_safe,
       {search: params[:search], page: params[:page], per_page: params[:per_page], column: column, direction: direction}
   end
+
+  def is_invalid(obj, a)
+    errors = obj.errors.messages[a]
+    if errors.present?
+      'is-invalid'
+    else
+      ''
+    end
+  end
 end

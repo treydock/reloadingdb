@@ -6,7 +6,8 @@
     <%= f.input :date, as: :date_picker, input_html: { class: 'col-sm-4' } %>
     <%= f.association :caliber, collection: @calibers %>
     <%= f.input :brass_id, collection: @calibers,
-                label_method: :name_caliber, as: :grouped_select, group_method: :brasses, required: true %>
+                label_method: :name_caliber, as: :grouped_select, group_method: :brasses, required: true,
+                input_html: { class: "#{is_invalid(@load, :bullet)}" } %>
     <%= f.input :brass_length do %>
       <%= f.input_field :brass_length, class: 'col-sm-3' %>
       <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
@@ -14,15 +15,17 @@
     <% end %>
     <%= f.input :brass_uses %>
     <%= f.input :bullet_id, collection: @calibers,
-                label_method: :name_caliber_grain, as: :grouped_select, group_method: :bullets, required: true %>
+                label_method: :name_caliber_grain, as: :grouped_select, group_method: :bullets, required: true,
+                input_html: { class: "#{is_invalid(@load, :bullet)}" } %>
     <%= f.input :powder do %>
-      <%= f.input_field :powder_id, as: :select, collection: @powders, class: 'col-sm-4'  %>
-      <%= f.label 'Weight:', class: 'col-sm-3 col-lg-2 text-sm-right' %>
-      <%= f.input_field :powder_weight, class: 'col-sm-2' %>
+      <%= f.input_field :powder_id, as: :select, collection: @powders, required: true,
+                        class: "col-sm-4 form-control input_field #{is_invalid(@load, :powder)}" %>
+      <%= f.label 'Weight:', required: true, class: 'col-sm-3 col-lg-2 text-sm-right' %>
+      <%= f.input_field :powder_weight, required: true, class: 'form-control input_field col-sm-2' %>
     <% end %>
     <%= f.association :primer, collection: @primers %>
-    <%= f.input :col, label: 'COL' do %>
-      <%= f.input_field :col, class: 'col-sm-3' %>
+    <%= f.input :col, required: true, label: 'COL' do %>
+      <%= f.input_field :col, required: true, class: 'form-control input_field col-sm-3' %>
       <%= f.label 'Unit:', class: 'col-sm-2 col-lg-1 text-sm-right' %>
       <%= f.input_field :col_unit, as: :select, collection: Unit.length, class: 'col-sm-2' %>
     <% end %>

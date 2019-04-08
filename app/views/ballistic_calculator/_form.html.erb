@@ -10,13 +10,13 @@
     <%= f.input :gun_id, collection: @calibers,
                       label_method: :name, as: :grouped_select, group_method: :guns, required: false %>
     <%= f.input :ammo, label: 'Ammunition' do %>
-      <%= f.label 'Ballistic Coefficient', required: true, class: 'col-sm-3 text-sm-right' %>
+      <%= f.label 'Ballistic Coefficient', required: true, class: 'col-sm-4 text-sm-right' %>
       <%= f.input_field :ballistic_coefficient, required: true, class: 'form-control input_field col-sm-2' %>
       <%= f.label 'Velocity', required: true, class: 'col-sm-3 text-sm-right' %>
       <%= f.input_field :velocity, required: true, class: 'form-control input_field col-sm-2' %>
     <% end %>
     <%= f.input :firearm, label: 'Firearm' do %>
-      <%= f.label 'Height of Sight', required: true, class: 'col-sm-3 text-sm-right' %>
+      <%= f.label 'Height of Sight', required: true, class: 'col-sm-4 text-sm-right' %>
       <%= f.input_field :height_of_sight, required: true, class: 'form-control input_field col-sm-2' %>
       <%= f.label 'Zero Range', required: true, class: 'col-sm-3 text-sm-right' %>
       <%= f.input_field :zero_range, required: true, class: 'form-control input_field col-sm-2' %>
@@ -24,7 +24,7 @@
     <%#= f.input :height_of_sight, required: true, wrapper: :horizontal_input_field, input_html: { class: 'input_field col-sm-2' }, wrapper_html: { class: 'offset-sm-3' } %>
     <%#= f.input :zero_range, required: true, wrapper: :horizontal_input_field, input_html: { class: 'input_field col-sm-2' }, wrapper_html: { class: 'offset-sm-3' } %>
     <%= f.input :range do %>
-      <%= f.label 'Maximum Range', class: 'col-sm-3 text-sm-right' %>
+      <%= f.label 'Maximum Range', class: 'col-sm-4 text-sm-right' %>
       <%= f.input_field :ranges_max, class: 'form-control input_field col-sm-2' %>
       <%= f.label 'Interval', class: 'col-sm-3 text-sm-right' %>
       <%= f.input_field :ranges_interval, class: 'form-control input_field col-sm-2' %>
