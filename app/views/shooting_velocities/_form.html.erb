@@ -12,9 +12,9 @@
     <%= content_tag(:div, class: "form-group row text optional") do %>
       <%= content_tag(:div, nil, class: "col-sm-9 offset-sm-3 append-velocities") %>
     <% end %>
-    <%= link_to('#', id: 'add-velocity', class: 'btn btn-outline-secondary text-dark offset-sm-3 mb-2') do
-      content_tag(:span, "Add velocity", class: 'fa fa-plus')
-    end %>
+    <%= link_to('#', id: 'add-velocity', class: 'btn btn-outline-secondary text-dark offset-sm-3 mb-2') do %>
+      <%= content_tag(:span, nil, class: 'fa fa-plus') %>Add velocity
+    <% end %>
   </div>
 
   <div class="form-actions">
