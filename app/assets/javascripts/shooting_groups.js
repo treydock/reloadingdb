@@ -1,6 +1,6 @@
 $(document).on("turbolinks:load", function() {
   var loads = $('#shooting_group_load_id').html();
-  var load = $('#shooting_group_load_id :selected').val();
+  load = $('#shooting_group_load_id :selected').val();
   caliber = $('#shooting_group_caliber_id :selected').text();
   if (caliber) {
     set_by_caliber(load, loads);
@@ -33,6 +33,7 @@ $(document).on("turbolinks:load", function() {
       caliber = $('#shooting_group_caliber_id :selected').text();
       if (!caliber) {
         $('#shooting_group_load_id').html(loads);
+        $('#shooting_group_load_id').val(load);
         return
       }
       load_options = $(loads).filter("optgroup[label=" + caliber + "]").html();

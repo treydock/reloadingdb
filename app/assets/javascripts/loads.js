@@ -1,8 +1,8 @@
 $(document).on("turbolinks:load", function() {
   var brasses = $('#load_brass_id').html();
-  var brass = $('#load_brass_id :selected').val();
+  brass = $('#load_brass_id :selected').val();
   var bullets = $('#load_bullet_id').html();
-  var bullet = $('#load_bullet_id :selected').val();
+  bullet = $('#load_bullet_id :selected').val();
   caliber = $('#load_caliber_id :selected').text();
   if (caliber) {
     set_by_caliber(brass, brasses, bullet, bullets);
@@ -30,7 +30,9 @@ $(document).on("turbolinks:load", function() {
       caliber = $('#load_caliber_id :selected').text();
       if (!caliber) {
         $('#load_brass_id').html(brasses);
+        $('#load_brass_id').val(brass);
         $('#load_bullet_id').html(bullets);
+        $('#load_bullet_id').val(bullet);
         return
       }
       brass_options = $(brasses).filter("optgroup[label=" + caliber + "]").html();

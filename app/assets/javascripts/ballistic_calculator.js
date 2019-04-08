@@ -1,8 +1,8 @@
 $(document).on("turbolinks:load", function() {
   var loads = $('#ballistic_calculator_load_id').html();
-  var load = $('#ballistic_calculator_load_id :selected').val();
+  load = $('#ballistic_calculator_load_id :selected').val();
   var guns = $('#ballistic_calculator_gun_id').html();
-  var gun = $('#ballistic_calculator_gun_id :selected').val();
+  gun = $('#ballistic_calculator_gun_id :selected').val();
   caliber = $('#ballistic_calculator_caliber_id :selected').text();
   if (caliber) {
     set_by_caliber(load, loads, gun, guns);
@@ -55,7 +55,9 @@ $(document).on("turbolinks:load", function() {
       caliber = $('#ballistic_calculator_caliber_id :selected').text();
       if (!caliber) {
         $('#ballistic_calculator_load_id').html(loads);
+        $('#ballistic_calculator_load_id').val(load);
         $('#ballistic_calculator_gun_id').html(guns);
+        $('#ballistic_calculator_gun_id').val(gun);
         return
       }
       load_options = $(loads).filter("optgroup[label=" + caliber + "]").html();

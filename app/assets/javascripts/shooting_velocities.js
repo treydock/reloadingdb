@@ -30,6 +30,7 @@ function set_by_caliber(load, loads) {
     caliber = $('#shooting_velocity_caliber_id :selected').text();
     if (!caliber) {
       $('#shooting_velocity_load_id').html(loads);
+      $('#shooting_velocity_load_id').val(load);
       return
     }
     load_options = $(loads).filter("optgroup[label=" + caliber + "]").html();
