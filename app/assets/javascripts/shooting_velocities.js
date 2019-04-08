@@ -12,6 +12,7 @@ $(document).on("turbolinks:load", function() {
     set_by_caliber(load, loads);
   }
   $('#shooting_velocity_caliber_id').change(function() {
+    load = $('#shooting_velocity_load_id :selected').val();
     set_by_caliber(load, loads);
   });
 

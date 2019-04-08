@@ -8,6 +8,8 @@ $(document).on("turbolinks:load", function() {
     set_by_caliber(brass, brasses, bullet, bullets);
   }
   $('#load_caliber_id').change(function() {
+    brass = $('#load_brass_id :selected').val();
+    bullet = $('#load_bullet_id :selected').val();
     set_by_caliber(brass, brasses, bullet, bullets);
   });
 

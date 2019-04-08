@@ -8,6 +8,8 @@ $(document).on("turbolinks:load", function() {
     set_by_caliber(load, loads, gun, guns);
   }
   $('#ballistic_calculator_caliber_id').change(function() {
+    load = $('#ballistic_calculator_load_id :selected').val();
+    gun = $('#ballistic_calculator_gun_id :selected').val();
     set_by_caliber(load, loads, gun, guns);
   });
 
@@ -37,7 +39,6 @@ $(document).on("turbolinks:load", function() {
       url: '/guns/' + gun_id,
       dataType: 'json',
       success: function(result) {
-        console.log(result);
         sight_height = result["sight_height"];
         zero_distance = result["zero_distance"];
         if (!$('#ballistic_calculator_height_of_sight').val()) {
@@ -75,18 +76,5 @@ $(document).on("turbolinks:load", function() {
       } else {
         $('#ballistic_calculator_gun_id').empty();
       }
-  }
-
-  function get_load(load_id) {
-    $.ajax({
-      type: 'GET',
-      url: '/loads/' + load_id,
-      dataType: 'json',
-      async: false,
-      success: function(result) {
-        console.log(result);
-        return result;
-      }
-    });
   }
 });

@@ -6,6 +6,7 @@ $(document).on("turbolinks:load", function() {
     set_by_caliber(load, loads);
   }
   $('#shooting_group_caliber_id').change(function() {
+    load = $('#shooting_group_load_id :selected').val();
     set_by_caliber(load, loads);
   });
 
