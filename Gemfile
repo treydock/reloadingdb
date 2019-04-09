@@ -36,6 +36,7 @@ gem 'redcarpet'
 gem 'high_voltage', '~> 3.1'
 gem 'bootstrap4-datetime-picker-rails'
 gem 'recaptcha'
+gem 'discard'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

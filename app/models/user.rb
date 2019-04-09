@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include Discard::Model
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -32,6 +34,14 @@ class User < ApplicationRecord
     elsif conditions.has_key?(:username) || conditions.has_key?(:email)
       where(conditions.to_h).first
     end
+  end
+
+  def active_for_authentication?
+    super && ! self.discarded?
+  end
+
+  def inactive_message
+    self.discarded? ? :deleted_account : super
   end
 
   has_settings do |s|
