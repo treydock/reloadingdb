@@ -1,4 +1,5 @@
 class Brass < ApplicationRecord
+  include Discard::Model
   include UserOwned
   include HasCaliber
   validates :name, presence: true, uniqueness:  { scope: [:caliber, :user] }

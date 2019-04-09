@@ -1,4 +1,5 @@
 class Caliber < ApplicationRecord
+  include Discard::Model
   include UserOwned
   has_many :bullets
   has_many :brasses

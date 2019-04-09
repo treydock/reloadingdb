@@ -1,4 +1,5 @@
 class ShootingLocation < ApplicationRecord
+  include Discard::Model
   include UserOwned
   validates :name, presence: true, uniqueness: { scope: :user }
 

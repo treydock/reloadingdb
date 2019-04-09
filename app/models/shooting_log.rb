@@ -1,4 +1,5 @@
 class ShootingLog < ApplicationRecord
+  include Discard::Model
   include UserOwned
   include HasWindSpeed
   belongs_to :shooting_location

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_09_192028) do
+ActiveRecord::Schema.define(version: 2019_04_09_234616) do
 
   create_table "brasses", force: :cascade do |t|
     t.string "name"
@@ -18,7 +18,9 @@ ActiveRecord::Schema.define(version: 2019_04_09_192028) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
     t.index ["caliber_id"], name: "index_brasses_on_caliber_id"
+    t.index ["discarded_at"], name: "index_brasses_on_discarded_at"
     t.index ["user_id"], name: "index_brasses_on_user_id"
   end
 
@@ -31,7 +33,9 @@ ActiveRecord::Schema.define(version: 2019_04_09_192028) do
     t.datetime "updated_at", null: false
     t.float "ballistic_coefficient"
     t.string "ballistic_coefficient_unit"
+    t.datetime "discarded_at"
     t.index ["caliber_id"], name: "index_bullets_on_caliber_id"
+    t.index ["discarded_at"], name: "index_bullets_on_discarded_at"
     t.index ["user_id"], name: "index_bullets_on_user_id"
   end
 
@@ -40,6 +44,8 @@ ActiveRecord::Schema.define(version: 2019_04_09_192028) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_calibers_on_discarded_at"
     t.index ["user_id"], name: "index_calibers_on_user_id"
   end
 
@@ -54,7 +60,9 @@ ActiveRecord::Schema.define(version: 2019_04_09_192028) do
     t.datetime "updated_at", null: false
     t.string "zero_distance_unit"
     t.float "scope_moa_adjustment"
+    t.datetime "discarded_at"
     t.index ["caliber_id"], name: "index_guns_on_caliber_id"
+    t.index ["discarded_at"], name: "index_guns_on_discarded_at"
     t.index ["user_id"], name: "index_guns_on_user_id"
   end
 
@@ -80,9 +88,11 @@ ActiveRecord::Schema.define(version: 2019_04_09_192028) do
     t.string "velocity_unit"
     t.string "run_out_unit"
     t.string "brass_length_unit"
+    t.datetime "discarded_at"
     t.index ["brass_id"], name: "index_loads_on_brass_id"
     t.index ["bullet_id"], name: "index_loads_on_bullet_id"
     t.index ["caliber_id"], name: "index_loads_on_caliber_id"
+    t.index ["discarded_at"], name: "index_loads_on_discarded_at"
     t.index ["powder_id"], name: "index_loads_on_powder_id"
     t.index ["primer_id"], name: "index_loads_on_primer_id"
     t.index ["user_id"], name: "index_loads_on_user_id"
@@ -93,6 +103,8 @@ ActiveRecord::Schema.define(version: 2019_04_09_192028) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_powders_on_discarded_at"
     t.index ["user_id"], name: "index_powders_on_user_id"
   end
 
@@ -101,6 +113,8 @@ ActiveRecord::Schema.define(version: 2019_04_09_192028) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_primers_on_discarded_at"
     t.index ["user_id"], name: "index_primers_on_user_id"
   end
 
@@ -138,7 +152,9 @@ ActiveRecord::Schema.define(version: 2019_04_09_192028) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "caliber_id"
+    t.datetime "discarded_at"
     t.index ["caliber_id"], name: "index_shooting_groups_on_caliber_id"
+    t.index ["discarded_at"], name: "index_shooting_groups_on_discarded_at"
     t.index ["load_id"], name: "index_shooting_groups_on_load_id"
     t.index ["shooting_log_id"], name: "index_shooting_groups_on_shooting_log_id"
     t.index ["user_id"], name: "index_shooting_groups_on_user_id"
@@ -152,6 +168,8 @@ ActiveRecord::Schema.define(version: 2019_04_09_192028) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_shooting_locations_on_discarded_at"
     t.index ["user_id"], name: "index_shooting_locations_on_user_id"
   end
 
@@ -174,7 +192,9 @@ ActiveRecord::Schema.define(version: 2019_04_09_192028) do
     t.string "pressure_unit"
     t.string "wind_speed_unit"
     t.integer "caliber_id"
+    t.datetime "discarded_at"
     t.index ["caliber_id"], name: "index_shooting_logs_on_caliber_id"
+    t.index ["discarded_at"], name: "index_shooting_logs_on_discarded_at"
     t.index ["shooting_location_id"], name: "index_shooting_logs_on_shooting_location_id"
     t.index ["user_id"], name: "index_shooting_logs_on_user_id"
   end
@@ -188,7 +208,9 @@ ActiveRecord::Schema.define(version: 2019_04_09_192028) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "velocity_unit"
+    t.datetime "discarded_at"
     t.index ["caliber_id"], name: "index_shooting_velocities_on_caliber_id"
+    t.index ["discarded_at"], name: "index_shooting_velocities_on_discarded_at"
     t.index ["load_id"], name: "index_shooting_velocities_on_load_id"
     t.index ["user_id"], name: "index_shooting_velocities_on_user_id"
   end

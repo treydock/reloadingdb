@@ -1,4 +1,5 @@
 class Load < ApplicationRecord
+  include Discard::Model
   include UserOwned
   include HasCaliber
   include HasVelocity
