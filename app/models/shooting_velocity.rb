@@ -1,5 +1,4 @@
 class ShootingVelocity < ApplicationRecord
-  include Discard::Model
   include UserOwned
   include HasCaliber
   include HasLoad
@@ -12,6 +11,12 @@ class ShootingVelocity < ApplicationRecord
   validate :velocity_integers
 
   scoped_search on: [:date], complete_value: true
+
+  scope :kept, -> { undiscarded.joins(:load, :caliber).merge(Load.kept).merge(Caliber.kept) }
+
+  def name_full
+    "#{date} - #{load.name}"
+  end
 
   def average_velocity
     return nil if velocities.nil? || velocities.size == 0

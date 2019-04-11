@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "guns/index", type: :view do
   before(:each) do
-    @guns = assign(:guns, create_list(:gun, 2))
+    create_list(:gun, 2)
+    @guns = assign(:guns, Gun.page(1).all)
   end
 
   it "renders a list of guns" do

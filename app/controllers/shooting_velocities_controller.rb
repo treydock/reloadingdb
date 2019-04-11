@@ -1,6 +1,8 @@
 class ShootingVelocitiesController < ApplicationController
+  include DiscardController
+
   before_action :set_index, only: [:index]
-  before_action :set_shooting_velocity, only: [:show, :edit, :update, :destroy]
+  before_action :set_shooting_velocity, only: [:show, :edit, :update, :discard, :restore, :delete, :destroy]
   before_action :set_associations, only: [:new, :create, :edit, :update]
 
   # GET /shooting_velocities
@@ -72,8 +74,8 @@ class ShootingVelocitiesController < ApplicationController
 
   private
     def set_associations
-      @loads = policy_scope(Load).all
-      @calibers = policy_scope(Caliber).all
+      @loads = policy_scope(Load).kept
+      @calibers = policy_scope(Caliber).kept
     end
 
     # Use callbacks to share common setup or constraints between actions.

@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "loads/index", type: :view do
-  include LoadViewSpecHelper
   before(:each) do
-    initialize_view_helpers(view)
     create_list(:load, 2)
     @loads = assign(:loads, Load.page(1).all)
   end

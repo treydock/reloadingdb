@@ -1,0 +1,2 @@
+$('#mainModal').html("<%= escape_javascript(render 'discard', obj: instance_variable_get("@#{controller_name.singularize}")) %>");
+$('#mainModal').modal('show');

@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "shooting_groups/index", type: :view do
-  include LoadViewSpecHelper
   before(:each) do
-    initialize_view_helpers(view)
     create_list(:shooting_group, 2)
     @shooting_groups = assign(:shooting_groups, ShootingGroup.page(1).all)
   end

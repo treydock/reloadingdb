@@ -34,5 +34,7 @@ RSpec.describe PowdersController, type: :routing do
     it "routes to #destroy" do
       expect(:delete => "/powders/1").to route_to("powders#destroy", :id => "1")
     end
+
+    include_examples 'discard routing'
   end
 end

@@ -58,11 +58,39 @@ RSpec.describe ShootingGroup, type: :model do
     end
   end
 
+  describe 'scopes' do
+    context 'kept' do
+      it 'should not include discarded calibers' do
+        caliber = create(:caliber)
+        caliber.discard
+        shooting_group1 = create(:shooting_group, caliber: caliber)
+        shooting_group2 = create(:shooting_group)
+        expect(described_class.kept).to include(shooting_group2)
+        expect(described_class.kept).not_to include(shooting_group1)
+      end
+      it 'should not include discarded loads' do
+        load = create(:load)
+        load.discard
+        shooting_group1 = create(:shooting_group, load: load)
+        shooting_group2 = create(:shooting_group)
+        expect(described_class.kept).to include(shooting_group2)
+        expect(described_class.kept).not_to include(shooting_group1)
+      end
+    end
+  end
+
   describe 'name' do
     it 'should be set' do
       shooting_log = create(:shooting_log, date: Date.parse('2019-03-14'))
       shooting_group = create(:shooting_group, shooting_log: shooting_log, number: 1, distance: 100, distance_unit: 'yd')
       expect(shooting_group.name).to eq('2019-03-14 - #1 (100 yd)')
+    end
+  end
+
+  describe 'name_full' do
+    it 'should be set' do
+      shooting_group = create(:shooting_group)
+      expect(shooting_group.name_full).to eq(shooting_group.name)
     end
   end
 
@@ -221,7 +249,7 @@ RSpec.describe ShootingGroup, type: :model do
     end
   end
 
-  describe 'clone' do
+  describe 'clone_record' do
     before(:each) do
       user = create(:user)
       load = create(:load, user: user)
@@ -229,13 +257,13 @@ RSpec.describe ShootingGroup, type: :model do
       @shooting_group = create(:shooting_group, number: 1, distance: 100, shooting_log: shooting_log, load: load, user: user)
     end
     it 'should create new record' do
-      expect(@shooting_group.clone.new_record?).to eq(true)
+      expect(@shooting_group.clone_record.new_record?).to eq(true)
     end
     it 'should have next number' do
-      expect(@shooting_group.clone.number).to eq(2)
+      expect(@shooting_group.clone_record.number).to eq(2)
     end
     it 'should remove some values' do
-      clone = @shooting_group.clone
+      clone = @shooting_group.clone_record
       expect(clone.group_size).to be_nil
     end
   end

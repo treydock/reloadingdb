@@ -1,6 +1,8 @@
 class ShootingGroupsController < ApplicationController
+  include DiscardController
+
   before_action :set_index, only: [:index]
-  before_action :set_shooting_group, only: [:show, :edit, :update, :destroy, :clone]
+  before_action :set_shooting_group, only: [:show, :edit, :update, :discard, :restore, :delete, :destroy, :clone]
   before_action :set_associations, only: [:new, :create, :edit, :update, :clone]
   after_action :verify_authorized, except: [:index, :autocomplete, :next_number]
   after_action :verify_policy_scoped, only: [:index, :next_number]
@@ -81,7 +83,7 @@ class ShootingGroupsController < ApplicationController
 
   # GET /shooting_groups/1/clone
   def clone
-    @shooting_group = @shooting_group.clone
+    @shooting_group = @shooting_group.clone_record
     authorize @shooting_group
     render :new
   end
@@ -97,9 +99,9 @@ class ShootingGroupsController < ApplicationController
     end
 
     def set_associations
-      @shooting_logs = policy_scope(ShootingLog).all
-      @loads = policy_scope(Load).all
-      @calibers = policy_scope(Caliber).all
+      @shooting_logs = policy_scope(ShootingLog).kept
+      @loads = policy_scope(Load).kept
+      @calibers = policy_scope(Caliber).kept
     end
 
     def shooting_group_new_params

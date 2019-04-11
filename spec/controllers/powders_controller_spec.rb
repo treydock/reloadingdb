@@ -108,4 +108,5 @@ RSpec.describe PowdersController, type: :controller do
     end
   end
 
+  include_examples 'DiscardController'
 end

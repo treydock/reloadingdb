@@ -34,5 +34,7 @@ RSpec.describe ShootingLocationsController, type: :routing do
     it "routes to #destroy" do
       expect(:delete => "/shooting_locations/1").to route_to("shooting_locations#destroy", :id => "1")
     end
+
+    include_examples 'discard routing'
   end
 end

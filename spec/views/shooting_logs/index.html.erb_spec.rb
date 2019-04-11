@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "shooting_logs/index", type: :view do
-  include LoadViewSpecHelper
   before(:each) do
-    initialize_view_helpers(view)
     shooting_logs = create_list(:shooting_log, 2)
     shooting_logs[0].shooting_groups << create(:shooting_group)
     shooting_logs[1].shooting_groups << create_list(:shooting_group, 2)

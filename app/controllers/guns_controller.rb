@@ -1,6 +1,8 @@
 class GunsController < ApplicationController
+  include DiscardController
+
   before_action :set_index, only: [:index]
-  before_action :set_gun, only: [:show, :edit, :update, :destroy]
+  before_action :set_gun, only: [:show, :edit, :update, :discard, :restore, :delete, :destroy]
   before_action :set_associations, only: [:new, :create, :edit, :update]
 
   # GET /guns
@@ -72,7 +74,7 @@ class GunsController < ApplicationController
 
   private
     def set_associations
-      @calibers = policy_scope(Caliber).all
+      @calibers = policy_scope(Caliber).kept
     end
 
     # Use callbacks to share common setup or constraints between actions.

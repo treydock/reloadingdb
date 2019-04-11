@@ -1,5 +1,4 @@
 class Load < ApplicationRecord
-  include Discard::Model
   include UserOwned
   include HasCaliber
   include HasVelocity
@@ -7,8 +6,8 @@ class Load < ApplicationRecord
   belongs_to :bullet
   belongs_to :powder
   belongs_to :primer
-  has_many :shooting_groups
-  has_many :shooting_velocities
+  has_many :shooting_groups, dependent: :destroy
+  has_many :shooting_velocities, dependent: :destroy
 
   validates :date, presence: true
   validates :powder_weight, numericality: true, presence: true
@@ -26,8 +25,16 @@ class Load < ApplicationRecord
   scoped_search relation: :bullet, on: :name, complete_value: true, rename: :bullet
   scoped_search relation: :bullet, on: :grain, complete_value: true, rename: :bullet_grain
 
+  scope :kept, -> { undiscarded.joins(:user, :caliber, :brass, :bullet, :powder, :primer)
+                      .merge(User.kept).merge(Caliber.kept).merge(Brass.kept)
+                      .merge(Bullet.kept).merge(Powder.kept).merge(Primer.kept) }
+
   def name
     "#{date} - #{bullet.name_caliber_grain} - #{powder.name} (#{powder_weight}gr)"
+  end
+
+  def name_full
+    name
   end
 
   def brass_length_full
@@ -64,7 +71,7 @@ class Load < ApplicationRecord
     avg.to_i
   end
 
-  def clone
+  def clone_record
     new_load = self.dup
     new_load.date = nil
     new_load.velocity = nil

@@ -125,4 +125,6 @@ RSpec.describe ShootingGroupsController, type: :controller do
       expect(response).to be_successful
     end
   end
+
+  include_examples 'DiscardController'
 end

@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "calibers/index", type: :view do
   before(:each) do
-    @calibers = assign(:calibers, create_list(:caliber, 2))
+    create_list(:caliber, 2)
+    @calibers = assign(:calibers, Caliber.page(1).all)
   end
 
   it "renders a list of calibers" do

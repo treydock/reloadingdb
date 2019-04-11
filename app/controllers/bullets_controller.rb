@@ -1,7 +1,9 @@
 class BulletsController < ApplicationController
+  include DiscardController
+
   before_action :set_index, only: [:index]
-  before_action :set_bullet, only: [:show, :edit, :update, :destroy]
-  before_action :set_components, only: [:new, :create, :edit, :update]
+  before_action :set_bullet, only: [:show, :edit, :update, :discard, :restore, :delete, :destroy]
+  before_action :set_associations, only: [:new, :create, :edit, :update]
 
   # GET /bullets
   # GET /bullets.json
@@ -71,8 +73,8 @@ class BulletsController < ApplicationController
   end
 
   private
-    def set_components
-      @calibers = policy_scope(Caliber).all
+    def set_associations
+      @calibers = policy_scope(Caliber).kept
     end
 
     # Use callbacks to share common setup or constraints between actions.

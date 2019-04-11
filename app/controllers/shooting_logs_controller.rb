@@ -1,6 +1,8 @@
 class ShootingLogsController < ApplicationController
+  include DiscardController
+
   before_action :set_index, only: [:index]
-  before_action :set_shooting_log, only: [:show, :edit, :update, :destroy]
+  before_action :set_shooting_log, only: [:show, :edit, :update, :discard, :restore, :delete, :destroy]
   before_action :set_associations, only: [:new, :create, :edit, :update]
 
   # GET /shooting_logs
@@ -72,8 +74,8 @@ class ShootingLogsController < ApplicationController
 
   private
     def set_associations
-      @shooting_locations = policy_scope(ShootingLocation).all
-      @calibers = policy_scope(Caliber).all
+      @shooting_locations = policy_scope(ShootingLocation).kept
+      @calibers = policy_scope(Caliber).kept
     end
 
     # Use callbacks to share common setup or constraints between actions.

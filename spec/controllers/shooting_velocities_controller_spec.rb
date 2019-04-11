@@ -110,4 +110,5 @@ RSpec.describe ShootingVelocitiesController, type: :controller do
     end
   end
 
+  include_examples 'DiscardController'
 end

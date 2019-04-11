@@ -50,7 +50,13 @@ class ApplicationController < ActionController::Base
 
   def set_index(joins = nil)
     model = controller_name.classify.constantize
-    objects = policy_scope(model).search_for(params[:search])
+    objects = policy_scope(model)
+    if params[:show_discarded] == 'yes'
+      objects = objects.all
+    else
+      objects = objects.kept
+    end
+    objects = objects.search_for(params[:search])
     if joins.present?
       objects = objects.joins(joins)
     end

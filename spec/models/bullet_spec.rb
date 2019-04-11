@@ -7,6 +7,7 @@ RSpec.describe Bullet, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to have_many(:loads).dependent(:destroy) }
   end
 
   describe 'validations' do
@@ -28,11 +29,25 @@ RSpec.describe Bullet, type: :model do
     end
   end
 
-  describe 'name_caliber_grain' do
+  describe 'scopes' do
+    it 'should have kept scope' do
+      caliber1 = create(:caliber)
+      caliber1.discard
+      bullet = create(:bullet)
+      bullet.discard
+      bullet1 = create(:bullet, caliber: caliber1)
+      bullet2 = create(:bullet, caliber: create(:caliber))
+      expect(described_class.kept).to include(bullet2)
+      expect(described_class.kept).not_to include(bullet)
+      expect(described_class.kept).not_to include(bullet1)
+    end
+  end
+
+  describe 'name_full' do
     it 'should be set' do
       caliber = create(:caliber, name: '308')
       bullet = create(:bullet, caliber: caliber, name: 'Sierra HPBT', grain: 168)
-      expect(bullet.name_caliber_grain).to eq('Sierra HPBT (308 - 168gr)')
+      expect(bullet.name_full).to eq('Sierra HPBT (308 - 168gr)')
     end
   end
 

@@ -1,7 +1,9 @@
 class LoadsController < ApplicationController
+  include DiscardController
+
   before_action :set_index, only: [:index]
-  before_action :set_load, only: [:show, :edit, :update, :destroy, :calculate_velocity, :clone]
-  before_action :set_components, only: [:new, :create, :edit, :update, :clone]
+  before_action :set_load, only: [:show, :edit, :update, :discard, :restore, :delete, :destroy, :calculate_velocity, :clone]
+  before_action :set_associations, only: [:new, :create, :edit, :update, :clone]
 
   # GET /loads
   # GET /loads.json
@@ -87,7 +89,7 @@ class LoadsController < ApplicationController
 
   # GET /loads/1/clone
   def clone
-    @load = @load.clone
+    @load = @load.clone_record
     authorize @load
     render :new
   end
@@ -98,12 +100,12 @@ class LoadsController < ApplicationController
       @load = policy_scope(Load).find(params[:id])
     end
 
-    def set_components
-      @calibers = policy_scope(Caliber).all
-      @brass = policy_scope(Brass).all
-      @bullets = policy_scope(Bullet).all
-      @powders = policy_scope(Powder).all
-      @primers = policy_scope(Primer).all
+    def set_associations
+      @calibers = policy_scope(Caliber).kept
+      @brass = policy_scope(Brass).kept
+      @bullets = policy_scope(Bullet).kept
+      @powders = policy_scope(Powder).kept
+      @primers = policy_scope(Primer).kept
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

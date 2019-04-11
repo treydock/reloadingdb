@@ -1,6 +1,8 @@
 class PrimersController < ApplicationController
+  include DiscardController
+
   before_action :set_index, only: [:index]
-  before_action :set_primer, only: [:show, :edit, :update, :destroy]
+  before_action :set_primer, only: [:show, :edit, :update, :discard, :restore, :delete, :destroy]
 
   # GET /primers
   # GET /primers.json

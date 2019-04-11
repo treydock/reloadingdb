@@ -108,4 +108,5 @@ RSpec.describe PrimersController, type: :controller do
     end
   end
 
+  include_examples 'DiscardController'
 end

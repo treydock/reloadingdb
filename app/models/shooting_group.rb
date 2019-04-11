@@ -1,5 +1,4 @@
 class ShootingGroup < ApplicationRecord
-  include Discard::Model
   include UserOwned
   include HasCaliber
   include HasLoad
@@ -16,8 +15,14 @@ class ShootingGroup < ApplicationRecord
   scoped_search on: [:distance], complete_value: true
   scoped_search relation: :shooting_log, on: :date, complete_value: true, rename: :date
 
+  scope :kept, -> { undiscarded.joins(:load, :caliber, :shooting_log).merge(Load.kept).merge(Caliber.kept).merge(ShootingLog.kept) }
+
   def name
     "#{shooting_log.date} - ##{number} (#{distance} #{distance_unit})"
+  end
+
+  def name_full
+    name
   end
 
   def distance_unit
@@ -75,7 +80,7 @@ class ShootingGroup < ApplicationRecord
     highest_number + 1
   end
 
-  def clone
+  def clone_record
     new_shooting_group = self.dup
     scope = self.class.by_user(user)
     new_shooting_group.number = self.class.next_number(scope, shooting_log.id, load.id, distance)

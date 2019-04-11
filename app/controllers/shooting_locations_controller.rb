@@ -1,6 +1,8 @@
 class ShootingLocationsController < ApplicationController
+  include DiscardController
+
   before_action :set_index, only: [:index]
-  before_action :set_shooting_location, only: [:show, :edit, :update, :destroy]
+  before_action :set_shooting_location, only: [:show, :edit, :update, :discard, :restore, :delete, :destroy]
 
   # GET /shooting_locations
   # GET /shooting_locations.json

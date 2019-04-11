@@ -1,0 +1,30 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Confirm Delete</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="alert alert-danger">The following action can not be undone!</div>
+      <div class="alert alert-warning">The following records will also be deleted:</div>
+      <b><%= obj.model_name.singular_route_key.humanize %></b> - <%= obj.name_full %>
+      <% obj.will_destroy.each do |assoc, records| %>
+        <% next unless records.present? %>
+        <div class="font-weight-bold border-bottom"><%= assoc.to_s.humanize %></div>
+        <ul>
+          <% records.each do |r| %>
+            <li><%= r.name_full %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+
+    <div class="modal-footer">
+      <%= link_to 'Delete', obj, method: :delete, class: 'btn btn-primary' %>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+    </div>
+  </div>
+</div>

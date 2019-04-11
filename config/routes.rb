@@ -1,45 +1,72 @@
 Rails.application.routes.draw do
-  get '/ballistic_calculator', to: 'ballistic_calculator#new', as: :ballistic_calculator
-  post '/ballistic_calculator', to: 'ballistic_calculator#create', as: nil
-  resources :shooting_velocities do
-    get 'autocomplete', on: :collection
+  concern :discard do
+    member do
+      get 'discard'
+      patch 'discard'
+      patch 'restore'
+      get 'delete', constraints: { format: 'js' }
+    end
   end
-  resources :guns
+  concern :autocomplete do
+    collection do
+      get 'autocomplete'
+    end
+  end
+  concern :clone do
+    member do
+      get 'clone'
+    end
+  end
+  resources :shooting_velocities do
+    concerns [:autocomplete, :discard]
+  end
+  resources :guns do
+    concerns [:discard]
+  end
   resources :shooting_groups do
     collection do
-      get 'autocomplete'
       get 'next_number', constraints: { format: 'json' }
     end
-    member do
-      get 'clone'
-    end
+    concerns [:autocomplete, :discard, :clone]
   end
-  get 'users/settings', to: 'user_settings#show', as: :user_settings
-  get 'users/settings/edit', to: 'user_settings#edit', as: :user_settings_edit
-  put 'users/settings', to: 'user_settings#update', as: nil
   resources :shooting_logs do
-    get 'autocomplete', on: :collection
+    concerns [:autocomplete, :discard]
   end
-  resources :shooting_locations
+  resources :shooting_locations do
+    concerns [:discard]
+  end
   resources :loads do
-    collection do
-      get 'autocomplete'
-    end
     member do
       get 'calculate_velocity'
-      get 'clone'
     end
+    concerns [:autocomplete, :discard, :clone]
   end
-  resources :brasses
-  resources :calibers
-  resources :primers
-  resources :powders
-  resources :bullets
+  resources :brasses do
+    concerns [:discard]
+  end
+  resources :calibers do
+    concerns [:discard]
+  end
+  resources :primers do
+    concerns [:discard]
+  end
+  resources :powders do
+    concerns [:discard]
+  end
+  resources :bullets do
+    concerns [:discard]
+  end
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
     passwords: 'users/passwords',
-    confirmations: 'users/confirmations'}
+    confirmations: 'users/confirmations'
+  }
+  get '/ballistic_calculator', to: 'ballistic_calculator#new', as: :ballistic_calculator
+  post '/ballistic_calculator', to: 'ballistic_calculator#create', as: nil
+  get 'users/settings', to: 'user_settings#show', as: :user_settings
+  get 'users/settings/edit', to: 'user_settings#edit', as: :user_settings_edit
+  put 'users/settings', to: 'user_settings#update', as: nil
   get "/*id" => 'pages#show', as: :page, format: false
   root to: "pages#show", id: 'home'
 end

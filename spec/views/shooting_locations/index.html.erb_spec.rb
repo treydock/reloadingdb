@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "shooting_locations/index", type: :view do
   before(:each) do
-    @shooting_locations = assign(:shooting_locations, create_list(:shooting_location, 2))
+    create_list(:shooting_location, 2)
+    @shooting_locations = assign(:shooting_locations, ShootingLocation.page(1).all)
   end
 
   it "renders a list of shooting_locations" do

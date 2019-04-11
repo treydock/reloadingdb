@@ -14,6 +14,27 @@ RSpec.describe ShootingVelocity, type: :model do
     it { is_expected.to validate_presence_of :date }
   end
 
+  describe 'scopes' do
+    context 'kept' do
+      it 'should not include discarded calibers' do
+        caliber = create(:caliber)
+        caliber.discard
+        shooting_velocity1 = create(:shooting_velocity, caliber: caliber)
+        shooting_velocity2 = create(:shooting_velocity)
+        expect(described_class.kept).to include(shooting_velocity2)
+        expect(described_class.kept).not_to include(shooting_velocity1)
+      end
+      it 'should not include discarded loads' do
+        load = create(:load)
+        load.discard
+        shooting_velocity1 = create(:shooting_velocity, load: load)
+        shooting_velocity2 = create(:shooting_velocity)
+        expect(described_class.kept).to include(shooting_velocity2)
+        expect(described_class.kept).not_to include(shooting_velocity1)
+      end
+    end
+  end
+
   describe 'velocities' do
     it 'should accept array of integers' do
       subject.velocities = [1000,1000]
@@ -30,6 +51,12 @@ RSpec.describe ShootingVelocity, type: :model do
     it 'should be invalid if not integers' do
       obj = build(:shooting_velocity, velocities: ['foo',2000])
       expect(obj).not_to be_valid
+    end
+  end
+
+  describe 'name_full' do
+    it 'should be set' do
+      expect(subject.name_full).to eq("#{subject.date} - #{subject.load.name}")
     end
   end
 

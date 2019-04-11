@@ -45,5 +45,7 @@ RSpec.describe LoadsController, type: :routing do
     it "routes to #destroy" do
       expect(:delete => "/loads/1").to route_to("loads#destroy", :id => "1")
     end
+
+    include_examples 'discard routing'
   end
 end

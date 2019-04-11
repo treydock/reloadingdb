@@ -24,6 +24,27 @@ RSpec.describe Gun, type: :model do
     end
   end
 
+  describe 'scopes' do
+    it 'should have kept scope' do
+      caliber1 = create(:caliber)
+      caliber1.discard
+      gun = create(:gun)
+      gun.discard
+      gun1 = create(:gun, caliber: caliber1)
+      gun2 = create(:gun, caliber: create(:caliber))
+      expect(described_class.kept).to include(gun2)
+      expect(described_class.kept).not_to include(gun)
+      expect(described_class.kept).not_to include(gun1)
+    end
+  end
+
+  describe 'name_full' do
+    it 'should be set' do
+      gun = create(:gun, name: 'test')
+      expect(gun.name_full).to eq('test')
+    end
+  end
+
   describe 'sight_height_unit' do
     it 'should pull value from database' do
       user = create(:user)

@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "brasses/index", type: :view do
   before(:each) do
-    @brasses = assign(:brasses, create_list(:brass, 2))
+    create_list(:brass, 2)
+    @brasses = assign(:brasses, Brass.page(1).all)
   end
 
   it "renders a list of brasses" do

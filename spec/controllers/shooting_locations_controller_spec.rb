@@ -108,4 +108,5 @@ RSpec.describe ShootingLocationsController, type: :controller do
     end
   end
 
+  include_examples 'DiscardController'
 end

@@ -23,6 +23,18 @@ class UserObjectPolicy < ApplicationPolicy
     edit?
   end
 
+  def discard?
+    owned
+  end
+
+  def restore?
+    owned
+  end
+
+  def delete?
+    owned
+  end
+
   def destroy?
     owned
   end

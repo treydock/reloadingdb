@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "primers/index", type: :view do
   before(:each) do
-    @primers = assign(:primers, create_list(:primer, 2))
+    create_list(:primer, 2)
+    @primers = assign(:primers, Primer.page(1).all)
   end
 
   it "renders a list of primers" do

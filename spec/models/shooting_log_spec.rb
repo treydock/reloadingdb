@@ -9,14 +9,23 @@ RSpec.describe ShootingLog, type: :model do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:caliber) }
     it { is_expected.to belong_to(:shooting_location) }
-    it { is_expected.to have_many(:shooting_groups) }
+    it { is_expected.to have_many(:shooting_groups).dependent(:destroy) }
   end
 
   describe 'validations' do
     it { is_expected.not_to validate_presence_of :caliber }
     it { is_expected.not_to validate_presence_of :caliber_id }
+    it { is_expected.not_to validate_presence_of :shooting_location }
+    it { is_expected.not_to validate_presence_of :shooting_location_id }
     it { is_expected.to validate_presence_of :date }
     it { is_expected.to validate_presence_of :time }
+  end
+
+  describe 'name_full' do
+    it 'should be set' do
+      shooting_log = create(:shooting_log)
+      expect(shooting_log.name_full).to eq(shooting_log.date)
+    end
   end
 
   describe 'temperature_full' do

@@ -35,6 +35,9 @@ $(document).on("turbolinks:load", function() {
     $(document).on('change', '#per_page', function() {
         $('#per_page_form').submit();
     });
+    $(document).on('change', '#show_discarded', function() {
+        $('#per_page_form').submit();
+    });
 
     $('[data-toggle="tooltip"]').tooltip()
 

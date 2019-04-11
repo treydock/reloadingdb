@@ -1,10 +1,9 @@
 class ShootingLog < ApplicationRecord
-  include Discard::Model
   include UserOwned
   include HasWindSpeed
-  belongs_to :shooting_location
+  belongs_to :shooting_location, optional: true
   belongs_to :caliber, optional: true
-  has_many :shooting_groups
+  has_many :shooting_groups, dependent: :destroy
 
   validates :date, presence: true
   validates :time, presence: true
@@ -12,6 +11,10 @@ class ShootingLog < ApplicationRecord
   scoped_search on: [:date], complete_value: true
   scoped_search relation: :shooting_location, on: :name, complete_value: true, rename: :location
   scoped_search relation: :caliber, on: :name, complete_value: true, rename: :caliber
+
+  def name_full
+    date
+  end
 
   def temperature_full
     return temperature unless temperature.present?

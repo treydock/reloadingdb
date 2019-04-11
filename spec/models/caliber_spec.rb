@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe Caliber, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
-    it { is_expected.to have_many(:bullets) }
-    it { is_expected.to have_many(:brasses) }
-    it { is_expected.to have_many(:loads) }
-    it { is_expected.to have_many(:guns) }
-    it { is_expected.to have_many(:shooting_logs) }
-    it { is_expected.to have_many(:shooting_groups) }
-    it { is_expected.to have_many(:shooting_velocities) }
+    it { is_expected.to have_many(:bullets).dependent(:destroy) }
+    it { is_expected.to have_many(:brasses).dependent(:destroy) }
+    it { is_expected.to have_many(:loads).dependent(:destroy) }
+    it { is_expected.to have_many(:guns).dependent(:destroy) }
+    it { is_expected.to have_many(:shooting_logs).dependent(:nullify) }
+    it { is_expected.to have_many(:shooting_groups).dependent(:destroy) }
+    it { is_expected.to have_many(:shooting_velocities).dependent(:destroy) }
   end
 
   describe 'validations' do
@@ -24,6 +24,13 @@ RSpec.describe Caliber, type: :model do
       create(:caliber, user: user1, name: 'test')
       expect(build(:caliber, user: user2, name: 'test')).to be_valid
       expect(build(:caliber, user: user1, name: 'test')).not_to be_valid
+    end
+  end
+
+  describe 'name_full' do
+    it 'should be set' do
+      caliber = create(:caliber, name: 'test')
+      expect(caliber.name_full).to eq('test')
     end
   end
 end

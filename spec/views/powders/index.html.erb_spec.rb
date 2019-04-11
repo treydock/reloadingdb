@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "powders/index", type: :view do
   before(:each) do
-    @powders = assign(:powders, create_list(:powder, 2))
+    create_list(:powder, 2)
+    @powders = assign(:powders, Powder.page(1).all)
   end
 
   it "renders a list of powders" do

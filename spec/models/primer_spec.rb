@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Primer, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to have_many(:loads).dependent(:destroy) }
   end
 
   describe 'validations' do
@@ -17,6 +18,13 @@ RSpec.describe Primer, type: :model do
       create(:primer, user: user1, name: 'test')
       expect(build(:primer, user: user2, name: 'test')).to be_valid
       expect(build(:primer, user: user1, name: 'test')).not_to be_valid
+    end
+  end
+
+  describe 'name_full' do
+    it 'should be set' do
+      primer = create(:primer, name: 'test')
+      expect(primer.name_full).to eq('test')
     end
   end
 end

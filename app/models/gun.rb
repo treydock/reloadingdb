@@ -1,11 +1,16 @@
 class Gun < ApplicationRecord
-  include Discard::Model
   include UserOwned
   include HasCaliber
 
   validates :name, presence: true, uniqueness: { scope: :user }
 
   scoped_search on: [:name], complete_value: true
+
+  scope :kept, -> { undiscarded.joins(:caliber).merge(Caliber.kept) }
+
+  def name_full
+    name
+  end
 
   def sight_height_unit
     self[:sight_height_unit].present? ? self[:sight_height_unit] : user.settings(:default_units).length

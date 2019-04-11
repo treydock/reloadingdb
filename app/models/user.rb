@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  include Discard::Model
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -9,16 +7,17 @@ class User < ApplicationRecord
 
   attr_writer :login
 
-  has_many :brasses
-  has_many :bullets
-  has_many :calibers
-  has_many :loads
-  has_many :powders
-  has_many :primers
-  has_many :guns
-  has_many :shooting_locations
-  has_many :shooting_logs
-  has_many :shooting_groups
+  has_many :brasses, dependent: :destroy
+  has_many :bullets, dependent: :destroy
+  has_many :calibers, dependent: :destroy
+  has_many :loads, dependent: :destroy
+  has_many :powders, dependent: :destroy
+  has_many :primers, dependent: :destroy
+  has_many :guns, dependent: :destroy
+  has_many :shooting_locations, dependent: :destroy
+  has_many :shooting_logs, dependent: :destroy
+  has_many :shooting_groups, dependent: :destroy
+  has_many :shooting_velocities, dependent: :destroy
 
   validates :username, presence: :true, uniqueness: { case_sensitive: false }
   validate :validate_username

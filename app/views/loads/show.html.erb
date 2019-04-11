@@ -1,5 +1,5 @@
 <%= render 'errors', object: @load %>
-<%= show_header_as_dropdown(@load) do %>
+<%= show_header(@load) do %>
 <%= link_to(calculate_velocity_load_path(@load), class: 'dropdown-item') do %>
   <span class="fa fa-calculator"></span>Calculate velocity
 <% end %>
@@ -10,9 +10,6 @@
 <% new_group_params = {load_id: @load.id, caliber_id: @load.caliber.id}%>
 <%= link_to(new_shooting_group_path(new_group_params), class: 'dropdown-item') do %>
   <span class="fa fa-plus"></span>New Group
-<% end %>
-<%= link_to(clone_load_path(@load), class: 'dropdown-item') do %>
-  <span class="fa fa-plus"></span>Clone
 <% end %>
 <% end %>
 

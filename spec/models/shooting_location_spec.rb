@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe ShootingLocation, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to have_many(:shooting_logs).dependent(:nullify) }
   end
 
   describe 'validations' do
@@ -17,6 +18,13 @@ RSpec.describe ShootingLocation, type: :model do
       create(:shooting_location, user: user1, name: 'test')
       expect(build(:shooting_location, user: user2, name: 'test')).to be_valid
       expect(build(:shooting_location, user: user1, name: 'test')).not_to be_valid
+    end
+  end
+
+  describe 'name_full' do
+    it 'should be set' do
+      shooting_location = create(:shooting_location)
+      expect(shooting_location.name_full).to eq(shooting_location.name)
     end
   end
 end

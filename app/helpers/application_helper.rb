@@ -19,7 +19,12 @@ module ApplicationHelper
       concat(content_tag(:div, class: 'dropdown-menu', 'aria-labelledby' => 'actions-dropdown') do
         concat link_to('Show', object, class: 'dropdown-item')
         concat link_to('Edit', send("edit_#{object.model_name.singular_route_key}_path", object), class: 'dropdown-item')
-        concat link_to('Destroy', object, method: :delete, data: { confirm: 'Are you sure?'}, class: 'dropdown-item')
+        if object.discarded?
+          concat link_to('Restore', send("restore_#{object.model_name.singular_route_key}_path", object), method: :patch, class: 'dropdown-item')
+          concat link_to('Delete', send("delete_#{object.model_name.singular_route_key}_path", object), remote: true, class: 'dropdown-item')
+        else
+          concat link_to('Discard', send("discard_#{object.model_name.singular_route_key}_path", object), remote: true, class: 'dropdown-item')
+        end
         yield if block_given?
       end)
     end
@@ -39,17 +44,23 @@ module ApplicationHelper
 
   def pagination(obj)
     content_tag(:div, class: 'container') do
-      concat(content_tag(:div, class: 'row') do
-        concat(content_tag(:div, class: 'col-3') do
-          concat(form_tag(send("#{obj.model_name.route_key}_path"), method: :get, id: 'per_page_form') do
+      concat(form_tag(send("#{obj.model_name.route_key}_path"), method: :get, id: 'per_page_form') do
+        concat(content_tag(:div, class: 'row') do
+          concat(content_tag(:div, class: 'col-3') do
             concat(hidden_field_tag(:column, params[:column]))
             concat(hidden_field_tag(:direction, params[:direction]))
             concat(select_tag(:per_page, options_for_select([15,25,50,100], selected: (params[:per_page] || obj.default_per_page))))
             concat(label_tag('per page', nil, class: 'ml-1'))
           end)
+          concat(content_tag(:div, class: 'col-7') do
+            concat(paginate(instance_variable_get("@#{obj.model_name.route_key}"), theme: 'twitter-bootstrap-4'))
+          end)
         end)
-        concat(content_tag(:div, class: 'col-7 offset-2') do
-          concat(paginate(instance_variable_get("@#{obj.model_name.route_key}"), theme: 'twitter-bootstrap-4'))
+        concat(content_tag(:div, class: 'row') do
+          concat(content_tag(:div, class: 'col-3') do
+            concat(label_tag('Show discarded?', nil))
+            concat(check_box_tag(:show_discarded, 'yes', params[:show_discarded].present?, class: 'ml-1'))
+          end)
         end)
       end)
     end
@@ -65,7 +76,8 @@ module ApplicationHelper
     end
   end
 
-  def show_header(object, &block)
+  # Should be unused
+  def show_header_no_dropdown(object, &block)
     content_tag :div, class: 'page-header pb-2 mt-2 mb-2 border-bottom' do
       concat(link_to(send("#{object.model_name.route_key}_path"), class: 'btn btn-outline-secondary') do
         concat(content_tag(:span, nil, class: 'fa fa-list'))
@@ -80,27 +92,66 @@ module ApplicationHelper
     end
   end
 
-  def show_header_as_dropdown(object, &block)
-    content_tag :div, class: 'page-header pb-2 mt-2 mb-2 border-bottom' do
-      concat(link_to(send("#{object.model_name.route_key}_path"), class: 'btn btn-outline-secondary ml-2') do
-        concat(content_tag(:span, nil, class: 'fa fa-list'))
-        concat('Back')
-      end)
-      concat(content_tag(:div, class: 'dropdown') do
-        concat button_tag('Actions', class: 'btn btn-secondary dropdown-toggle', id: 'button', type: 'button', 'aria-haspopup' => 'true', 'aria-expanded' => 'false', data: { toggle: 'dropdown' })
-        concat(content_tag(:div, class: 'dropdown-menu', 'aria-labelledby' => 'actions-dropdown') do
-          yield if block_given?
-          concat(link_to(send("edit_#{object.model_name.singular_route_key}_path", object), class: 'dropdown-item') do
-            concat(content_tag(:span, nil, class: 'fa fa-edit'))
-            concat('Edit')
-          end)
-          concat(link_to(object, method: :delete, data: { confirm: 'Are you sure?'}, class: 'dropdown-item') do
-            concat(content_tag(:span, nil, class: 'fa fa-trash'))
-            concat('Destroy')
+  def show_header(object, &block)
+    capture do
+      concat(content_tag(:div, class: 'page-header pb-2 mt-2 mb-2 border-bottom') do
+        concat(link_to(send("#{object.model_name.route_key}_path"), class: 'btn btn-outline-secondary ml-2') do
+          concat(content_tag(:span, nil, class: 'fa fa-list'))
+          concat('Back')
+        end)
+        concat(content_tag(:div, class: 'dropdown') do
+          concat button_tag('Actions', class: 'btn btn-secondary dropdown-toggle', id: 'button', type: 'button', 'aria-haspopup' => 'true', 'aria-expanded' => 'false', data: { toggle: 'dropdown' })
+          concat(content_tag(:div, class: 'dropdown-menu', 'aria-labelledby' => 'actions-dropdown') do
+            yield if block_given?
+            if object.respond_to?(:clone_record)
+              concat(link_to(send("clone_#{object.model_name.singular_route_key}_path", object), class: 'dropdown-item') do
+                concat(content_tag(:span, nil, class: 'fa fa-plus'))
+                concat('Clone')
+              end)
+            end
+            concat(link_to(send("edit_#{object.model_name.singular_route_key}_path", object), class: 'dropdown-item') do
+              concat(content_tag(:span, nil, class: 'fa fa-edit'))
+              concat('Edit')
+            end)
+            if object.discarded?
+              concat(link_to(send("restore_#{object.model_name.singular_route_key}_path", object), method: :patch, class: 'dropdown-item') do
+                concat(content_tag(:span, nil, class: 'fa fa-history'))
+                concat('Restore')
+              end)
+              concat(link_to(send("delete_#{object.model_name.singular_route_key}_path", object), remote: true, class: 'dropdown-item') do
+                concat(content_tag(:span, nil, class: 'fa fa-trash'))
+                concat('Delete')
+              end)
+            else
+              concat(link_to(send("discard_#{object.model_name.singular_route_key}_path", object), remote: true, class: 'dropdown-item') do
+                concat(content_tag(:span, nil, class: 'fa fa-trash'))
+                concat('Discard')
+              end)
+            end
           end)
         end)
+        concat(content_tag(:h2, "Show #{object.model_name.name.titlecase}"))
       end)
-      concat(content_tag(:h2, "Show #{object.model_name.name.titlecase}"))
+      concat(show_discarded(object))
+    end
+  end
+
+  def show_discarded(object)
+    if object.discarded? || object.discarded_associations.present?
+      content_tag(:div, class: 'alert alert-warning') do
+        concat("This record is discarded!") if object.discarded?
+        if object.discarded? && object.discarded_associations.present?
+          concat("<br/>".html_safe)
+        end
+        if object.discarded_associations.present?
+          concat("This record is discarded because the following have been discarded:")
+          concat(content_tag(:ul) do
+            object.discarded_associations.each do |assoc, record|
+              concat(content_tag(:li, "#{assoc.to_s.humanize} - #{record.name_full}"))
+            end
+          end)
+        end
+      end
     end
   end
 
