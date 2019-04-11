@@ -65,6 +65,7 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
+    ast (2.4.0)
     autoprefixer-rails (9.4.10.1)
       execjs
     bcrypt (3.1.12)
@@ -191,6 +192,7 @@ GEM
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
+    jaro_winkler (1.5.2)
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -255,8 +257,12 @@ GEM
     nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
+    parallel (1.17.0)
+    parser (2.6.2.1)
+      ast (~> 2.4.0)
     parslet (1.8.2)
     popper_js (1.14.5)
+    psych (3.1.0)
     public_suffix (3.0.3)
     puma (3.12.0)
     pundit (2.0.1)
@@ -292,6 +298,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
+    rainbow (3.0.0)
     rake (12.3.2)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
@@ -324,6 +331,18 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
+    rubocop (0.67.2)
+      jaro_winkler (~> 1.5.1)
+      parallel (~> 1.10)
+      parser (>= 2.5, != 2.5.1.1)
+      psych (>= 3.1.0)
+      rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 1.6)
+    rubocop-rails_config (0.5.0)
+      railties (>= 3.0)
+      rubocop (~> 0.60)
+    ruby-progressbar (1.10.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.2)
     sass (3.7.3)
@@ -392,6 +411,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
+    unicode-display_width (1.5.0)
     unitwise (2.2.0)
       liner (~> 0.2)
       memoizable (~> 0.4)
@@ -450,6 +470,8 @@ DEPENDENCIES
   recaptcha
   redcarpet
   rspec-rails
+  rubocop
+  rubocop-rails_config
   sass-rails (~> 5.0)
   scoped_search!
   selenium-webdriver

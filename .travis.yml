@@ -1,16 +1,17 @@
 language: ruby
 cache: bundler
-rvm:
-  - 2.5.1
 services:
   - mysql
-env:
-  - RAILS_ENV=test
 before_install:
   - cp -f config/database.yml.travis-ci config/database.yml
 install:
   - bundle install --path vendor/bundle --jobs=3 --retry=3
   - bundle exec rake db:create
   - bundle exec rake db:migrate
-script:
-  - bundle exec rake spec
+matrix:
+  include:
+    - rvm: 2.5.1
+      env: RAILS_ENV=test TASK=spec
+    - rvm: 2.5.1
+      env: RAILS_ENV=test TASK=rubocop
+script: bundle exec rake $TASK
