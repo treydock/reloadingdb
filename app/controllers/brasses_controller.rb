@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BrassesController < ApplicationController
   include DiscardController
 
@@ -37,7 +39,7 @@ class BrassesController < ApplicationController
 
     respond_to do |format|
       if @brass.save
-        format.html { redirect_to @brass, notice: 'Brass was successfully created.' }
+        format.html { redirect_to @brass, notice: "Brass was successfully created." }
         format.json { render :show, status: :created, location: @brass }
       else
         format.html { render :new }
@@ -52,7 +54,7 @@ class BrassesController < ApplicationController
     authorize @brass
     respond_to do |format|
       if @brass.update(brass_params)
-        format.html { redirect_to @brass, notice: 'Brass was successfully updated.' }
+        format.html { redirect_to @brass, notice: "Brass was successfully updated." }
         format.json { render :show, status: :ok, location: @brass }
       else
         format.html { render :edit }
@@ -67,7 +69,7 @@ class BrassesController < ApplicationController
     authorize @brass
     @brass.destroy
     respond_to do |format|
-      format.html { redirect_to brasses_url, notice: 'Brass was successfully destroyed.' }
+      format.html { redirect_to brasses_url, notice: "Brass was successfully destroyed." }
       format.json { head :no_content }
     end
   end

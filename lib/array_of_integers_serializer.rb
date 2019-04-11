@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ArrayOfIntegersSerializer
   def self.load(value)
     JSON.load(value)

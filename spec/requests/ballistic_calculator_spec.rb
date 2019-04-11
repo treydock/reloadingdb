@@ -1,4 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe "BallisticCalculator", type: :request do
   describe "GET /ballistic_calculator" do

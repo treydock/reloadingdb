@@ -1,4 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe LoadsController, type: :controller do
   login_user
@@ -14,7 +16,7 @@ RSpec.describe LoadsController, type: :controller do
   }
 
   let(:invalid_attributes) {
-    { foo: 'bar' }
+    { foo: "bar" }
   }
 
   describe "GET #index" do
@@ -28,7 +30,7 @@ RSpec.describe LoadsController, type: :controller do
   describe "GET #show" do
     it "returns a success response" do
       load = create(:load, user: @current_user)
-      get :show, params: {id: load.to_param}
+      get :show, params: { id: load.to_param }
       expect(response).to be_successful
     end
   end
@@ -43,7 +45,7 @@ RSpec.describe LoadsController, type: :controller do
   describe "GET #edit" do
     it "returns a success response" do
       load = create(:load, user: @current_user)
-      get :edit, params: {id: load.to_param}
+      get :edit, params: { id: load.to_param }
       expect(response).to be_successful
     end
   end
@@ -52,19 +54,19 @@ RSpec.describe LoadsController, type: :controller do
     context "with valid params" do
       it "creates a new Load" do
         expect {
-          post :create, params: {load: valid_attributes}
+          post :create, params: { load: valid_attributes }
         }.to change(Load, :count).by(1)
       end
 
       it "redirects to the created load" do
-        post :create, params: {load: valid_attributes}
+        post :create, params: { load: valid_attributes }
         expect(response).to redirect_to(Load.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {load: invalid_attributes}
+        post :create, params: { load: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -78,14 +80,14 @@ RSpec.describe LoadsController, type: :controller do
 
       it "updates the requested load" do
         load = create(:load, user: @current_user)
-        put :update, params: {id: load.to_param, load: new_attributes}
+        put :update, params: { id: load.to_param, load: new_attributes }
         load.reload
         expect(load.col).to eq(5.0)
       end
 
       it "redirects to the load" do
         load = create(:load, user: @current_user)
-        put :update, params: {id: load.to_param, load: new_attributes}
+        put :update, params: { id: load.to_param, load: new_attributes }
         expect(response).to redirect_to(load)
       end
     end
@@ -93,7 +95,7 @@ RSpec.describe LoadsController, type: :controller do
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
         load = create(:load, user: @current_user)
-        put :update, params: {id: load.to_param, load: invalid_attributes}
+        put :update, params: { id: load.to_param, load: invalid_attributes }
         expect(response).to redirect_to(load)
       end
     end
@@ -103,13 +105,13 @@ RSpec.describe LoadsController, type: :controller do
     it "destroys the requested load" do
       load = create(:load, user: @current_user)
       expect {
-        delete :destroy, params: {id: load.to_param}
+        delete :destroy, params: { id: load.to_param }
       }.to change(Load, :count).by(-1)
     end
 
     it "redirects to the loads list" do
       load = create(:load, user: @current_user)
-      delete :destroy, params: {id: load.to_param}
+      delete :destroy, params: { id: load.to_param }
       expect(response).to redirect_to(loads_url)
     end
   end
@@ -117,21 +119,21 @@ RSpec.describe LoadsController, type: :controller do
   describe "GET #calculate_velocity" do
     before(:each) do
       @load = create(:load, user: @current_user, velocity: 1000)
-      create(:shooting_velocity, user: @current_user, load: @load, velocities: [2000,2000,2001])
-      create(:shooting_velocity, user: @current_user, load: @load, velocities: [2100,2100])
+      create(:shooting_velocity, user: @current_user, load: @load, velocities: [2000, 2000, 2001])
+      create(:shooting_velocity, user: @current_user, load: @load, velocities: [2100, 2100])
     end
     it "updates requested load" do
-      get :calculate_velocity, params: {id: @load.id}
+      get :calculate_velocity, params: { id: @load.id }
       @load.reload
       expect(@load.velocity).to eq(2040)
     end
     it "redirects to show" do
-      get :calculate_velocity, params: {id: @load.id}
+      get :calculate_velocity, params: { id: @load.id }
       expect(response).to redirect_to(@load)
     end
     it "handles no velocities and does not update" do
       load = create(:load, user: @current_user, velocity: 1000)
-      get :calculate_velocity, params: {id: @load.id}
+      get :calculate_velocity, params: { id: @load.id }
       expect(response).to redirect_to(@load)
       load.reload
       expect(load.velocity).to eq(1000)
@@ -141,10 +143,10 @@ RSpec.describe LoadsController, type: :controller do
   describe "GET #clone" do
     it "returns a success response" do
       load = create(:load, user: @current_user)
-      get :clone, params: {id: load.id}
+      get :clone, params: { id: load.id }
       expect(response).to be_successful
     end
   end
 
-  include_examples 'DiscardController'
+  include_examples "DiscardController"
 end

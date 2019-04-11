@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Primer < ApplicationRecord
   include UserOwned
   has_many :loads, dependent: :destroy

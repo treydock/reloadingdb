@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShootingGroupsController < ApplicationController
   include DiscardController
 
@@ -39,7 +41,7 @@ class ShootingGroupsController < ApplicationController
 
     respond_to do |format|
       if @shooting_group.save
-        format.html { redirect_to @shooting_group, notice: 'Shooting group was successfully created.' }
+        format.html { redirect_to @shooting_group, notice: "Shooting group was successfully created." }
         format.json { render :show, status: :created, location: @shooting_group }
       else
         format.html { render :new }
@@ -54,7 +56,7 @@ class ShootingGroupsController < ApplicationController
     authorize @shooting_group
     respond_to do |format|
       if @shooting_group.update(shooting_group_params)
-        format.html { redirect_to @shooting_group, notice: 'Shooting group was successfully updated.' }
+        format.html { redirect_to @shooting_group, notice: "Shooting group was successfully updated." }
         format.json { render :show, status: :ok, location: @shooting_group }
       else
         format.html { render :edit }
@@ -69,7 +71,7 @@ class ShootingGroupsController < ApplicationController
     authorize @shooting_group
     @shooting_group.destroy
     respond_to do |format|
-      format.html { redirect_to shooting_groups_url, notice: 'Shooting group was successfully destroyed.' }
+      format.html { redirect_to shooting_groups_url, notice: "Shooting group was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -119,14 +121,14 @@ class ShootingGroupsController < ApplicationController
     end
 
     def sortable_columns
-      ['shooting_logs.date']
+      ["shooting_logs.date"]
     end
 
     def default_sort_column
-      'shooting_logs.date'
+      "shooting_logs.date"
     end
 
     def default_sort_direction
-      'desc'
+      "desc"
     end
 end

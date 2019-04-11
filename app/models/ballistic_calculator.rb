@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # REF: https://www.ar15.com/forums/armory/Bullet_Drop_Formula/42-351773/#i3198632
 class BallisticCalculator
   include ActiveModel::Model
@@ -107,9 +109,9 @@ class BallisticCalculator
   # wind deflection, inches
   def WD(range, wa = 180)
     wind_angle = wa.to_f
-    #if wind_angle > 180.0
+    # if wind_angle > 180.0
     #  wind_angle = 360.0 - wind_angle
-    #end
+    # end
     (wind_speed.to_f / 10) * (wind_angle) * (self.TF(range) - ((3 * range.to_f) / velocity.to_f))
   end
 

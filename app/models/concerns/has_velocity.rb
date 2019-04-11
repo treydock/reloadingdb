@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module HasVelocity
   extend ActiveSupport::Concern
 
@@ -15,5 +17,4 @@ module HasVelocity
       self[:velocity_unit].present? ? self[:velocity_unit] : user.settings(:default_units).velocity
     end
   end
-
-end 
+end

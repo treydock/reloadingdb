@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShootingLocation < ApplicationRecord
   include UserOwned
   has_many :shooting_logs, dependent: :nullify

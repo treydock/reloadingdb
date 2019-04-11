@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DiscardController
   extend ActiveSupport::Concern
 
@@ -30,7 +32,7 @@ module DiscardController
     # GET /<controller>/1/delete.js
     def delete
       authorize resource
-    end    
+    end
   end
 
   def resource

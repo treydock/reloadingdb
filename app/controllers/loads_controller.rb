@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LoadsController < ApplicationController
   include DiscardController
 
@@ -37,7 +39,7 @@ class LoadsController < ApplicationController
 
     respond_to do |format|
       if @load.save
-        format.html { redirect_to @load, notice: 'Load was successfully created.' }
+        format.html { redirect_to @load, notice: "Load was successfully created." }
         format.json { render :show, status: :created, location: @load }
       else
         format.html { render :new }
@@ -52,7 +54,7 @@ class LoadsController < ApplicationController
     authorize @load
     respond_to do |format|
       if @load.update(load_params)
-        format.html { redirect_to @load, notice: 'Load was successfully updated.' }
+        format.html { redirect_to @load, notice: "Load was successfully updated." }
         format.json { render :show, status: :ok, location: @load }
       else
         format.html { render :edit }
@@ -67,7 +69,7 @@ class LoadsController < ApplicationController
     authorize @load
     @load.destroy
     respond_to do |format|
-      format.html { redirect_to loads_url, notice: 'Load was successfully destroyed.' }
+      format.html { redirect_to loads_url, notice: "Load was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -78,7 +80,7 @@ class LoadsController < ApplicationController
     respond_to do |format|
       format.html do
         if @load.update(velocity: @load.calculate_velocity)
-          redirect_to @load, notice: 'Load velocity successfully updated.'
+          redirect_to @load, notice: "Load velocity successfully updated."
         else
           render :show
         end
@@ -116,14 +118,14 @@ class LoadsController < ApplicationController
     end
 
     def sortable_columns
-      ['date']
+      ["date"]
     end
 
     def default_sort_column
-      'date'
+      "date"
     end
 
     def default_sort_direction
-      'desc'
+      "desc"
     end
 end

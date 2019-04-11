@@ -1,4 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe BrassesController, type: :controller do
   login_user
@@ -8,7 +10,7 @@ RSpec.describe BrassesController, type: :controller do
   }
 
   let(:invalid_attributes) {
-    { foo: 'bar' }
+    { foo: "bar" }
   }
 
   describe "GET #index" do
@@ -28,7 +30,7 @@ RSpec.describe BrassesController, type: :controller do
   describe "GET #show" do
     it "returns a success response" do
       brass = create(:brass, user: @current_user)
-      get :show, params: {id: brass.to_param}
+      get :show, params: { id: brass.to_param }
       expect(response).to be_successful
     end
   end
@@ -43,7 +45,7 @@ RSpec.describe BrassesController, type: :controller do
   describe "GET #edit" do
     it "returns a success response" do
       brass = create(:brass, user: @current_user)
-      get :edit, params: {id: brass.to_param}
+      get :edit, params: { id: brass.to_param }
       expect(response).to be_successful
     end
   end
@@ -52,20 +54,20 @@ RSpec.describe BrassesController, type: :controller do
     context "with valid params" do
       it "creates a new Brass" do
         expect {
-          post :create, params: {brass: valid_attributes}
+          post :create, params: { brass: valid_attributes }
         }.to change(Brass, :count).by(1)
       end
 
       it "redirects to the created brass" do
         brass = build(:brass)
-        post :create, params: {brass: valid_attributes}
+        post :create, params: { brass: valid_attributes }
         expect(response).to redirect_to(Brass.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {brass: invalid_attributes}
+        post :create, params: { brass: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -74,19 +76,19 @@ RSpec.describe BrassesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        { name: 'TEST' }
+        { name: "TEST" }
       }
 
       it "updates the requested brass" do
         brass = create(:brass, user: @current_user)
-        put :update, params: {id: brass.to_param, brass: new_attributes}
+        put :update, params: { id: brass.to_param, brass: new_attributes }
         brass.reload
-        expect(brass.name).to eq('TEST')
+        expect(brass.name).to eq("TEST")
       end
 
       it "redirects to the brass" do
         brass = create(:brass, user: @current_user)
-        put :update, params: {id: brass.to_param, brass: new_attributes}
+        put :update, params: { id: brass.to_param, brass: new_attributes }
         expect(response).to redirect_to(brass)
       end
     end
@@ -94,7 +96,7 @@ RSpec.describe BrassesController, type: :controller do
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
         brass = create(:brass, user: @current_user)
-        put :update, params: {id: brass.to_param, brass: invalid_attributes}
+        put :update, params: { id: brass.to_param, brass: invalid_attributes }
         expect(response).to redirect_to(brass)
       end
     end
@@ -104,16 +106,16 @@ RSpec.describe BrassesController, type: :controller do
     it "destroys the requested brass" do
       brass = create(:brass, user: @current_user)
       expect {
-        delete :destroy, params: {id: brass.to_param}
+        delete :destroy, params: { id: brass.to_param }
       }.to change(Brass, :count).by(-1)
     end
 
     it "redirects to the brasses list" do
       brass = create(:brass, user: @current_user)
-      delete :destroy, params: {id: brass.to_param}
+      delete :destroy, params: { id: brass.to_param }
       expect(response).to redirect_to(brasses_url)
     end
   end
 
-  include_examples 'DiscardController'
+  include_examples "DiscardController"
 end

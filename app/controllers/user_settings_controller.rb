@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserSettingsController < ApplicationController
   after_action :verify_authorized, except: [:show, :edit, :update]
   # GET /user_settings
@@ -9,7 +11,7 @@ class UserSettingsController < ApplicationController
   def update
     respond_to do |format|
       if current_user.update_settings(user_setting_params)
-        format.html { redirect_to user_settings_path, notice: 'User setting was successfully updated.' }
+        format.html { redirect_to user_settings_path, notice: "User setting was successfully updated." }
         format.json { render :show, status: :ok, location: user_settings_path }
       else
         format.html { render :edit }

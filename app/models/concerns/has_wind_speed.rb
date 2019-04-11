@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module HasWindSpeed
   extend ActiveSupport::Concern
 
@@ -13,5 +15,4 @@ module HasWindSpeed
       self[:wind_speed_unit].present? ? self[:wind_speed_unit] : user.settings(:default_units).speed
     end
   end
-
-end 
+end

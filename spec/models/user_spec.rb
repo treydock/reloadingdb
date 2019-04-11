@@ -1,9 +1,11 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe User, type: :model do
   subject { build(:user) }
 
-  describe 'associations' do
+  describe "associations" do
     it { is_expected.to have_many(:bullets).dependent(:destroy) }
     it { is_expected.to have_many(:brasses).dependent(:destroy) }
     it { is_expected.to have_many(:calibers).dependent(:destroy) }
@@ -17,7 +19,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:shooting_velocities).dependent(:destroy) }
   end
 
-  describe 'validations' do
+  describe "validations" do
     it { is_expected.to validate_presence_of :email }
     it { is_expected.to validate_uniqueness_of(:email).ignoring_case_sensitivity }
     it { is_expected.to validate_presence_of :username }

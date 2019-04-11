@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GunsController < ApplicationController
   include DiscardController
 
@@ -37,7 +39,7 @@ class GunsController < ApplicationController
 
     respond_to do |format|
       if @gun.save
-        format.html { redirect_to @gun, notice: 'Gun was successfully created.' }
+        format.html { redirect_to @gun, notice: "Gun was successfully created." }
         format.json { render :show, status: :created, location: @gun }
       else
         format.html { render :new }
@@ -52,7 +54,7 @@ class GunsController < ApplicationController
     authorize @gun
     respond_to do |format|
       if @gun.update(gun_params)
-        format.html { redirect_to @gun, notice: 'Gun was successfully updated.' }
+        format.html { redirect_to @gun, notice: "Gun was successfully updated." }
         format.json { render :show, status: :ok, location: @gun }
       else
         format.html { render :edit }
@@ -67,7 +69,7 @@ class GunsController < ApplicationController
     authorize @gun
     @gun.destroy
     respond_to do |format|
-      format.html { redirect_to guns_url, notice: 'Gun was successfully destroyed.' }
+      format.html { redirect_to guns_url, notice: "Gun was successfully destroyed." }
       format.json { head :no_content }
     end
   end

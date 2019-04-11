@@ -1,71 +1,73 @@
+# frozen_string_literal: true
+
 class Unit
   include ActiveModel::Model
 
   def self.default_temperature
-    'F'
+    "F"
   end
 
   def self.temperature
-    ['F','C']
+    ["F", "C"]
   end
 
   def self.default_speed
-    'mph'
+    "mph"
   end
 
   def self.default_velocity
-    'fps'
+    "fps"
   end
 
   def self.velocity
-    ['mph','kph','fps']
+    ["mph", "kph", "fps"]
   end
 
   def self.default_pressure
-    'inhg'
+    "inhg"
   end
 
   def self.pressure
-    ['atm','mbar','psi','inhg','mmhg']
+    ["atm", "mbar", "psi", "inhg", "mmhg"]
   end
 
   def self.default_length
-    'in'
+    "in"
   end
 
   def self.length
-    ['in','mm','cm','moa']
+    ["in", "mm", "cm", "moa"]
   end
 
   def self.default_distance
-    'yd'
+    "yd"
   end
 
   def self.distance
-    ['yd','m']
+    ["yd", "m"]
   end
 
   def self.default_scope_adjustment
-    'moa'
+    "moa"
   end
 
   def self.scope_adjustment
-    ['moa','mil','clicks','in','cm']
+    ["moa", "mil", "clicks", "in", "cm"]
   end
 
   def self.default_ballistic_coefficient
-    'lb/in^2'
+    "lb/in^2"
   end
 
   def self.ballistic_coefficient
-    ['lb/in^2','kg/m^2']
+    ["lb/in^2", "kg/m^2"]
   end
 
   def self.scope_moa_adjustments
     [
-      ['1/4',0.25],
-      ['1/8',0.125],
-      ['1/2',0.5],
+      ["1/4", 0.25],
+      ["1/8", 0.125],
+      ["1/2", 0.5],
     ]
   end
 

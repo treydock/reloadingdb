@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 module LoadViewSpecHelper
   extend ActiveSupport::Concern
 
   module ControllerViewHelpers
     def sort_column
-      'date'
+      "date"
     end
     def sort_direction
-      'asc'
+      "asc"
     end
   end
   def initialize_view_helpers(view)

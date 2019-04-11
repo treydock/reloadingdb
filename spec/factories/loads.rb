@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :load do
     date { Date.today }
@@ -12,8 +14,8 @@ FactoryBot.define do
     powder
     primer
     user
-    #after(:create) do |load, evaluator|
+    # after(:create) do |load, evaluator|
     #  load.user ||= create(:user)
-    #end
+    # end
   end
 end

@@ -1,4 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe "pages/home.html.md", type: :view do
   it "renders header from markdown" do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BallisticCalculatorPolicy < ApplicationPolicy
   def new?
     true

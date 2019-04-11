@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BulletsController < ApplicationController
   include DiscardController
 
@@ -37,7 +39,7 @@ class BulletsController < ApplicationController
 
     respond_to do |format|
       if @bullet.save
-        format.html { redirect_to @bullet, notice: 'Bullet was successfully created.' }
+        format.html { redirect_to @bullet, notice: "Bullet was successfully created." }
         format.json { render :show, status: :created, location: @bullet }
       else
         format.html { render :new }
@@ -52,7 +54,7 @@ class BulletsController < ApplicationController
     authorize @bullet
     respond_to do |format|
       if @bullet.update(bullet_params)
-        format.html { redirect_to @bullet, notice: 'Bullet was successfully updated.' }
+        format.html { redirect_to @bullet, notice: "Bullet was successfully updated." }
         format.json { render :show, status: :ok, location: @bullet }
       else
         format.html { render :edit }
@@ -67,7 +69,7 @@ class BulletsController < ApplicationController
     authorize @bullet
     @bullet.destroy
     respond_to do |format|
-      format.html { redirect_to bullets_url, notice: 'Bullet was successfully destroyed.' }
+      format.html { redirect_to bullets_url, notice: "Bullet was successfully destroyed." }
       format.json { head :no_content }
     end
   end

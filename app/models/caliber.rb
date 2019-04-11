@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Caliber < ApplicationRecord
   include UserOwned
   has_many :bullets, dependent: :destroy

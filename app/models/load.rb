@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Load < ApplicationRecord
   include UserOwned
   include HasCaliber

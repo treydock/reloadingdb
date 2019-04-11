@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Gun < ApplicationRecord
   include UserOwned
   include HasCaliber

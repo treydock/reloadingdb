@@ -1,4 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe "shooting_groups/index", type: :view do
   before(:each) do
@@ -8,11 +10,11 @@ RSpec.describe "shooting_groups/index", type: :view do
 
   it "renders a list of shooting_groups" do
     render
-    assert_select "tr>td", :text => @shooting_groups[0].name
-    assert_select "tr>td", :text => @shooting_groups[0].load.name
-    assert_select "tr>td", :text => /#{@shooting_groups[0].group_size}/
-    assert_select "tr>td", :text => @shooting_groups[1].name
-    assert_select "tr>td", :text => @shooting_groups[1].load.name
-    assert_select "tr>td", :text => /#{@shooting_groups[1].group_size}/
+    assert_select "tr>td", text: @shooting_groups[0].name
+    assert_select "tr>td", text: @shooting_groups[0].load.name
+    assert_select "tr>td", text: /#{@shooting_groups[0].group_size}/
+    assert_select "tr>td", text: @shooting_groups[1].name
+    assert_select "tr>td", text: @shooting_groups[1].load.name
+    assert_select "tr>td", text: /#{@shooting_groups[1].group_size}/
   end
 end

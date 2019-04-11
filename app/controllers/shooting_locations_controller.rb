@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShootingLocationsController < ApplicationController
   include DiscardController
 
@@ -36,7 +38,7 @@ class ShootingLocationsController < ApplicationController
 
     respond_to do |format|
       if @shooting_location.save
-        format.html { redirect_to @shooting_location, notice: 'Shooting location was successfully created.' }
+        format.html { redirect_to @shooting_location, notice: "Shooting location was successfully created." }
         format.json { render :show, status: :created, location: @shooting_location }
       else
         format.html { render :new }
@@ -51,7 +53,7 @@ class ShootingLocationsController < ApplicationController
     authorize @shooting_location
     respond_to do |format|
       if @shooting_location.update(shooting_location_params)
-        format.html { redirect_to @shooting_location, notice: 'Shooting location was successfully updated.' }
+        format.html { redirect_to @shooting_location, notice: "Shooting location was successfully updated." }
         format.json { render :show, status: :ok, location: @shooting_location }
       else
         format.html { render :edit }
@@ -66,7 +68,7 @@ class ShootingLocationsController < ApplicationController
     authorize @shooting_location
     @shooting_location.destroy
     respond_to do |format|
-      format.html { redirect_to shooting_locations_url, notice: 'Shooting location was successfully destroyed.' }
+      format.html { redirect_to shooting_locations_url, notice: "Shooting location was successfully destroyed." }
       format.json { head :no_content }
     end
   end

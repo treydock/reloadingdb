@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShootingVelocitiesController < ApplicationController
   include DiscardController
 
@@ -37,7 +39,7 @@ class ShootingVelocitiesController < ApplicationController
 
     respond_to do |format|
       if @shooting_velocity.save
-        format.html { redirect_to @shooting_velocity, notice: 'Shooting velocity was successfully created.' }
+        format.html { redirect_to @shooting_velocity, notice: "Shooting velocity was successfully created." }
         format.json { render :show, status: :created, location: @shooting_velocity }
       else
         format.html { render :new }
@@ -52,7 +54,7 @@ class ShootingVelocitiesController < ApplicationController
     authorize @shooting_velocity
     respond_to do |format|
       if @shooting_velocity.update(shooting_velocity_params)
-        format.html { redirect_to @shooting_velocity, notice: 'Shooting velocity was successfully updated.' }
+        format.html { redirect_to @shooting_velocity, notice: "Shooting velocity was successfully updated." }
         format.json { render :show, status: :ok, location: @shooting_velocity }
       else
         format.html { render :edit }
@@ -67,7 +69,7 @@ class ShootingVelocitiesController < ApplicationController
     authorize @shooting_velocity
     @shooting_velocity.destroy
     respond_to do |format|
-      format.html { redirect_to shooting_velocities_url, notice: 'Shooting velocity was successfully destroyed.' }
+      format.html { redirect_to shooting_velocities_url, notice: "Shooting velocity was successfully destroyed." }
       format.json { head :no_content }
     end
   end

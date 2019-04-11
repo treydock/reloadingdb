@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Load DSL and set up stages
 require "capistrano/setup"
 
@@ -34,7 +36,7 @@ require "capistrano/rails"
 # require "capistrano/rails/assets"
 # require "capistrano/rails/migrations"
 # require "capistrano/passenger"
-require 'capistrano/puma'
+require "capistrano/puma"
 install_plugin Capistrano::Puma
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined

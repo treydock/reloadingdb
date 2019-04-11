@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShootingLogsController < ApplicationController
   include DiscardController
 
@@ -37,7 +39,7 @@ class ShootingLogsController < ApplicationController
 
     respond_to do |format|
       if @shooting_log.save
-        format.html { redirect_to @shooting_log, notice: 'Shooting log was successfully created.' }
+        format.html { redirect_to @shooting_log, notice: "Shooting log was successfully created." }
         format.json { render :show, status: :created, location: @shooting_log }
       else
         format.html { render :new }
@@ -52,7 +54,7 @@ class ShootingLogsController < ApplicationController
     authorize @shooting_log
     respond_to do |format|
       if @shooting_log.update(shooting_log_params)
-        format.html { redirect_to @shooting_log, notice: 'Shooting log was successfully updated.' }
+        format.html { redirect_to @shooting_log, notice: "Shooting log was successfully updated." }
         format.json { render :show, status: :ok, location: @shooting_log }
       else
         format.html { render :edit }
@@ -67,7 +69,7 @@ class ShootingLogsController < ApplicationController
     authorize @shooting_log
     @shooting_log.destroy
     respond_to do |format|
-      format.html { redirect_to shooting_logs_url, notice: 'Shooting log was successfully destroyed.' }
+      format.html { redirect_to shooting_logs_url, notice: "Shooting log was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -91,14 +93,14 @@ class ShootingLogsController < ApplicationController
     end
 
     def sortable_columns
-      ['date']
+      ["date"]
     end
 
     def default_sort_column
-      'date'
+      "date"
     end
 
     def default_sort_direction
-      'desc'
+      "desc"
     end
 end

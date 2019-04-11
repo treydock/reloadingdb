@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class Users::SessionsController < Devise::SessionsController
   prepend_before_action :check_captcha, only: [:create]
 
   # POST /users/sign_in
   def create
     flash = :signed_in
-    if resource = resource_class.find_for_database_authentication({login: sign_in_params[:login]})
+    if resource = resource_class.find_for_database_authentication(login: sign_in_params[:login])
       if resource.valid_password?(sign_in_params[:password])
         if resource.discarded?
           resource.undiscard
@@ -23,6 +25,6 @@ class Users::SessionsController < Devise::SessionsController
     def check_captcha
       unless verify_recaptcha
         redirect_to new_user_session_url
-      end 
+      end
     end
 end

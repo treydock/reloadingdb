@@ -1,4 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe BallisticCalculatorPolicy, type: :policy do
   let(:user) { create(:user) }
@@ -7,13 +9,13 @@ RSpec.describe BallisticCalculatorPolicy, type: :policy do
   subject { described_class }
 
   permissions :new? do
-    it 'allows access' do
+    it "allows access" do
       expect(subject).to permit(user, ballistic_calculator)
     end
   end
 
   permissions :create? do
-    it 'allows access' do
+    it "allows access" do
       expect(subject).to permit(user, ballistic_calculator)
     end
   end

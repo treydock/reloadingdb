@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PrimersController < ApplicationController
   include DiscardController
 
@@ -36,7 +38,7 @@ class PrimersController < ApplicationController
 
     respond_to do |format|
       if @primer.save
-        format.html { redirect_to @primer, notice: 'Primer was successfully created.' }
+        format.html { redirect_to @primer, notice: "Primer was successfully created." }
         format.json { render :show, status: :created, location: @primer }
       else
         format.html { render :new }
@@ -51,7 +53,7 @@ class PrimersController < ApplicationController
     authorize @primer
     respond_to do |format|
       if @primer.update(primer_params)
-        format.html { redirect_to @primer, notice: 'Primer was successfully updated.' }
+        format.html { redirect_to @primer, notice: "Primer was successfully updated." }
         format.json { render :show, status: :ok, location: @primer }
       else
         format.html { render :edit }
@@ -66,7 +68,7 @@ class PrimersController < ApplicationController
     authorize @primer
     @primer.destroy
     respond_to do |format|
-      format.html { redirect_to primers_url, notice: 'Primer was successfully destroyed.' }
+      format.html { redirect_to primers_url, notice: "Primer was successfully destroyed." }
       format.json { head :no_content }
     end
   end

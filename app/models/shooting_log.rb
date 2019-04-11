@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShootingLog < ApplicationRecord
   include UserOwned
   include HasWindSpeed

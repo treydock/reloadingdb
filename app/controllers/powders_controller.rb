@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PowdersController < ApplicationController
   include DiscardController
 
@@ -36,7 +38,7 @@ class PowdersController < ApplicationController
 
     respond_to do |format|
       if @powder.save
-        format.html { redirect_to @powder, notice: 'Powder was successfully created.' }
+        format.html { redirect_to @powder, notice: "Powder was successfully created." }
         format.json { render :show, status: :created, location: @powder }
       else
         format.html { render :new }
@@ -51,7 +53,7 @@ class PowdersController < ApplicationController
     authorize @powder
     respond_to do |format|
       if @powder.update(powder_params)
-        format.html { redirect_to @powder, notice: 'Powder was successfully updated.' }
+        format.html { redirect_to @powder, notice: "Powder was successfully updated." }
         format.json { render :show, status: :ok, location: @powder }
       else
         format.html { render :edit }
@@ -66,7 +68,7 @@ class PowdersController < ApplicationController
     authorize @powder
     @powder.destroy
     respond_to do |format|
-      format.html { redirect_to powders_url, notice: 'Powder was successfully destroyed.' }
+      format.html { redirect_to powders_url, notice: "Powder was successfully destroyed." }
       format.json { head :no_content }
     end
   end

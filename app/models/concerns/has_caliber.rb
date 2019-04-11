@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module HasCaliber
   extend ActiveSupport::Concern
 
@@ -6,5 +8,4 @@ module HasCaliber
 
     scoped_search relation: :caliber, on: :name, complete_value: true, rename: :caliber
   end
-
-end 
+end

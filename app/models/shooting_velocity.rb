@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShootingVelocity < ApplicationRecord
   include UserOwned
   include HasCaliber
@@ -30,18 +32,17 @@ class ShootingVelocity < ApplicationRecord
 
   private
 
-  def remove_blank_velocities
-    return nil if velocities.nil?
-    velocities.reject!(&:blank?)
-  end
+    def remove_blank_velocities
+      return nil if velocities.nil?
+      velocities.reject!(&:blank?)
+    end
 
-  def velocity_integers
-    return unless velocities.present?
-    velocities.each do |v|
-      if v.to_i.to_s != v.to_s
-        errors.add(:velocities, "#{v} is not a valid integer")
+    def velocity_integers
+      return unless velocities.present?
+      velocities.each do |v|
+        if v.to_i.to_s != v.to_s
+          errors.add(:velocities, "#{v} is not a valid integer")
+        end
       end
     end
-  end
-
 end

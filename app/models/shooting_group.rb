@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShootingGroup < ApplicationRecord
   include UserOwned
   include HasCaliber
@@ -87,5 +89,4 @@ class ShootingGroup < ApplicationRecord
     new_shooting_group.group_size = nil
     new_shooting_group
   end
-
 end

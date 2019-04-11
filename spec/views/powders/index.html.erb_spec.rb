@@ -1,4 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe "powders/index", type: :view do
   before(:each) do
@@ -8,7 +10,7 @@ RSpec.describe "powders/index", type: :view do
 
   it "renders a list of powders" do
     render
-    assert_select "tr>td", :text => @powders[0].name
-    assert_select "tr>td", :text => @powders[1].name
+    assert_select "tr>td", text: @powders[0].name
+    assert_select "tr>td", text: @powders[1].name
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -29,7 +31,7 @@ class User < ApplicationRecord
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
-      where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+      where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { value: login.downcase }]).first
     elsif conditions.has_key?(:username) || conditions.has_key?(:email)
       where(conditions.to_h).first
     end
@@ -55,8 +57,8 @@ class User < ApplicationRecord
       ballistic_coefficient: Unit.default_ballistic_coefficient
     }
     s.key :interface, defaults: {
-      sort_by: 'created_at',
-      sort_direction: 'desc',
+      sort_by: "created_at",
+      sort_direction: "desc",
     }
   end
 
@@ -76,16 +78,16 @@ class User < ApplicationRecord
 
   def self.interface_settings
     {
-      sort_by: ['created_at','updated_at','name'],
-      sort_direction: ['desc','asc'],
+      sort_by: ["created_at", "updated_at", "name"],
+      sort_direction: ["desc", "asc"],
     }
   end
 
   private
 
-  def validate_username
-    if User.where(email: username).exists?
-      errors.add(:username, :invalid)
+    def validate_username
+      if User.where(email: username).exists?
+        errors.add(:username, :invalid)
+      end
     end
-  end
 end

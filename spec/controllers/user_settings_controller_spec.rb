@@ -1,4 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe UserSettingsController, type: :controller do
   login_user
@@ -20,17 +22,17 @@ RSpec.describe UserSettingsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        {default_temperature: 'C'}
+        { default_temperature: "C" }
       }
 
       it "updates the requested user_setting" do
-        put :update, params: {user_settings: new_attributes}
+        put :update, params: { user_settings: new_attributes }
         @current_user.reload
-        expect(@current_user.settings(:default_units).temperature).to eq('C')
+        expect(@current_user.settings(:default_units).temperature).to eq("C")
       end
 
       it "redirects to the user_setting" do
-        put :update, params: {user_settings: new_attributes}
+        put :update, params: { user_settings: new_attributes }
         expect(response).to redirect_to(user_settings_url)
       end
     end
