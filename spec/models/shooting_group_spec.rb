@@ -49,9 +49,9 @@ RSpec.describe ShootingGroup, type: :model do
       caliber1 = create(:caliber, user: user1)
       caliber2 = create(:caliber, user: user2)
       shooting_log1_user1 = create(:shooting_log, user: user1)
-      shooting_log2_user1 = create(:shooting_log, user: user1)
+      create(:shooting_log, user: user1)
       shooting_log1_user2 = create(:shooting_log, user: user2)
-      shooting_log2_user2 = create(:shooting_log, user: user2)
+      create(:shooting_log, user: user2)
       create(:shooting_group, user: user1, caliber: caliber1, shooting_log: shooting_log1_user1, number: 1)
       expect(build(:shooting_group, user: user1, caliber: caliber1, shooting_log: shooting_log1_user1, number: 2)).to be_valid
       expect(build(:shooting_group, user: user1, caliber: caliber1, shooting_log: shooting_log1_user1, number: 1)).not_to be_valid

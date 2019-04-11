@@ -14,9 +14,9 @@ RSpec.describe Load, type: :model do
         load1 = create(:load)
         load2 = create(:load)
         shooting_velocity1 = create(:shooting_velocity, load: load1)
-        shooting_velocity2 = create(:shooting_velocity, load: load2)
+        create(:shooting_velocity, load: load2)
         shooting_group1 = create(:shooting_group, load: load1)
-        shooting_group2 = create(:shooting_group, load: load2)
+        create(:shooting_group, load: load2)
         expect(load1.will_destroy).to eq(shooting_velocities: [shooting_velocity1], shooting_groups: [shooting_group1])
       end
       it "should turn empty associations" do

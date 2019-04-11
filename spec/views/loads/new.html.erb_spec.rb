@@ -24,6 +24,6 @@ RSpec.describe "loads/new", type: :view do
   end
   it "does not render calculate-velocity" do
     render
-    expect(rendered).not_to match /id="calculate-velocity"/
+    expect(rendered).not_to include('id="calculate-velocity"')
   end
 end

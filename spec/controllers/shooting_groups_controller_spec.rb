@@ -18,7 +18,6 @@ RSpec.describe ShootingGroupsController, type: :controller do
 
   describe "GET #index" do
     it "returns a success response" do
-      shooting_group = create(:shooting_group, user: @current_user)
       get :index, params: {}
       expect(response).to be_successful
     end

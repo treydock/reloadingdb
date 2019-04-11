@@ -17,7 +17,6 @@ RSpec.describe ShootingVelocitiesController, type: :controller do
 
   describe "GET #index" do
     it "returns a success response" do
-      shooting_velocity = create(:shooting_velocity, user: @current_user)
       get :index, params: {}
       expect(response).to be_successful
     end

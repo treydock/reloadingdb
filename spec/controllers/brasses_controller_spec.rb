@@ -59,7 +59,6 @@ RSpec.describe BrassesController, type: :controller do
       end
 
       it "redirects to the created brass" do
-        brass = build(:brass)
         post :create, params: { brass: valid_attributes }
         expect(response).to redirect_to(Brass.last)
       end

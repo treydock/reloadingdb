@@ -30,6 +30,6 @@ RSpec.describe "loads/edit", type: :view do
   end
   it "renders calculate-velocity" do
     render
-    expect(rendered).to match /id="calculate-velocity"/
+    expect(rendered).to include('id="calculate-velocity"')
   end
 end
