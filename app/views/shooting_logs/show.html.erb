@@ -1,10 +1,10 @@
 <%= show_header(@shooting_log) do %>
 <% new_group_params = {shooting_log_id: @shooting_log.id, caliber_id: @shooting_log.caliber.present? ? @shooting_log.caliber.id : nil }%>
-<%= link_to(new_shooting_group_path(new_group_params), class: 'btn btn-primary') do %>
+<%= link_to(new_shooting_group_path(new_group_params), class: 'dropdown-item') do %>
   <span class="fa fa-plus"></span>New Group
 <% end %>
 <% new_velocity_params = {date: @shooting_log.date, caliber_id: @shooting_log.caliber.present? ? @shooting_log.caliber.id : nil } %>
-<%= link_to(new_shooting_velocity_path(new_velocity_params), class: 'btn btn-primary') do %>
+<%= link_to(new_shooting_velocity_path(new_velocity_params), class: 'dropdown-item') do %>
   <span class="fa fa-plus"></span>New Velocities
 <% end %>
 <% end %>
