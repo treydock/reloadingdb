@@ -7,6 +7,39 @@ RSpec.describe ShootingLog, type: :model do
 
   let(:subject) { create(:shooting_log) }
 
+  context "ApplicationRecord" do
+    describe "will_destroy" do
+      it "should return has_many associated records" do
+        shooting_log1 = create(:shooting_log)
+        shooting_log2 = create(:shooting_log)
+        shooting_group1 = create(:shooting_group, shooting_log: shooting_log1)
+        create(:shooting_group, shooting_log: shooting_log2)
+        expect(shooting_log1.will_destroy).to eq(shooting_groups: [shooting_group1])
+      end
+      it "should turn empty associations" do
+        shooting_log = create(:shooting_log)
+        expect(shooting_log.will_destroy).to eq(shooting_groups: [])
+      end
+    end
+
+    describe "discarded_associations" do
+      it "should return discarded associations" do
+        caliber = create(:caliber)
+        shooting_log = create(:shooting_log, caliber: caliber)
+        caliber.discard
+        expect(shooting_log.discarded_associations).to eq(caliber: caliber)
+      end
+      it "should return empty hash if nothing discarded" do
+        shooting_log = create(:shooting_log)
+        expect(shooting_log.discarded_associations).to eq({})
+      end
+      it "should return empty hash if no associations" do
+        shooting_log = create(:shooting_log, caliber: nil, shooting_location: nil)
+        expect(shooting_log.discarded_associations).to eq({})
+      end
+    end
+  end
+
   describe "associations" do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:caliber) }

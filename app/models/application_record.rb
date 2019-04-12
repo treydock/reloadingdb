@@ -20,6 +20,7 @@ class ApplicationRecord < ActiveRecord::Base
     discarded = {}
     belongs_to.each do |b|
       r = self.send(b)
+      next if r.nil?
       if r.discarded?
         discarded[b] = r
       end
