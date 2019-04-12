@@ -42,11 +42,15 @@ $(document).on("turbolinks:load", function() {
       success: function(result) {
         sight_height = result["sight_height"];
         zero_distance = result["zero_distance"];
+        scope_moa_adjustment = result["scope_moa_adjustment"];
         if (!$('#ballistic_calculator_height_of_sight').val()) {
           $('#ballistic_calculator_height_of_sight').val(sight_height);
         }
         if (!$('#ballistic_calculator_zero_range').val()) {
           $('#ballistic_calculator_zero_range').val(zero_distance);
+        }
+        if (!$('#ballistic_calculator_scope_moa_adjustment').val()) {
+          $('#ballistic_calculator_scope_moa_adjustment').val(scope_moa_adjustment);
         }
       }
     });

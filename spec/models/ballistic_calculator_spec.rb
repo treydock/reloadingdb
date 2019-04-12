@@ -57,6 +57,12 @@ RSpec.describe BallisticCalculator, type: :model do
     end
   end
 
+  describe "BP_clicks" do
+    it "should return value" do
+      expect(subject.BP_clicks(200).round(0).to_s).to eq("8")
+    end
+  end
+
   describe "WD" do
     it "should return value" do
       expect(subject.WD(200).round(1).to_s).to eq("4.4")
@@ -78,6 +84,12 @@ RSpec.describe BallisticCalculator, type: :model do
   describe "wind_drift" do
     it "should return value" do
       expect(subject.wind_drift(200)).to eq([2.7, 4.4])
+    end
+  end
+
+  describe "wind_drift_clicks" do
+    it "should return value" do
+      expect(subject.wind_drift_clicks(200)).to eq([5, 9])
     end
   end
 end

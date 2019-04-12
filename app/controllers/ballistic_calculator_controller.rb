@@ -42,6 +42,6 @@ class BallisticCalculatorController < ApplicationController
                                                    :ballistic_coefficient, :velocity,
                                                    :height_of_sight, :zero_range,
                                                    :ranges_max, :ranges_interval,
-                                                   :wind_speed)
+                                                   :scope_moa_adjustment, :wind_speed)
     end
 end

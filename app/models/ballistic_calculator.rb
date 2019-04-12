@@ -12,6 +12,7 @@ class BallisticCalculator
   attr_accessor :ranges_max
   attr_accessor :ranges_interval
   attr_accessor :wind_speed
+  attr_accessor :scope_moa_adjustment
 
   attr_accessor :caliber_id
   attr_accessor :load_id
@@ -36,6 +37,7 @@ class BallisticCalculator
     :velocity,
     :height_of_sight,
     :zero_range,
+    :scope_moa_adjustment,
   ].each do |a|
     define_method(a) do
       value = instance_variable_get("@#{a}")
@@ -52,6 +54,10 @@ class BallisticCalculator
     max = max.to_i
     interval = interval.to_i
     (0..max).step(interval).to_a
+  end
+
+  def scope_moa_adjustment_name
+    Unit.scope_moa_adjustment_name(scope_moa_adjustment)
   end
 
   # remaining velocity, fps
@@ -106,6 +112,13 @@ class BallisticCalculator
     self.BP(range) / (range / 100.0)
   end
 
+  def BP_clicks(range)
+    return 0 if range == 0
+    return 0 unless scope_moa_adjustment.present?
+    adjustment_at_range = ((range / 100) * scope_moa_adjustment)
+    (self.BP_moa(range) / adjustment_at_range).abs
+  end
+
   # wind deflection, inches
   def WD(range, wa = 180)
     wind_angle = wa.to_f
@@ -133,5 +146,15 @@ class BallisticCalculator
     moa = self.wind_drift_moa(range, true)
     value = moa * (range / 100)
     [value.round(1), self.WD(range).round(1)]
+  end
+
+  def wind_drift_clicks(range)
+    return 0 if range == 0
+    return 0 unless scope_moa_adjustment.present?
+    adjustment_at_range = ((range / 100) * scope_moa_adjustment)
+    moa = self.wind_drift_moa(range)
+    min = (moa[0] / adjustment_at_range)
+    max = (moa[1] / adjustment_at_range)
+    [min.round(0), max.round(0)]
   end
 end

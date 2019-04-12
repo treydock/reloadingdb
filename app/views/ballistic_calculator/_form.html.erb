@@ -30,6 +30,8 @@
       <%= f.input_field :ranges_interval, class: 'form-control input_field col-sm-2' %>
     <% end %>
     <%= f.input :advanced do %>
+      <%= f.label 'Scope MOA Adjustment', class: 'col-sm-4 text-sm-right' %>
+      <%= f.input_field :scope_moa_adjustment, as: :select, collection: Unit.scope_moa_adjustments, class: 'col-sm-2' %>
       <%= f.label 'Wind Speed', class: 'col-sm-3 text-sm-right' %>
       <%= f.input_field :wind_speed, class: 'col-sm-2' %>
     <% end %>

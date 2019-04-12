@@ -1,4 +1,4 @@
-<div class="modal-dialog">
+<div class="modal-dialog modal-lg">
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title">Ballistic Calculator Results</h5>
@@ -22,7 +22,9 @@
           <td class="table-secondary"><%= @ballistic_calculator.zero_range %></td>
         </tr>
         <tr>
-          <td class="table-dark"> Wind speed:</td>
+          <td class="table-dark">Scope MOA Adjustment:</td>
+          <td class="table-secondary"><%= @ballistic_calculator.scope_moa_adjustment_name %></td>
+          <td class="table-dark">Wind speed:</td>
           <td class="table-secondary"><%= @ballistic_calculator.wind_speed %></td>
         </tr>
       </table>
@@ -32,16 +34,20 @@
             <th>Range</th>
             <th>Drop (in)</th>
             <th>Drop (MOA)</th>
-            <th>Wind Drift (in)</th>
-            <th>Wind Drift (MOA)</th>
+            <th>Drop (clicks)</th>
+            <th>Wind Drift (in)<a class="questionmark-popover" tabindex="0" role="button" data-toggle="popover" data-content="Uses USMC formula for estimation" ><span class="fa fa-question-circle"></span></a></th>
+            <th>Wind Drift (MOA)<span class="fa fa-question-circle" data-toggle="tooltip" title="Uses USMC formula for estimation"></span></th>
+            <th>Wind Drift (clicks)</th>
           </tr>
           <% @ranges.each do |range| %>
             <tr>
               <td><%= range %></td>
               <td><%= @ballistic_calculator.BP(range).round(2) %></td>
               <td><%= @ballistic_calculator.BP_moa(range).round(1) %></td>
+              <td><%= @ballistic_calculator.BP_clicks(range).round(0) %></td>
               <td><%= @ballistic_calculator.wind_drift(range)[0] %></td>
               <td><%= @ballistic_calculator.wind_drift_moa(range)[0] %></td>
+              <td><%= @ballistic_calculator.wind_drift_clicks(range)[0] %></td>
             </tr>
           <% end %>
       </table>
