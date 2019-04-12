@@ -10,7 +10,7 @@ class ShootingGroup < ApplicationRecord
   delegate :bullet, to: :load
 
   validates :distance, presence: true, numericality: { only_integer: true }
-  validates :number, presence: true, numericality: { only_integer: true }, uniqueness: { scope: [:shooting_log, :caliber, :user] }
+  validates :number, presence: true, numericality: { only_integer: true }, uniqueness: { scope: [:shooting_log, :load, :user, :distance] }
   validates :elevation_adjustment_direction, absence: true, unless: Proc.new { |a| a.elevation_adjustment.present? }
   validates :windage_adjustment_direction, absence: true, unless: Proc.new { |a| a.windage_adjustment.present? }
 

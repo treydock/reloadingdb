@@ -43,20 +43,22 @@ RSpec.describe ShootingGroup, type: :model do
       skip("PENDING: https://github.com/thoughtbot/shoulda-matchers/issues/814")
       is_expected.to validate_uniqueness_of(:name).scoped_to([:shooting_log, :caliber, :user])
     end
-    it "should have unique name scoped by shooting_log, caliber and user" do
+    it "should have unique name scoped by shooting_log, load and user" do
       user1 = create(:user)
       user2 = create(:user)
-      caliber1 = create(:caliber, user: user1)
-      caliber2 = create(:caliber, user: user2)
+      load1 = create(:load, user: user1)
+      load2 = create(:load, user: user2)
       shooting_log1_user1 = create(:shooting_log, user: user1)
       create(:shooting_log, user: user1)
       shooting_log1_user2 = create(:shooting_log, user: user2)
       create(:shooting_log, user: user2)
-      create(:shooting_group, user: user1, caliber: caliber1, shooting_log: shooting_log1_user1, number: 1)
-      expect(build(:shooting_group, user: user1, caliber: caliber1, shooting_log: shooting_log1_user1, number: 2)).to be_valid
-      expect(build(:shooting_group, user: user1, caliber: caliber1, shooting_log: shooting_log1_user1, number: 1)).not_to be_valid
-      expect(build(:shooting_group, user: user1, caliber: caliber2, shooting_log: shooting_log1_user1, number: 1)).to be_valid
-      expect(build(:shooting_group, user: user2, caliber: caliber1, shooting_log: shooting_log1_user2, number: 1)).to be_valid
+      create(:shooting_group, user: user1, load: load1, shooting_log: shooting_log1_user1, number: 1, distance: 100)
+      expect(build(:shooting_group, user: user1, load: load1, shooting_log: shooting_log1_user1, number: 2, distance: 100)).to be_valid
+      expect(build(:shooting_group, user: user1, load: load1, shooting_log: shooting_log1_user1, number: 1, distance: 100)).not_to be_valid
+      expect(build(:shooting_group, user: user1, load: load1, shooting_log: shooting_log1_user1, number: 1, distance: 200)).to be_valid
+      expect(build(:shooting_group, user: user1, load: load2, shooting_log: shooting_log1_user1, number: 1)).to be_valid
+      expect(build(:shooting_group, user: user2, load: load1, shooting_log: shooting_log1_user2, number: 1)).to be_valid
+      expect(build(:shooting_group, user: user2, load: load1, shooting_log: shooting_log1_user2, number: 1)).to be_valid
     end
   end
 
