@@ -62,7 +62,7 @@ class BallisticCalculator
 
   # remaining velocity, fps
   def RV(range)
-    ((Math.sqrt(velocity)) - 0.00863 * (range / ballistic_coefficient))**2
+    ((Math.sqrt(velocity)) - 0.00863 * (range.to_f / ballistic_coefficient))**2
   end
 
   # dummy variable
@@ -72,7 +72,7 @@ class BallisticCalculator
 
   # time of flight, seconds
   def TF(range)
-    (3 * range) / (velocity * (1 - (0.003 * range * self.K)))
+    (3.0 * range.to_f) / (velocity * (1 - (0.003 * range * self.K)))
   end
 
   # dummy variable
@@ -92,7 +92,7 @@ class BallisticCalculator
 
   # elevation required, moa
   def EL(range)
-    (100 * (self.DR(range) + height_of_sight)) / range
+    (100.0 * (self.DR(range) + height_of_sight)) / range.to_f
   end
 
   # bullet path above or below line of sight, inches
@@ -103,19 +103,19 @@ class BallisticCalculator
     else
       el1 = self.EL(range)
     end
-    ((el0 - el1) * range) / 100.0
+    ((el0 - el1) * range.to_f) / 100.0
   end
 
   # bullet path above or below line of sight, moa
   def BP_moa(range)
     return 0.0 if range == 0
-    self.BP(range) / (range / 100.0)
+    self.BP(range) / (range.to_f / 100.0)
   end
 
   def BP_clicks(range)
     return 0 if range == 0
     return 0 unless scope_moa_adjustment.present?
-    adjustment_at_range = ((range / 100) * scope_moa_adjustment)
+    adjustment_at_range = ((range.to_f / 100.0) * scope_moa_adjustment)
     (self.BP_moa(range) / adjustment_at_range).abs
   end
 
@@ -131,27 +131,27 @@ class BallisticCalculator
   # wind deflection, moa
   def WD_moa(range, wind_angle = 180)
     return 0.0 if range == 0
-    self.WD(range, wind_angle) / (range / 100)
+    self.WD(range, wind_angle) / (range.to_f / 100.0)
   end
 
   # USMC method
   # http://www.millettsights.com/resources/shooting-tips/mathematics-for-precision-shooters/
   def wind_drift_moa(range, single_value = false)
-    value = ((range / 100) * wind_speed.to_f) / 15
+    value = ((range.to_f / 100.0) * wind_speed.to_f) / 15
     return value if single_value
     [value.round(1), self.WD_moa(range).round(1)]
   end
 
   def wind_drift(range)
     moa = self.wind_drift_moa(range, true)
-    value = moa * (range / 100)
+    value = moa * (range.to_f / 100.0)
     [value.round(1), self.WD(range).round(1)]
   end
 
   def wind_drift_clicks(range)
     return 0 if range == 0
     return 0 unless scope_moa_adjustment.present?
-    adjustment_at_range = ((range / 100) * scope_moa_adjustment)
+    adjustment_at_range = ((range.to_f / 100.0) * scope_moa_adjustment)
     moa = self.wind_drift_moa(range)
     min = (moa[0] / adjustment_at_range)
     max = (moa[1] / adjustment_at_range)
