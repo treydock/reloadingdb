@@ -4,7 +4,7 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require_relative "config/application"
-require "rubocop/rake_task" if Bundler.rubygems.find_name('rubocop').any?
+require "rubocop/rake_task" if Bundler.rubygems.find_name("rubocop").any?
 
 Rails.application.load_tasks
-RuboCop::RakeTask.new if Bundler.rubygems.find_name('rubocop').any?
+RuboCop::RakeTask.new if Bundler.rubygems.find_name("rubocop").any?
